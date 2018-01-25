@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
-		C86ABB7C2018E8A900163279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* ViewController.swift */; };
+		C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* LoginViewController.swift */; };
 		C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB7D2018E8A900163279 /* Main.storyboard */; };
 		C86ABB812018E8A900163279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB802018E8A900163279 /* Assets.xcassets */; };
 		C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB822018E8A900163279 /* LaunchScreen.storyboard */; };
+		C86ABB8C2019666900163279 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8B2019666900163279 /* MainViewController.swift */; };
+		C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8D20197A2A00163279 /* SignUpViewController.swift */; };
+		C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8F20197CCC00163279 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86ABB792018E8A900163279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C86ABB7B2018E8A900163279 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C86ABB7B2018E8A900163279 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C86ABB7E2018E8A900163279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C86ABB802018E8A900163279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C86ABB832018E8A900163279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C86ABB852018E8A900163279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C86ABB8B2019666900163279 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C86ABB8D20197A2A00163279 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C86ABB8F20197CCC00163279 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,41 @@
 		C86ABB782018E8A900163279 /* EagleSocial */ = {
 			isa = PBXGroup;
 			children = (
-				C86ABB792018E8A900163279 /* AppDelegate.swift */,
-				C86ABB7B2018E8A900163279 /* ViewController.swift */,
-				C86ABB7D2018E8A900163279 /* Main.storyboard */,
-				C86ABB802018E8A900163279 /* Assets.xcassets */,
+				C86ABB8B2019666900163279 /* MainViewController.swift */,
+				C86ABB8D20197A2A00163279 /* SignUpViewController.swift */,
+				C86ABB8F20197CCC00163279 /* HomeViewController.swift */,
+				C86ABB7B2018E8A900163279 /* LoginViewController.swift */,
 				C86ABB822018E8A900163279 /* LaunchScreen.storyboard */,
+				C86ABB7D2018E8A900163279 /* Main.storyboard */,
+				C86ABB792018E8A900163279 /* AppDelegate.swift */,
+				C86ABB9220197D1C00163279 /* Model */,
+				C86ABB9320197D3000163279 /* View */,
+				C86ABB9120197CE900163279 /* Controllers */,
+				C86ABB802018E8A900163279 /* Assets.xcassets */,
 				C86ABB852018E8A900163279 /* Info.plist */,
 			);
 			path = EagleSocial;
+			sourceTree = "<group>";
+		};
+		C86ABB9120197CE900163279 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C86ABB9220197D1C00163279 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C86ABB9320197D3000163279 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C86ABB7C2018E8A900163279 /* ViewController.swift in Sources */,
+				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
+				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
+				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
+				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -19,9 +19,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     
        self.loginButton.layer.cornerRadius = 15
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +33,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "goHomeFromLogin", sender: self)
     }
     
 
