@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */; };
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
 		C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* LoginViewController.swift */; };
 		C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB7D2018E8A900163279 /* Main.storyboard */; };
@@ -15,9 +16,11 @@
 		C86ABB8C2019666900163279 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8B2019666900163279 /* MainViewController.swift */; };
 		C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8D20197A2A00163279 /* SignUpViewController.swift */; };
 		C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8F20197CCC00163279 /* HomeViewController.swift */; };
+		C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.release.xcconfig"; sourceTree = "<group>"; };
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86ABB792018E8A900163279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C86ABB7B2018E8A900163279 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,9 @@
 		C86ABB8B2019666900163279 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C86ABB8D20197A2A00163279 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C86ABB8F20197CCC00163279 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EagleSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		093989FA6219FE634E60C0BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4AFFC567BD894C6DD5DA286E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */,
+				2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C86ABB6D2018E8A900163279 = {
 			isa = PBXGroup;
 			children = (
 				C86ABB782018E8A900163279 /* EagleSocial */,
 				C86ABB772018E8A900163279 /* Products */,
+				4AFFC567BD894C6DD5DA286E /* Pods */,
+				093989FA6219FE634E60C0BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 		C86ABB782018E8A900163279 /* EagleSocial */ = {
 			isa = PBXGroup;
 			children = (
+				C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */,
 				C86ABB8B2019666900163279 /* MainViewController.swift */,
 				C86ABB8D20197A2A00163279 /* SignUpViewController.swift */,
 				C86ABB8F20197CCC00163279 /* HomeViewController.swift */,
@@ -104,9 +131,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C86ABB882018E8A900163279 /* Build configuration list for PBXNativeTarget "EagleSocial" */;
 			buildPhases = (
+				D6071483B3991302F21DBF07 /* [CP] Check Pods Manifest.lock */,
 				C86ABB722018E8A900163279 /* Sources */,
 				C86ABB732018E8A900163279 /* Frameworks */,
 				C86ABB742018E8A900163279 /* Resources */,
+				609520B59B7E86059A184DC7 /* [CP] Embed Pods Frameworks */,
+				A25DA11E42B3EF220A1DEFAB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,10 +189,73 @@
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */,
+				C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		609520B59B7E86059A184DC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A25DA11E42B3EF220A1DEFAB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6071483B3991302F21DBF07 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EagleSocial-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C86ABB722018E8A900163279 /* Sources */ = {
@@ -308,6 +401,7 @@
 		};
 		C86ABB892018E8A900163279 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -323,6 +417,7 @@
 		};
 		C86ABB8A2018E8A900163279 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

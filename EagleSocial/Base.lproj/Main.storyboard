@@ -354,6 +354,9 @@
                         <viewLayoutGuide key="safeArea" id="YZT-Mn-KiV"/>
                     </view>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="3NJ-gv-oUR" id="kUE-Vq-Vdw"/>
+                        <outlet property="emailTextField" destination="Osj-Fq-hbK" id="5du-Gh-ZjT"/>
+                        <outlet property="passwordTextField" destination="sUl-TI-MT2" id="c2X-hO-U15"/>
                         <outlet property="signUpButton" destination="18E-Py-mdm" id="qDa-u3-Q5G"/>
                         <segue destination="ff3-an-nwZ" kind="show" identifier="goHomeFromSignUp" id="43V-Au-LHQ"/>
                     </connections>
