@@ -13,6 +13,9 @@
         <array key="Baskerville.ttc">
             <string>Baskerville</string>
         </array>
+        <array key="Noteworthy.ttc">
+            <string>Noteworthy-Light</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Login View Controller-->
@@ -39,7 +42,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                 <connections>
                                     <action selector="passwordDone" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="Pz8-nw-6Xe"/>
                                 </connections>
@@ -49,7 +52,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                 <connections>
                                     <action selector="usernameDone" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="H5q-JP-B1I"/>
                                 </connections>
@@ -82,7 +85,7 @@
                         <outlet property="loginButton" destination="0pa-8H-GV1" id="tfe-MM-KfO"/>
                         <outlet property="passwordTextField" destination="Yw3-lc-4mg" id="wQd-Oy-bC4"/>
                         <outlet property="usernameTextField" destination="2Xi-jw-E3H" id="3Sh-5Q-v0M"/>
-                        <segue destination="ff3-an-nwZ" kind="show" identifier="goHomeFromLogin" id="Uzh-DO-LBD"/>
+                        <segue destination="lC4-rl-x13" kind="show" identifier="goHomeFromLogin" id="761-gL-G3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -256,7 +259,7 @@
                                         <rect key="frame" x="73" y="31" width="230" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                         <connections>
                                             <action selector="emailDone" destination="Yun-3F-wge" eventType="editingDidEndOnExit" id="lyv-fX-pOn"/>
                                         </connections>
@@ -265,7 +268,7 @@
                                         <rect key="frame" x="73" y="110" width="230" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                         <connections>
                                             <action selector="passwordDone" destination="Yun-3F-wge" eventType="editingDidEndOnExit" id="Tvq-e5-1wr"/>
                                         </connections>
@@ -274,7 +277,7 @@
                                         <rect key="frame" x="73" y="187" width="230" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                         <connections>
                                             <action selector="confirmDone" destination="Yun-3F-wge" eventType="editingDidEndOnExit" id="cs6-ND-4PM"/>
                                         </connections>
@@ -358,7 +361,7 @@
                         <outlet property="emailTextField" destination="Osj-Fq-hbK" id="5du-Gh-ZjT"/>
                         <outlet property="passwordTextField" destination="sUl-TI-MT2" id="c2X-hO-U15"/>
                         <outlet property="signUpButton" destination="18E-Py-mdm" id="qDa-u3-Q5G"/>
-                        <segue destination="ff3-an-nwZ" kind="show" identifier="goHomeFromSignUp" id="43V-Au-LHQ"/>
+                        <segue destination="lC4-rl-x13" kind="show" identifier="goHomeFromSignUp" id="LL4-Cf-uJJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcu-4f-ZRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,41 +369,41 @@
             <point key="canvasLocation" x="1508" y="-195.6521739130435"/>
         </scene>
         <!--Home View Controller-->
-        <scene sceneID="g44-90-VN9">
+        <scene sceneID="WAL-7J-qxy">
             <objects>
-                <viewController id="ff3-an-nwZ" customClass="HomeViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ETX-3i-DZD">
+                <viewController id="lC4-rl-x13" customClass="HomeViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gDN-Z9-Dg5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the home screen!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfu-3b-NEJ">
-                                <rect key="frame" x="67.5" y="276" width="240" height="115"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="U16-0o-pbS"/>
-                                    <constraint firstAttribute="height" constant="115" id="gcL-3d-Lq3"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the home screen!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XM-SW-Vkg">
+                                <rect key="frame" x="58" y="282" width="259" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="40"/>
                                 <color key="textColor" red="1" green="0.75686274509803919" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eagle Social" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXe-mh-lni">
+                                <rect key="frame" x="72" y="20" width="230" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="50"/>
+                                <color key="textColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Hfu-3b-NEJ" firstAttribute="centerX" secondItem="ETX-3i-DZD" secondAttribute="centerX" id="Tvp-B2-a8N"/>
-                            <constraint firstItem="Hfu-3b-NEJ" firstAttribute="centerY" secondItem="ETX-3i-DZD" secondAttribute="centerY" id="aZe-tf-bKt"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Znj-OZ-syh"/>
+                        <viewLayoutGuide key="safeArea" id="3Nl-ki-eUk"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fd1-Cu-DCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uli-vh-ycd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2391.1999999999998" y="88.605697151424295"/>
+            <point key="canvasLocation" x="2293.5999999999999" y="113.79310344827587"/>
         </scene>
     </scenes>
     <resources>
         <image name="USMLogo" width="765" height="408"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uzh-DO-LBD"/>
+        <segue reference="761-gL-G3x"/>
     </inferredMetricsTieBreakers>
 </document>
