@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GradientLoadingBar
 
 class LoginViewController: UIViewController {
 
@@ -15,6 +16,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    let gradientLoadingBar = GradientLoadingBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,12 +39,15 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
+        gradientLoadingBar.show()
+        
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print("\(String(describing: error))")
             }else {
                 print("login successful")
                 //SVProgressHUD.dismiss()
+                self.gradientLoadingBar.hide()
                 self.performSegue(withIdentifier: "goHomeFromLogin", sender: self)
             }
         }

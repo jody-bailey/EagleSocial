@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GradientLoadingBar
 //import SVProgressHUD
 
 class SignUpViewController: UIViewController {
@@ -16,6 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    
+    let gradientLoadingBar = GradientLoadingBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         //SVProgressHUD.show()
+        gradientLoadingBar.show()
         
         //TODO: Set up a new user on our Firbase database
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -50,6 +54,7 @@ class SignUpViewController: UIViewController {
                 // success
                 print("Registration Successful")
                 //SVProgressHUD.dismiss()
+                self.gradientLoadingBar.hide()
                 self.performSegue(withIdentifier: "goHomeFromSignUp", sender: self)
             }
         }
