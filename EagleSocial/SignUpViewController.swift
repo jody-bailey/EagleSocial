@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import GradientLoadingBar
-//import SVProgressHUD
+import SVProgressHUD
 
 class SignUpViewController: UIViewController {
 
@@ -43,8 +43,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        //SVProgressHUD.show()
-        gradientLoadingBar.show()
+        SVProgressHUD.show()
+        //gradientLoadingBar.show()
         
         //TODO: Set up a new user on our Firbase database
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -53,8 +53,12 @@ class SignUpViewController: UIViewController {
             }else {
                 // success
                 print("Registration Successful")
-                //SVProgressHUD.dismiss()
-                self.gradientLoadingBar.hide()
+                SVProgressHUD.dismiss()
+                //self.gradientLoadingBar.hide()
+                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! UITabBarController
+                self.present(controller, animated: true, completion: { () -> Void in
+                })
                 self.performSegue(withIdentifier: "goHomeFromSignUp", sender: self)
             }
         }

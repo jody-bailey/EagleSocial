@@ -85,12 +85,27 @@
                         <outlet property="loginButton" destination="0pa-8H-GV1" id="tfe-MM-KfO"/>
                         <outlet property="passwordTextField" destination="Yw3-lc-4mg" id="wQd-Oy-bC4"/>
                         <outlet property="usernameTextField" destination="2Xi-jw-E3H" id="3Sh-5Q-v0M"/>
-                        <segue destination="lC4-rl-x13" kind="show" identifier="goHomeFromLogin" id="761-gL-G3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1508" y="506"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="YF2-7a-ABY">
+            <objects>
+                <viewController id="eqb-M5-alj" customClass="ProfileViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U1w-ow-ot0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="VW9-oA-cRd"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="eMo-S0-zih"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="own-r4-ghk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2283" y="854"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="5XB-xk-j2o">
@@ -361,17 +376,16 @@
                         <outlet property="emailTextField" destination="Osj-Fq-hbK" id="5du-Gh-ZjT"/>
                         <outlet property="passwordTextField" destination="sUl-TI-MT2" id="c2X-hO-U15"/>
                         <outlet property="signUpButton" destination="18E-Py-mdm" id="qDa-u3-Q5G"/>
-                        <segue destination="lC4-rl-x13" kind="show" identifier="goHomeFromSignUp" id="LL4-Cf-uJJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcu-4f-ZRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1508" y="-195.6521739130435"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="WAL-7J-qxy">
             <objects>
-                <viewController id="lC4-rl-x13" customClass="HomeViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lC4-rl-x13" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gDN-Z9-Dg5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -394,16 +408,33 @@
                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="3Nl-ki-eUk"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon" id="ql7-RG-x6O"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uli-vh-ycd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2293.5999999999999" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2978" y="114"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="n6P-nF-vcq">
+            <objects>
+                <tabBarController storyboardIdentifier="vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kaa-YN-XNl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Hx-Pz-JmG">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="lC4-rl-x13" kind="relationship" relationship="viewControllers" id="vLV-dU-SVv"/>
+                        <segue destination="eqb-M5-alj" kind="relationship" relationship="viewControllers" id="AuX-wr-Vi6"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HxK-x8-66s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2282" y="114"/>
         </scene>
     </scenes>
     <resources>
         <image name="USMLogo" width="765" height="408"/>
+        <image name="home_icon" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="761-gL-G3x"/>
-    </inferredMetricsTieBreakers>
 </document>

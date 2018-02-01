@@ -17,6 +17,14 @@
 		C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8D20197A2A00163279 /* SignUpViewController.swift */; };
 		C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8F20197CCC00163279 /* HomeViewController.swift */; };
 		C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */; };
+		C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771C920227D6600AF492D /* ProfileViewController.swift */; };
+		C8A771CC202282C300AF492D /* Eagle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A771CB202282C300AF492D /* Eagle.storyboard */; };
+		C8A771CE2022864E00AF492D /* EageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CD2022864E00AF492D /* EageMainViewController.swift */; };
+		C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CF202286E300AF492D /* FriendsViewController.swift */; };
+		C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D32022ABD500AF492D /* ChatViewController.swift */; };
+		C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D52022AC3300AF492D /* SettingsViewController.swift */; };
+		C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */; };
+		C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		C86ABB8D20197A2A00163279 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C86ABB8F20197CCC00163279 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C8A771C920227D6600AF492D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C8A771CB202282C300AF492D /* Eagle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Eagle.storyboard; sourceTree = "<group>"; };
+		C8A771CD2022864E00AF492D /* EageMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EageMainViewController.swift; sourceTree = "<group>"; };
+		C8A771CF202286E300AF492D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		C8A771D32022ABD500AF492D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C8A771D52022AC3300AF492D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
+		C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EagleSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,14 +107,22 @@
 				C86ABB8D20197A2A00163279 /* SignUpViewController.swift */,
 				C86ABB8F20197CCC00163279 /* HomeViewController.swift */,
 				C86ABB7B2018E8A900163279 /* LoginViewController.swift */,
+				C8A771C920227D6600AF492D /* ProfileViewController.swift */,
 				C86ABB822018E8A900163279 /* LaunchScreen.storyboard */,
 				C86ABB7D2018E8A900163279 /* Main.storyboard */,
+				C8A771CB202282C300AF492D /* Eagle.storyboard */,
+				C8A771CD2022864E00AF492D /* EageMainViewController.swift */,
+				C8A771CF202286E300AF492D /* FriendsViewController.swift */,
+				C8A771D32022ABD500AF492D /* ChatViewController.swift */,
+				C8A771D52022AC3300AF492D /* SettingsViewController.swift */,
 				C86ABB792018E8A900163279 /* AppDelegate.swift */,
 				C86ABB9220197D1C00163279 /* Model */,
 				C86ABB9320197D3000163279 /* View */,
 				C86ABB9120197CE900163279 /* Controllers */,
 				C86ABB802018E8A900163279 /* Assets.xcassets */,
 				C86ABB852018E8A900163279 /* Info.plist */,
+				C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */,
+				C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */,
 			);
 			path = EagleSocial;
 			sourceTree = "<group>";
@@ -188,7 +212,9 @@
 			files = (
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
+				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
 				C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */,
+				C8A771CC202282C300AF492D /* Eagle.storyboard in Resources */,
 				C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,10 +290,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */,
+				C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */,
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
+				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
+				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
+				C8A771CE2022864E00AF492D /* EageMainViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
+				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

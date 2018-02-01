@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GradientLoadingBar
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -39,16 +40,21 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
-        gradientLoadingBar.show()
+        //gradientLoadingBar.show()
+        SVProgressHUD.show()
         
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print("\(String(describing: error))")
             }else {
                 print("login successful")
-                //SVProgressHUD.dismiss()
-                self.gradientLoadingBar.hide()
-                self.performSegue(withIdentifier: "goHomeFromLogin", sender: self)
+                SVProgressHUD.dismiss()
+                //self.gradientLoadingBar.hide()
+                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! EageMainViewController
+                self.present(controller, animated: true, completion: { () -> Void in
+                })
+                //self.performSegue(withIdentifier: "goHomeFromLogin", sender: self)
             }
         }
         
