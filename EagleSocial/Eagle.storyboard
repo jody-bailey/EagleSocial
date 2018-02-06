@@ -101,6 +101,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="home_icon" id="9fV-sF-Sgp"/>
                     <connections>
                         <outlet property="NewsFeedTable" destination="G9y-x0-USe" id="mjG-WS-pjz"/>
+                        <outlet property="searchBar" destination="XNC-1o-hXn" id="mTf-4x-mAT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wh-1x-XdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,6 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.75686274509803919" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="0jy-P4-euq" kind="relationship" relationship="viewControllers" id="zMB-8j-v0M"/>

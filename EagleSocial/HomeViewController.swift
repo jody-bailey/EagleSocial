@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 
     @IBOutlet weak var NewsFeedTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         NewsFeedTable.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+        NewsFeedTable.addGestureRecognizer(tapGesture)
+        
         configureTableView()
         
-        NewsFeedTable.separatorStyle = .none
+        //NewsFeedTable.separatorStyle = .none
         
         NewsFeedTable.reloadData()
     }
@@ -45,16 +49,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.nameOfUser.text = "Jody Bailey"
         cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
-        cell.profilePicture.layer.cornerRadius = 45
+        cell.profilePicture.layer.cornerRadius = 32
         cell.profilePicture.layer.masksToBounds = true
         cell.textBody.text = "This is going to be the best social media app ever created for college students!"
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     func configureTableView() {
         NewsFeedTable.rowHeight = UITableViewAutomaticDimension
         NewsFeedTable.estimatedRowHeight = 240.0
+    }
+    
+    @objc func tableViewTapped() {
+        searchBar.endEditing(true)
     }
     
     /*
