@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */; };
+		C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */; };
+		C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */; };
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
 		C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* LoginViewController.swift */; };
 		C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB7D2018E8A900163279 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.release.xcconfig"; sourceTree = "<group>"; };
+		C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateTableViewCell.swift; sourceTree = "<group>"; };
+		C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusUpdateTableViewCell.xib; sourceTree = "<group>"; };
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86ABB792018E8A900163279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C86ABB7B2018E8A900163279 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				C86ABB852018E8A900163279 /* Info.plist */,
 				C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */,
 				C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */,
+				C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */,
+				C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */,
 			);
 			path = EagleSocial;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
 				C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */,
+				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
 				C8A771CC202282C300AF492D /* Eagle.storyboard in Resources */,
 				C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */,
 			);
@@ -294,6 +301,7 @@
 				C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */,
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
 				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
+				C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */,
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,

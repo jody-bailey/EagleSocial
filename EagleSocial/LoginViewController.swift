@@ -49,6 +49,10 @@ class LoginViewController: UIViewController {
             }else {
                 print("login successful")
                 SVProgressHUD.dismiss()
+                
+                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                UserDefaults.standard.synchronize()
+                
                 //self.gradientLoadingBar.hide()
                 let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! EageMainViewController

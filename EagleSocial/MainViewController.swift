@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
