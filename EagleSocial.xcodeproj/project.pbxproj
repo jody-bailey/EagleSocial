@@ -12,7 +12,6 @@
 		C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */; };
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
 		C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* LoginViewController.swift */; };
-		C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB7D2018E8A900163279 /* Main.storyboard */; };
 		C86ABB812018E8A900163279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB802018E8A900163279 /* Assets.xcassets */; };
 		C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB822018E8A900163279 /* LaunchScreen.storyboard */; };
 		C86ABB8C2019666900163279 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8B2019666900163279 /* MainViewController.swift */; };
@@ -20,8 +19,8 @@
 		C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB8F20197CCC00163279 /* HomeViewController.swift */; };
 		C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */; };
 		C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771C920227D6600AF492D /* ProfileViewController.swift */; };
-		C8A771CC202282C300AF492D /* Eagle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A771CB202282C300AF492D /* Eagle.storyboard */; };
-		C8A771CE2022864E00AF492D /* EageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CD2022864E00AF492D /* EageMainViewController.swift */; };
+		C8A771CC202282C300AF492D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A771CB202282C300AF492D /* Main.storyboard */; };
+		C8A771CE2022864E00AF492D /* EagleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CD2022864E00AF492D /* EagleMainViewController.swift */; };
 		C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CF202286E300AF492D /* FriendsViewController.swift */; };
 		C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D32022ABD500AF492D /* ChatViewController.swift */; };
 		C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D52022AC3300AF492D /* SettingsViewController.swift */; };
@@ -36,7 +35,6 @@
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86ABB792018E8A900163279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C86ABB7B2018E8A900163279 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		C86ABB7E2018E8A900163279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C86ABB802018E8A900163279 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C86ABB832018E8A900163279 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C86ABB852018E8A900163279 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,8 +43,8 @@
 		C86ABB8F20197CCC00163279 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8A771C920227D6600AF492D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		C8A771CB202282C300AF492D /* Eagle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Eagle.storyboard; sourceTree = "<group>"; };
-		C8A771CD2022864E00AF492D /* EageMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EageMainViewController.swift; sourceTree = "<group>"; };
+		C8A771CB202282C300AF492D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C8A771CD2022864E00AF492D /* EagleMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EagleMainViewController.swift; sourceTree = "<group>"; };
 		C8A771CF202286E300AF492D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		C8A771D32022ABD500AF492D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C8A771D52022AC3300AF492D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -112,9 +110,8 @@
 				C86ABB7B2018E8A900163279 /* LoginViewController.swift */,
 				C8A771C920227D6600AF492D /* ProfileViewController.swift */,
 				C86ABB822018E8A900163279 /* LaunchScreen.storyboard */,
-				C86ABB7D2018E8A900163279 /* Main.storyboard */,
-				C8A771CB202282C300AF492D /* Eagle.storyboard */,
-				C8A771CD2022864E00AF492D /* EageMainViewController.swift */,
+				C8A771CB202282C300AF492D /* Main.storyboard */,
+				C8A771CD2022864E00AF492D /* EagleMainViewController.swift */,
 				C86ABB8F20197CCC00163279 /* HomeViewController.swift */,
 				C8A771CF202286E300AF492D /* FriendsViewController.swift */,
 				C8A771D32022ABD500AF492D /* ChatViewController.swift */,
@@ -219,9 +216,8 @@
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
-				C86ABB7F2018E8A900163279 /* Main.storyboard in Resources */,
 				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
-				C8A771CC202282C300AF492D /* Eagle.storyboard in Resources */,
+				C8A771CC202282C300AF492D /* Main.storyboard in Resources */,
 				C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +301,7 @@
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
-				C8A771CE2022864E00AF492D /* EageMainViewController.swift in Sources */,
+				C8A771CE2022864E00AF492D /* EagleMainViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
@@ -315,14 +311,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C86ABB7D2018E8A900163279 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C86ABB7E2018E8A900163279 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C86ABB822018E8A900163279 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

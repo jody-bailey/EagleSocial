@@ -35,6 +35,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.reloadData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        
+        if (userLoginStatus){
+            print("user is logged in from tabbarcontroller")
+        }
+        else {
+            print("user not logged in")
+            performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

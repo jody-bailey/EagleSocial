@@ -55,11 +55,11 @@ class SignUpViewController: UIViewController {
                 print("Registration Successful")
                 SVProgressHUD.dismiss()
                 //self.gradientLoadingBar.hide()
-                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! UITabBarController
-                self.present(controller, animated: true, completion: { () -> Void in
-                })
-                self.performSegue(withIdentifier: "goHomeFromSignUp", sender: self)
+//                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! UITabBarController
+//                self.present(controller, animated: true, completion: { () -> Void in
+//                })
+//                self.performSegue(withIdentifier: "goHomeFromSignUp", sender: self)
             }
         }
         
