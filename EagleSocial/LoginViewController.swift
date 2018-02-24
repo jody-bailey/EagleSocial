@@ -53,11 +53,13 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                 UserDefaults.standard.synchronize()
                 
+                self.dismiss(animated: true, completion: nil)
+                
                 //self.gradientLoadingBar.hide()
-                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! EageMainViewController
-                self.present(controller, animated: true, completion: { () -> Void in
-                })
+//                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! EageMainViewController
+//                self.present(controller, animated: true, completion: { () -> Void in
+//                })
                 //self.performSegue(withIdentifier: "goHomeFromLogin", sender: self)
             }
         }

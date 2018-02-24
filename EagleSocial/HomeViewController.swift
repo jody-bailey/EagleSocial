@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     
 
@@ -20,10 +21,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
        
         // Do any additional setup after loading the view.
         
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference()
+        
         NewsFeedTable.delegate = self
         NewsFeedTable.dataSource = self
         
         NewsFeedTable.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        
+        NewsFeedTable.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         NewsFeedTable.addGestureRecognizer(tapGesture)
@@ -35,29 +42,80 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.reloadData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        
+        if (userLoginStatus){
+            print("user is logged in from tabbarcontroller")
+        }
+        else {
+            print("user not logged in")
+            performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
         
-        cell.nameOfUser.text = "Jody Bailey"
-        cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
-        cell.profilePicture.layer.cornerRadius = 32
-        cell.profilePicture.layer.masksToBounds = true
-        cell.textBody.text = "This is going to be the best social media app ever created for college students!"
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
+            
+            cell.shareButton.layer.cornerRadius = 10
+            cell.userName.text = "Jody Bailey"
+            cell.profileImage.image = #imageLiteral(resourceName: "jodybobae")
+            cell.profileImage.layer.cornerRadius = 32
+            cell.profileImage.layer.masksToBounds = true
+//            cell.statusTextField.delegate = self
+            cell.statusTextField.text = "Enter your status update here!"
+            cell.backgroundColor = UIColor.lightGray
+            
+            return cell
+        }
+        else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
+            cell.nameOfUser.text = "Jody Bailey"
+            cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
+            cell.profilePicture.layer.cornerRadius = 32
+            cell.profilePicture.layer.masksToBounds = true
+            cell.textBody.text = "This is going to be the best social media app ever created for college students!"
+                
+                return cell
+        }
+        else {
+            fatalError("Unexpected section \(indexPath.section)")
+        }
         
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.endEditing(true)
+    }
+    
+    
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n")
+        {
+            
+            self.view.endEditing(true);
+            return false;
+        }
+        return true
     }
     
     func configureTableView() {
