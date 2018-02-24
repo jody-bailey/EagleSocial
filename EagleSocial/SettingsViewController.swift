@@ -10,14 +10,8 @@ import UIKit
 import FirebaseAuth
 
 class SettingsViewController: UIViewController {
-<<<<<<< HEAD
-    
-    
-    
-=======
 
     @IBOutlet weak var logoutButton: UIButton!
->>>>>>> 7d98fa889d485aaff74838f675aad490b7c845a3
     override func viewDidLoad() {
         super.viewDidLoad()
 
