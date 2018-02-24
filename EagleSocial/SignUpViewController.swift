@@ -54,6 +54,11 @@ class SignUpViewController: UIViewController {
                 // success
                 print("Registration Successful")
                 SVProgressHUD.dismiss()
+                                
+                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                UserDefaults.standard.synchronize()
+                
+                self.dismiss(animated: true, completion: nil)
                 //self.gradientLoadingBar.hide()
 //                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
 //                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! UITabBarController
