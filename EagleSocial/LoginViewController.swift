@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-import GradientLoadingBar
 import SVProgressHUD
+import GradientLoadingBar
 
 class LoginViewController: UIViewController {
 

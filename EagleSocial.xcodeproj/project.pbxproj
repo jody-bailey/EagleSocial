@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0201B12041148600C959B9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0201B02041148600C959B9 /* EditProfileViewController.swift */; };
 		4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */; };
 		C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */; };
 		C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.release.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.release.xcconfig"; sourceTree = "<group>"; };
+		3F0201B02041148600C959B9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateTableViewCell.swift; sourceTree = "<group>"; };
 		C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusUpdateTableViewCell.xib; sourceTree = "<group>"; };
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				C86ABB8D20197A2A00163279 /* SignUpViewController.swift */,
 				C86ABB7B2018E8A900163279 /* LoginViewController.swift */,
 				C8A771C920227D6600AF492D /* ProfileViewController.swift */,
+				3F0201B02041148600C959B9 /* EditProfileViewController.swift */,
 				C86ABB822018E8A900163279 /* LaunchScreen.storyboard */,
 				C8A771CB202282C300AF492D /* Main.storyboard */,
 				C8A771CD2022864E00AF492D /* EagleMainViewController.swift */,
@@ -293,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0201B12041148600C959B9 /* EditProfileViewController.swift in Sources */,
 				C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */,
 				C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */,
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
@@ -435,10 +439,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3HKK9JZT88;
+				DEVELOPMENT_TEAM = VGD3SLFD4M;
 				INFOPLIST_FILE = EagleSocial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jodybailey.EagleSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lacysimpson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -451,10 +455,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3HKK9JZT88;
+				DEVELOPMENT_TEAM = VGD3SLFD4M;
 				INFOPLIST_FILE = EagleSocial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jodybailey.EagleSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lacysimpson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

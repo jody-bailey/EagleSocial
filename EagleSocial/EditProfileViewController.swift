@@ -1,16 +1,15 @@
 //
-//  ProfileViewController.swift
+//  EditProfileViewController.swift
 //  EagleSocial
 //
-//  Created by Jody Bailey on 1/31/18.
+//  Created by Lacy Simpson on 2/23/18.
 //  Copyright © 2018 Jody Bailey. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController {
 
-    @IBOutlet weak var editButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,13 +22,6 @@ class ProfileViewController: UIViewController {
     }
     
 
-    @IBAction func editButtonClick(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "goToEdit", sender: self)
-        
-        
-        
-    }
     /*
     // MARK: - Navigation
 
