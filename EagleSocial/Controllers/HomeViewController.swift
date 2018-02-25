@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             print(snapshot)
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
-//            self.posts.sor
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
             self.NewsFeedTable.reloadData()
             
         })
@@ -93,7 +93,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.profileImage.layer.cornerRadius = 32
             cell.profileImage.layer.masksToBounds = true
 //            cell.statusTextField.delegate = self
-            cell.statusTextField.text = "Enter your status update here!"
+            cell.statusTextField.placeholder = "Enter your status update here!"
             cell.backgroundColor = UIColor.lightGray
             
             return cell

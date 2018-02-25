@@ -36,14 +36,19 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         let user = Auth.auth().currentUser?.uid
         
+        let text = statusTextField.text
+        
+        let dateString = String(describing: Date())
+        
         let parameters =    ["user": user,
-                             "message": statusTextField.text]
+                             "message": text,
+                             "date": dateString]
         
         
         ref.child("posts").childByAutoId().setValue(parameters)
         
         statusTextField.resignFirstResponder()
-        
+        statusTextField.text = ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
