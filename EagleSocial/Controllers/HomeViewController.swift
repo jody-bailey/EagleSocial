@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -16,14 +18,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var NewsFeedTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var ref: DatabaseReference?
+    var refHandle: DatabaseHandle?
+    
+    var postData = [String]()
+    
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         // Do any additional setup after loading the view.
-        
-        var ref: DatabaseReference!
-        
         ref = Database.database().reference()
+        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+            // code to handle when a new post is added
+            print(snapshot)
+            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+            self.posts = postsSnapshot.posts
+//            self.posts.sor
+            self.NewsFeedTable.reloadData()
+            
+        })
         
         NewsFeedTable.delegate = self
         NewsFeedTable.dataSource = self
@@ -41,6 +56,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         NewsFeedTable.reloadData()
     }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         
@@ -63,7 +79,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return posts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,16 +98,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             return cell
         }
-        else if indexPath.row == 1 {
+        else if indexPath.row > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-            cell.nameOfUser.text = "Jody Bailey"
-            cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
-            cell.profilePicture.layer.cornerRadius = 32
-            cell.profilePicture.layer.masksToBounds = true
-            cell.textBody.text = "This is going to be the best social media app ever created for college students!"
-                
-                return cell
+            cell.nameOfUser.text = posts[indexPath.row - 1].username
+            cell.textBody.text = posts[indexPath.row - 1].message
+            
+            
+            return cell
         }
+//        else if indexPath.row == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
+//            cell.nameOfUser.text = "Jody Bailey"
+//            cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
+//            cell.profilePicture.layer.cornerRadius = 32
+//            cell.profilePicture.layer.masksToBounds = true
+//            cell.textBody.text = "This is going to be the best social media app ever created for college students!"
+//
+//                return cell
+//        }
         else {
             fatalError("Unexpected section \(indexPath.section)")
         }

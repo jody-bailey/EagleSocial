@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var editButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +23,13 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        print("edit button was pressed")
+        performSegue(withIdentifier: "goToEdit", sender: self)
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 

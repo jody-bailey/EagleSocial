@@ -7,4 +7,4 @@
 ![Alt text](/screenshot2.png?raw=true "Login")
 
 ## Home Screen
-![Alt text](/newsFeed.png?raw=true "Home Screen")
+![Alt text](/screenshot_news_feed.png?raw=true "Home Screen")
