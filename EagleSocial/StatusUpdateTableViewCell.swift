@@ -16,9 +16,13 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var statusTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     
+    var ref: DatabaseReference!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
+        ref = Database.database().reference()
         statusTextField.delegate = self
     }
 
@@ -29,10 +33,17 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
-        var ref: DatabaseReference!
         
-        ref = Database.database().reference()
-        ref.child("feed/posts").setValue(statusTextField.text)
+        let user = Auth.auth().currentUser?.uid
+        
+        let parameters =    ["user": user,
+                             "message": statusTextField.text]
+        
+        
+        ref.child("posts").childByAutoId().setValue(parameters)
+        
+        statusTextField.resignFirstResponder()
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.
