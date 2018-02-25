@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Friends-->
+        <scene sceneID="Sga-4V-oDf">
+            <objects>
+                <viewController id="3Ea-5N-C7I" customClass="FriendsViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t8M-t8-n1M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="n5N-kC-a4F"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends_icon" id="Iy6-4Z-Qt9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wz6-e4-cra" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-394" y="860"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="tJB-zO-giN">
+            <objects>
+                <viewController id="wcH-Bb-9Ux" customClass="ProfileViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iiK-ik-Yfd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="wbc-bt-LM8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_icon" id="xFo-d4-kdM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xr7-jy-VO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="443"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="z8y-fq-606">
+            <objects>
+                <viewController id="QA6-E5-Fvl" customClass="ChatViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nZx-aa-fvU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="dog-EO-MYa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="chat_icon" id="Mg5-SJ-KXI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YlE-su-mdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-398" y="-602"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="EqU-9e-2vn">
+            <objects>
+                <viewController id="0jy-P4-euq" customClass="HomeViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HxO-Bh-5oQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G9y-x0-USe">
+                                <rect key="frame" x="0.0" y="76" width="375" height="542"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" id="Sku-lQ-kNL">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sku-lQ-kNL" id="ptK-OW-kyg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="XNC-1o-hXn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="G9y-x0-USe" firstAttribute="bottom" secondItem="mKN-M5-Qjc" secondAttribute="bottom" id="4aH-Dw-daq"/>
+                            <constraint firstItem="XNC-1o-hXn" firstAttribute="leading" secondItem="mKN-M5-Qjc" secondAttribute="leading" id="4vF-hJ-Bsa"/>
+                            <constraint firstItem="XNC-1o-hXn" firstAttribute="top" secondItem="mKN-M5-Qjc" secondAttribute="top" id="7fB-P5-CDi"/>
+                            <constraint firstItem="G9y-x0-USe" firstAttribute="trailing" secondItem="mKN-M5-Qjc" secondAttribute="trailing" id="RNd-3d-kpe"/>
+                            <constraint firstItem="G9y-x0-USe" firstAttribute="leading" secondItem="mKN-M5-Qjc" secondAttribute="leading" id="ihr-zW-pIE"/>
+                            <constraint firstItem="XNC-1o-hXn" firstAttribute="trailing" secondItem="mKN-M5-Qjc" secondAttribute="trailing" id="jn6-78-qYO"/>
+                            <constraint firstItem="G9y-x0-USe" firstAttribute="top" secondItem="XNC-1o-hXn" secondAttribute="bottom" id="kBk-og-qTH"/>
+                            <constraint firstItem="G9y-x0-USe" firstAttribute="top" secondItem="XNC-1o-hXn" secondAttribute="bottom" id="zJR-58-L4e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mKN-M5-Qjc"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon" id="9fV-sF-Sgp"/>
+                    <connections>
+                        <outlet property="NewsFeedTable" destination="G9y-x0-USe" id="mjG-WS-pjz"/>
+                        <outlet property="searchBar" destination="XNC-1o-hXn" id="mTf-4x-mAT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7wh-1x-XdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="557.60000000000002" y="-220.83958020989508"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Cdo-oc-bcS">
+            <objects>
+                <viewController id="8s7-aM-eda" customClass="SettingsViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ESO-oz-7LD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="zkD-oq-auw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings_icon" id="UpU-LS-uXa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1z-kD-dyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1223.2" y="115.59220389805098"/>
+        </scene>
+        <!--Eage Main View Controller-->
+        <scene sceneID="Qnv-CK-xDi">
+            <objects>
+                <tabBarController storyboardIdentifier="vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FKd-uy-yPU" customClass="EageMainViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="6Kr-se-AVX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="1" green="0.75686274509803919" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="0jy-P4-euq" kind="relationship" relationship="viewControllers" id="zMB-8j-v0M"/>
+                        <segue destination="wcH-Bb-9Ux" kind="relationship" relationship="viewControllers" id="j72-az-UQ4"/>
+                        <segue destination="3Ea-5N-C7I" kind="relationship" relationship="viewControllers" id="7aM-gg-TRz"/>
+                        <segue destination="QA6-E5-Fvl" kind="relationship" relationship="viewControllers" id="HjV-zd-dzE"/>
+                        <segue destination="8s7-aM-eda" kind="relationship" relationship="viewControllers" id="Inj-Fl-Tag"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pc3-yd-Ri5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-394" y="111"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chat_icon" width="20" height="20"/>
+        <image name="friends_icon" width="32" height="32"/>
+        <image name="home_icon" width="32" height="32"/>
+        <image name="profile_icon" width="32" height="32"/>
+        <image name="settings_icon" width="20" height="20"/>
+    </resources>
+</document>
