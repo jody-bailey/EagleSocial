@@ -12,8 +12,12 @@ import GradientLoadingBar
 import SVProgressHUD
 
 class SignUpViewController: UIViewController {
+    
+    var ref : DatabaseReference?
 
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
@@ -31,6 +35,13 @@ class SignUpViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func lastNameDone() {
+    }
+    
+    @IBAction func firstNameDone() {
     }
     
     @IBAction func emailDone() {
@@ -59,13 +70,18 @@ class SignUpViewController: UIViewController {
                 UserDefaults.standard.synchronize()
                 
                 self.dismiss(animated: true, completion: nil)
-                //self.gradientLoadingBar.hide()
-//                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
-//                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! UITabBarController
-//                self.present(controller, animated: true, completion: { () -> Void in
-//                })
-//                self.performSegue(withIdentifier: "goHomeFromSignUp", sender: self)
+                
             }
+        }
+        
+        if let user = Auth.auth().currentUser {
+            print("user's name should be set")
+            let uid = user.uid
+            let name = firstNameTextField.text! + " " + lastNameTextField.text!
+           
+            let parameters = ["name": name,
+                              "userId": uid]
+            ref?.child("Users").childByAutoId().setValue(parameters)
         }
         
         
