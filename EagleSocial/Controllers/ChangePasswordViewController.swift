@@ -1,17 +1,15 @@
 //
-//  SettingsViewController.swift
+//  ChangePasswordViewController.swift
 //  EagleSocial
 //
-//  Created by Jody Bailey on 1/31/18.
+//  Created by Jeremiah on 2/25/18.
 //  Copyright © 2018 Jody Bailey. All rights reserved.
 //
 
 import UIKit
-import FirebaseAuth
 
-class SettingsViewController: UIViewController {
+class ChangePasswordViewController: UIViewController {
 
-    @IBOutlet weak var logoutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,23 +21,10 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func logoutPressed(_ sender: UIButton) {
-        do{
-            try Auth.auth().signOut()
-            
-        }
-        catch {
-            print("Error signing out!")
-        }
+    @IBAction func cancelPressed(_ sender: UIButton) {
         
-        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
-        UserDefaults.standard.synchronize()
+        self.dismiss(animated: true, completion: nil)
         
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeScreen") as? HomeViewController
-//        {
-//            present(vc, animated: true, completion: nil)
-//        }
-        tabBarController?.selectedIndex = 0
     }
     
     /*
