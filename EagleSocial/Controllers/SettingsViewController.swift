@@ -46,14 +46,17 @@ class SettingsViewController: UIViewController {
         performSegue(withIdentifier: "goToChangeName", sender: self)
     }
     
+    
     @IBAction func changeEmailPressed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "goToChangeEmail", sender: self)
+        
     }
     
     @IBAction func changePasswordPressed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "goToChangePassword", sender: self)
+        
     }
     
     
