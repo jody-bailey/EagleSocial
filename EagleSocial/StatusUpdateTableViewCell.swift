@@ -34,21 +34,39 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         
-        let user = Auth.auth().currentUser?.uid
+//        let user = Auth.auth().currentUser?.uid
         
-        let text = statusTextField.text
+//        var user : User?
         
-        let dateString = String(describing: Date())
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let username = value?["name"] as? String ?? ""
+            let user = User(username: username)
+            
+            // ...
+            let text = self.statusTextField.text
+            
+            let dateString = String(describing: Date())
+            
+            let parameters =    ["user": user?.name,
+                                 "message": text,
+                                 "date": dateString]
+            
+            
+            self.ref.child("posts").childByAutoId().setValue(parameters)
+            self.statusTextField.text = ""
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
-        let parameters =    ["user": user,
-                             "message": text,
-                             "date": dateString]
         
         
-        ref.child("posts").childByAutoId().setValue(parameters)
+        
         
         statusTextField.resignFirstResponder()
-        statusTextField.text = ""
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return false to ignore.

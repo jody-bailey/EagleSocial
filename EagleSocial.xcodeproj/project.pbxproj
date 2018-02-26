@@ -15,6 +15,7 @@
 		C8049BAB20427F9000FAC2CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAA20427F9000FAC2CC /* Post.swift */; };
 		C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAC2042850000FAC2CC /* PostSnapshot.swift */; };
 		C8049BAF2043898D00FAC2CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAE2043898D00FAC2CC /* User.swift */; };
+		C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BB02043A5C200FAC2CC /* ProfileCreationViewController.swift */; };
 		C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */; };
 		C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */; };
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		C8049BAA20427F9000FAC2CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C8049BAC2042850000FAC2CC /* PostSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSnapshot.swift; sourceTree = "<group>"; };
 		C8049BAE2043898D00FAC2CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C8049BB02043A5C200FAC2CC /* ProfileCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationViewController.swift; sourceTree = "<group>"; };
 		C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateTableViewCell.swift; sourceTree = "<group>"; };
 		C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusUpdateTableViewCell.xib; sourceTree = "<group>"; };
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 				2798471F2043570000C4D5A3 /* ChangeNameViewController.swift */,
 				279847212043618100C4D5A3 /* ChangeEmailViewController.swift */,
 				27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */,
+				C8049BB02043A5C200FAC2CC /* ProfileCreationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
 				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
 				C8049BAB20427F9000FAC2CC /* Post.swift in Sources */,
+				C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */,
 				279847222043618100C4D5A3 /* ChangeEmailViewController.swift in Sources */,
 				C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */,
 				C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */,
