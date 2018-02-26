@@ -11,6 +11,11 @@ import UIKit
 class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var firstAndLastText: UITextField!
+    @IBOutlet weak var ageText: UITextField!
+    @IBOutlet weak var majorText: UITextField!
+    @IBOutlet weak var personalInterestText: UITextField!
+    @IBOutlet weak var aboutMeText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +32,10 @@ class EditProfileViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonPressed(_ sender: Any)
+    {
+        
+    }
     /*
     // MARK: - Navigation
 
