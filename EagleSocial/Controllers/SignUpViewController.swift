@@ -14,15 +14,27 @@ import SVProgressHUD
 class SignUpViewController: UIViewController {
     
     var ref : DatabaseReference?
+//    var isDismissed : Bool = false
+    var isDismissed: Bool = false {
+        didSet {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
     let gradientLoadingBar = GradientLoadingBar()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToProfileCreation" {
+            if let modalVC1 = segue.destination as? ProfileCreationViewController {
+                modalVC1.delegate = self as DismissedView
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,28 +76,30 @@ class SignUpViewController: UIViewController {
             }else {
                 // success
                 print("Registration Successful")
+                
                 SVProgressHUD.dismiss()
                                 
                 UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                 UserDefaults.standard.synchronize()
                 
-                self.dismiss(animated: true, completion: nil)
+                
+                self.performSegue(withIdentifier: "goToProfileCreation", sender: self)
+                
+                
+                
+                
+//                self.dismiss(animated: true, completion: nil)
+                
+                
+                
+                
                 
             }
         }
         
-        if let user = Auth.auth().currentUser {
-            print("user's name should be set")
-            let uid = user.uid
-            let name = firstNameTextField.text! + " " + lastNameTextField.text!
-           
-            let parameters = ["name": name,
-                              "userId": uid]
-            ref?.child("Users").childByAutoId().setValue(parameters)
-        }
-        
         
     }
+    
     /*
     // MARK: - Navigation
 
@@ -95,5 +109,17 @@ class SignUpViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }
+
+extension SignUpViewController: DismissedView {
+    func dismissed() {
+        dismiss(animated: true, completion: nil)
+        isDismissed = true
+//        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
