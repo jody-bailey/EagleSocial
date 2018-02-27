@@ -27,6 +27,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        NewsFeedTable.refreshControl = refreshControl
        
         // Do any additional setup after loading the view.
         ref = Database.database().reference()
@@ -55,6 +61,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //NewsFeedTable.separatorStyle = .none
         
         NewsFeedTable.reloadData()
+    }
+    
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        print("Hello World!")
+        
+        // somewhere in your code you might need to call:
+        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+            // code to handle when a new post is added
+            print(snapshot)
+            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+            self.posts = postsSnapshot.posts
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.NewsFeedTable.reloadData()
+            
+        })
+        NewsFeedTable.reloadData()
+        refreshControl.endRefreshing()
     }
     
 
