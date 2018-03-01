@@ -66,7 +66,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func doSomething(refreshControl: UIRefreshControl) {
         print("Hello World!")
         
-        // somewhere in your code you might need to call:
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
             print(snapshot)
@@ -129,16 +128,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             return cell
         }
-//        else if indexPath.row == 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-//            cell.nameOfUser.text = "Jody Bailey"
-//            cell.profilePicture.image = #imageLiteral(resourceName: "jodybobae")
-//            cell.profilePicture.layer.cornerRadius = 32
-//            cell.profilePicture.layer.masksToBounds = true
-//            cell.textBody.text = "This is going to be the best social media app ever created for college students!"
-//
-//                return cell
-//        }
         else {
             fatalError("Unexpected section \(indexPath.section)")
         }
