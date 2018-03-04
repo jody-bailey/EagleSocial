@@ -10,6 +10,12 @@ import UIKit
 
 class ChangePasswordViewController: UIViewController {
 
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var oldPasswordTextField: UITextField!
+    @IBOutlet weak var newPasswordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,11 +27,15 @@ class ChangePasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelPressed(_ sender: UIButton) {
+    @IBAction func canelButtonPressed(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    }
+    
     
     /*
     // MARK: - Navigation

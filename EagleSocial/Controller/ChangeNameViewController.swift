@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChangeNameViewController: UIViewController {
 
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var oldNameTextField: UITextField!
+    @IBOutlet weak var newNameTextField: UITextField!
+    @IBOutlet weak var confirmNameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,10 +28,15 @@ class ChangeNameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelPressed(_ sender: UIButton) {
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    }
+    
     
     /*
     // MARK: - Navigation
@@ -37,3 +49,4 @@ class ChangeNameViewController: UIViewController {
     */
 
 }
+

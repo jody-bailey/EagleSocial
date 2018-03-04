@@ -12,9 +12,16 @@ import FirebaseAuth
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var changeNameButton: UIButton!
+    @IBOutlet weak var changeEmailButton: UIButton!
+    @IBOutlet weak var changePasswordButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.changeNameButton.layer.cornerRadius = 15
+        self.changeEmailButton.layer.cornerRadius = 15
+        self.changePasswordButton.layer.cornerRadius = 15
+        
         // Do any additional setup after loading the view.
     }
 
