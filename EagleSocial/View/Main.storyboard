@@ -86,19 +86,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2p-mc-9dR">
-                                <rect key="frame" x="254" y="172" width="98" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Edit Profile">
-                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="editButtonPressed:" destination="wcH-Bb-9Ux" eventType="touchUpInside" id="7lx-es-z4l"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVS-2S-AGZ">
                                 <rect key="frame" x="16" y="247" width="343" height="373"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -129,7 +116,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe7-wZ-IE6">
-                                <rect key="frame" x="26" y="83" width="94" height="21"/>
+                                <rect key="frame" x="26" y="83" width="43" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -150,10 +137,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
-                                <rect key="frame" x="246" y="56" width="114" height="108"/>
+                                <rect key="frame" x="254" y="56" width="106" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-8i-6R4">
+                                <rect key="frame" x="269" y="166" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Profile">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="wcH-Bb-9Ux" eventType="touchUpInside" id="q72-j6-2xs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="wbc-bt-LM8"/>
@@ -161,7 +158,6 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="profile_icon" id="xFo-d4-kdM"/>
                     <connections>
                         <outlet property="ageLabel" destination="oe7-wZ-IE6" id="hj4-kX-V3D"/>
-                        <outlet property="editButton" destination="L2p-mc-9dR" id="QYt-Sc-Paj"/>
                         <outlet property="firstNameLabel" destination="ImU-5l-NLk" id="lpp-oQ-RPW"/>
                         <outlet property="lastNameLabel" destination="nvZ-AW-Md8" id="NIC-6L-cUh"/>
                         <outlet property="majorLabel" destination="eIF-QZ-11C" id="xAB-2i-OF7"/>
@@ -204,7 +200,7 @@
                                 </state>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="lav-IM-FbT" eventType="touchUpInside" id="Tdp-nb-JyH"/>
-                                    <segue destination="wcH-Bb-9Ux" kind="show" identifier="goToProfile" id="ItE-6x-PFu"/>
+                                    <segue destination="wcH-Bb-9Ux" kind="presentation" identifier="goToProfile" id="ItE-6x-PFu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwy-ig-mYP">
@@ -279,11 +275,9 @@
                     <connections>
                         <outlet property="ageText" destination="AiF-wX-hec" id="oxs-TD-rDl"/>
                         <outlet property="doneButton" destination="9hn-52-qIt" id="A0s-2k-7u0"/>
-                        <outlet property="firstAndLastText" destination="ZjI-JH-aDD" id="WHx-NN-J2X"/>
                         <outlet property="firstNameText" destination="ZjI-JH-aDD" id="pjf-rr-Mwc"/>
                         <outlet property="lastNameText" destination="oQw-4i-RW8" id="86p-gR-Pae"/>
                         <outlet property="majorText" destination="NBV-PK-Jyw" id="sOD-9p-bpY"/>
-                        <outlet property="schoolYearPicker" destination="Ewh-ei-VEv" id="UOy-3h-nB9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzW-aX-Ru3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1205,7 +1199,6 @@
         <image name="settings_icon" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Aa-0r-Anf"/>
         <segue reference="ItE-6x-PFu"/>
     </inferredMetricsTieBreakers>
 </document>
