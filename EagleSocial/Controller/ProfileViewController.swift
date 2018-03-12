@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController
+class ProfileViewController: UIViewController, DataSentDelegate
 {
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -17,21 +17,27 @@ class ProfileViewController: UIViewController
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var schoolYearLabel: UILabel!
     
-    var firstNamePassedOver : String?
-    var lastNamePassedOver : String?
-    var agePassedOver : String?
-    var majorPassedOver : String?
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        firstNameLabel.text = firstNamePassedOver
-        lastNameLabel.text  = lastNamePassedOver
-        ageLabel.text  = agePassedOver
-        majorLabel.text  = majorPassedOver
+    }
+    
+    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
+    {
+        firstNameLabel.text = fNameData
+        lastNameLabel.text = lNameData
+        ageLabel.text = ageData
+        majorLabel.text = majorData
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToEdit"
+        {
+            let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
+            editProfileViewController.delegate = self
+        }
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -42,20 +48,5 @@ class ProfileViewController: UIViewController
     {
         performSegue(withIdentifier: "goToEdit", sender: self)
     }
-    
-  /*  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-     
-    }*/
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
