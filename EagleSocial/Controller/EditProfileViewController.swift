@@ -14,8 +14,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var firstAndLastText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
-    @IBOutlet weak var personalInterestText: UITextField!
-    @IBOutlet weak var aboutMeText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
