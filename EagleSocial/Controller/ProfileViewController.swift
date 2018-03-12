@@ -11,11 +11,29 @@ import UIKit
 
 class ProfileViewController: UIViewController
 {
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
+    @IBOutlet weak var schoolYearLabel: UILabel!
+    
+    var firstNamePassedOver : String?
+    var lastNamePassedOver : String?
+    var agePassedOver : String?
+    var majorPassedOver : String?
+    
+    
+    
     @IBOutlet weak var editButton: UIButton!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        firstNameLabel.text = firstNamePassedOver
+        lastNameLabel.text  = lastNamePassedOver
+        ageLabel.text  = agePassedOver
+        majorLabel.text  = majorPassedOver
     }
 
     override func didReceiveMemoryWarning()

@@ -11,7 +11,8 @@ import UIKit
 class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var firstAndLastText: UITextField!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
     
@@ -32,7 +33,19 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any)
     {
-        
+        performSegue(withIdentifier: "goToProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToProfile"
+        {
+            let destinationVC = segue.destination as! ProfileViewController
+            
+            destinationVC.firstNamePassedOver = firstNameText.text!
+            destinationVC.lastNamePassedOver = lastNameText.text!
+            destinationVC.agePassedOver = ageText.text!
+            destinationVC.majorPassedOver = majorText.text!
+        }
     }
     /*
     // MARK: - Navigation
