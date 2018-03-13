@@ -13,6 +13,8 @@ struct Post {
     let username: String
     let message: String
     let date: Date
+    var likes: Bool?
+    let postId: String
     
     init?(postId: String, dict: [String: Any]) {
         
@@ -25,9 +27,11 @@ struct Post {
             let date = dateFormatter.date(from: dateString)
             else { return nil }
         
+        self.postId = postId
         self.username = username
         self.message = message
         self.date = date
+//        self.likes = false
     }
     
 }
