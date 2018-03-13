@@ -9,55 +9,44 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
-    var nameFromEdit :String = ""
-    var ageFromEdit :String = ""
-    var majorFromEdit :String = ""
-    var interestFromEdit :String = ""
-    var aboutFromEdit :String = ""
+class ProfileViewController: UIViewController, DataSentDelegate
+{
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
+    @IBOutlet weak var schoolYearLabel: UILabel!
     
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userAgeLabel: UILabel!
-    @IBOutlet weak var userMajorLabel: UILabel!
-    @IBOutlet weak var userInterestLabel: UILabel!
-    @IBOutlet weak var userAboutLabel: UILabel!
-    
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-       // userNameLabel.text = nameFromEdit
-       // userAgeLabel.text = ageFromEdit
-       // userMajorLabel.text = majorFromEdit
-       // userInterestLabel.text = interestFromEdit
-       // userAboutLabel.text = aboutFromEdit
-        
+    }
+    
+    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
+    {
+        firstNameLabel.text = fNameData
+        lastNameLabel.text = lNameData
+        ageLabel.text = ageData
+        majorLabel.text = majorData
     }
 
-    override func didReceiveMemoryWarning() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToEdit"
+        {
+            let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
+            editProfileViewController.delegate = self
+        }
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        print("edit button was pressed")
+    @IBAction func editButtonPressed(_ sender: Any)
+    {
         performSegue(withIdentifier: "goToEdit", sender: self)
-        
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -10,21 +10,31 @@ import UIKit
 
 class ChangeEmailViewController: UIViewController {
 
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var oldEmailTextField: UITextField!
+    @IBOutlet weak var newEmailTextField: UITextField!
+    @IBOutlet weak var confirmEmailTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelPressed(_ sender: UIButton) {
+    @IBAction func cancelEmailPressed(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
     }
     
     /*
