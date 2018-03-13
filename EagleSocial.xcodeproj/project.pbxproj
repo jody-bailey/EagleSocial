@@ -286,7 +286,7 @@
 		};
 		A25DA11E42B3EF220A1DEFAB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -294,7 +294,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial-resources.sh\"\n";
 			showEnvVarsInLog = 0;
