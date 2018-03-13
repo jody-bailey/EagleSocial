@@ -37,12 +37,12 @@ class NewsFeedTableViewCell: UITableViewCell {
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         
         print("like button pressed")
-        if (liked) {
-            liked = false
-            post[0].likes = false
+        if (self.liked) {
+            self.liked = false
+//            post[0].likes = false
         }else {
-            liked = true
-            post[0].likes = true
+            self.liked = true
+//            post[0].likes = true
         }
         
         print(post[0])

@@ -44,18 +44,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ref = Database.database().reference()
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
-//            print(snapshot)
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
             self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
             self.NewsFeedTable.reloadData()
             
         })
-//        let userId = Auth.auth().currentUser?.uid
         likeRef = Database.database().reference()
         likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
-//            print(snapshot)
-//            print("hit the like handle")
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
             self.likes = (snapshot.value as? [String: [String: Any]])!
@@ -76,22 +72,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configureTableView()
         
-        //NewsFeedTable.separatorStyle = .none
-        
         NewsFeedTable.reloadData()
     }
     
     @objc func doSomething(refreshControl: UIRefreshControl) {
-//        print("Hello World!")
-        
         
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
 //            print(snapshot)
-            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-            self.posts = postsSnapshot.posts
-            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-            self.NewsFeedTable.reloadData()
+//            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+//            self.posts = postsSnapshot.posts
+//            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+//            self.NewsFeedTable.reloadData()
             
         })
         
@@ -155,19 +147,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
             
-            let user = Auth.auth().currentUser?.uid
-            let postId = posts[indexPath.row - 1].postId
-//            print(likes[user!, default: postId] as Any)
-            if likes[user!] != nil {
-                self.justLikes = likes[user!, default: postId] as! [String : Any]
-                //            print(justLikes)
-                
-                for (post) in justLikes {
-                    if post.key == posts[indexPath.row - 1].postId {
-                        cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-                    }
-                }
+            cell.likeButton.tag = indexPath.row - 1
+            cell.likeButton.addTarget(self, action: #selector(checkButtonTapped), for: UIControlEvents.touchUpInside)
+            
+            if posts[indexPath.row - 1].likes == true {
+                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+            } else {
+                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
             }
+//            let user = Auth.auth().currentUser?.uid
+//            let postId = posts[indexPath.row - 1].postId
+//            print(likes[user!, default: postId] as Any)
+            
+            
+//            if likes[user!] != nil {
+//                self.justLikes = likes[user!, default: postId] as! [String : Any]
+//                //            print(justLikes)
+//
+//                for (post) in justLikes {
+//                    if post.key == posts[indexPath.row - 1].postId {
+//                        cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+//                    } else {
+//                        cell.likeButton.setTitleColor(UIColor.blue, for: .normal)
+//                    }
+//                }
+//            }
             
             
 //            for var i = 0, i <likes.count, i++ {
@@ -225,6 +229,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func tableViewTapped() {
         searchBar.endEditing(true)
+    }
+    
+    @objc func checkButtonTapped(sender:AnyObject) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
+        let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
+        if indexPath != nil {
+            print("like button pressed from new function")
+            if self.posts[(indexPath?.row)! - 1].likes != nil {
+                self.posts[(indexPath?.row)! - 1].likes = !self.posts[(indexPath?.row)! - 1].likes!
+                self.NewsFeedTable.reloadData()
+            }else {
+                self.posts[(indexPath?.row)! - 1].likes = true
+                self.NewsFeedTable.reloadData()
+            }
+            
+        }
+    }
+    
+    @objc func likeButtonPressed(sender:UIButton) {
+        print("like button pressed from table view")
+//        sender.setTitleColor(UIColor.yellow, for: .normal)
+        self.posts[sender.tag].likes = true
     }
     
     /*

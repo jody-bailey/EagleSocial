@@ -31,7 +31,7 @@ struct Post {
         self.username = username
         self.message = message
         self.date = date
-        self.likes = false
+//        self.likes = false
     }
     
 }
