@@ -27,9 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var posts = [Post]()
     
-    var likes = [String : Any?]()
-    
-    var justLikes = [String : Any?]()
+    var likes = [Like]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,15 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.NewsFeedTable.reloadData()
             
         })
-        likeRef = Database.database().reference()
-        likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
-            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-            self.posts = postsSnapshot.posts
-            self.likes = (snapshot.value as? [String: [String: Any]])!
-            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-            self.NewsFeedTable.reloadData()
-            
-        })
+        
         
         NewsFeedTable.delegate = self
         NewsFeedTable.dataSource = self
@@ -69,6 +59,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         NewsFeedTable.addGestureRecognizer(tapGesture)
+        NewsFeedTable.reloadData()
         
         configureTableView()
         
@@ -79,22 +70,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
-//            print(snapshot)
-//            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-//            self.posts = postsSnapshot.posts
-//            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-//            self.NewsFeedTable.reloadData()
+            print(snapshot)
+            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+            self.posts = postsSnapshot.posts
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.NewsFeedTable.reloadData()
             
         })
         
-        likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
-            print(snapshot)
+//        likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
+//            print(snapshot)
 //            print("hit the like handle")
 //            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
 //            self.posts = postsSnapshot.posts
 //            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
 //            self.NewsFeedTable.reloadData()
-        })
+//        })
         
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
@@ -143,48 +134,38 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if indexPath.row > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-            cell.nameOfUser.text = posts[indexPath.row - 1].username
-            cell.textBody.text = posts[indexPath.row - 1].message
-            cell.setPost(post: [posts[indexPath.row - 1]])
-            
-            cell.likeButton.tag = indexPath.row - 1
-            cell.likeButton.addTarget(self, action: #selector(checkButtonTapped), for: UIControlEvents.touchUpInside)
             
             if posts[indexPath.row - 1].likes == true {
                 cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
             } else {
                 cell.likeButton.setTitleColor(UIColor.black, for: .normal)
             }
-//            let user = Auth.auth().currentUser?.uid
-//            let postId = posts[indexPath.row - 1].postId
-//            print(likes[user!, default: postId] as Any)
             
+            cell.nameOfUser.text = posts[indexPath.row - 1].username
+            cell.textBody.text = posts[indexPath.row - 1].message
+            cell.setPost(post: [posts[indexPath.row - 1]])
             
-//            if likes[user!] != nil {
-//                self.justLikes = likes[user!, default: postId] as! [String : Any]
-//                //            print(justLikes)
-//
-//                for (post) in justLikes {
-//                    if post.key == posts[indexPath.row - 1].postId {
-//                        cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-//                    } else {
-//                        cell.likeButton.setTitleColor(UIColor.blue, for: .normal)
-//                    }
-//                }
-//            }
+            cell.likeButton.tag = indexPath.row - 1
+            cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             
+            let userId = Auth.auth().currentUser?.uid
             
-//            for var i = 0, i <likes.count, i++ {
-//                if like[user, postId] == posts[indexPath.row - 1].postId {
-//
-//                }
-//            }
-            
-//            if posts[indexPath.row - 1].likes! {
-//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-////                NewsFeedTable.reloadData()
-//            }
-            
+            likeRef = Database.database().reference()
+            likeHandle = likeRef?.child("postLikes").child(userId!).observe(.value, with: { (snapshot) in
+                print("like handle hit FUUUCCCCKKKKKKK")
+                //            print(snapshot)
+                guard let snapDict = snapshot.value as? [String: Int] else { return }
+                for snap in snapDict {
+                    if snap.key == self.posts[indexPath.row - 1].postId {
+                        if snap.value == 1 {
+                            self.posts[indexPath.row - 1].likes = true
+                        } else {
+                            self.posts[indexPath.row - 1].likes = false
+                        }
+                    }
+                }
+                
+            })
             return cell
         }
         else {
@@ -231,26 +212,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         searchBar.endEditing(true)
     }
     
-    @objc func checkButtonTapped(sender:AnyObject) {
+    @objc func likeButtonPressed(sender:AnyObject) {
+        
+        let userId = Auth.auth().currentUser?.uid
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-            if self.posts[(indexPath?.row)! - 1].likes != nil {
-                self.posts[(indexPath?.row)! - 1].likes = !self.posts[(indexPath?.row)! - 1].likes!
-                self.NewsFeedTable.reloadData()
-            }else {
-                self.posts[(indexPath?.row)! - 1].likes = true
-                self.NewsFeedTable.reloadData()
-            }
+            
+            self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
             
         }
-    }
-    
-    @objc func likeButtonPressed(sender:UIButton) {
-        print("like button pressed from table view")
-//        sender.setTitleColor(UIColor.yellow, for: .normal)
-        self.posts[sender.tag].likes = true
+        self.NewsFeedTable.reloadData()
     }
     
     /*
