@@ -152,8 +152,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             likeRef = Database.database().reference()
             likeHandle = likeRef?.child("postLikes").child(userId!).observe(.value, with: { (snapshot) in
-                print("like handle hit FUUUCCCCKKKKKKK")
-                //            print(snapshot)
                 guard let snapDict = snapshot.value as? [String: Int] else { return }
                 for snap in snapDict {
                     if snap.key == self.posts[indexPath.row - 1].postId {
