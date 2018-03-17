@@ -14,14 +14,17 @@ protocol DataSentDelegate
     func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
 }
 
+//credit goes to https://github.com/goktugyil/EZSwiftExtensions for the UIViewController extension to hide the keyboard when the screen is tapped
 extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
+    func hideKeyboardWhenTappedAround()
+    {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc func dismissKeyboard()
+    {
         view.endEditing(true)
     }
 }
@@ -39,7 +42,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning()
