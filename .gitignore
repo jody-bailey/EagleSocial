@@ -65,6 +65,9 @@ Carthage/Build
 # Removing the .DS_Store file
 .DS_Store
 
+# Removing project configurations
+.pbxproj
+
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
