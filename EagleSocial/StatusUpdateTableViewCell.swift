@@ -52,7 +52,8 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             let parameters =    ["user": user?.name,
                                  "message": text,
-                                 "date": dateString]
+                                 "date": dateString,
+                                 "userId": userID]
             
             
             self.ref.child("posts").childByAutoId().setValue(parameters)

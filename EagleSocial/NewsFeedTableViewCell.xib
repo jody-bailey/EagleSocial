@@ -45,48 +45,37 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW9-xb-YxO" userLabel="Button View">
                         <rect key="frame" x="0.0" y="91" width="320" height="39"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0X-9R-4q6">
-                                <rect key="frame" x="108" y="8" width="104" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="104" id="gYa-E6-vww"/>
-                                    <constraint firstAttribute="height" constant="22" id="mdg-ec-mom"/>
-                                </constraints>
-                                <state key="normal" title=" Comment" image="comment_icon">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H41-N6-nIO">
-                                <rect key="frame" x="236" y="8" width="76" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="MqE-eZ-MMO"/>
-                                    <constraint firstAttribute="width" constant="76" id="pNi-fP-Zlr"/>
-                                </constraints>
-                                <state key="normal" title=" Share" image="share_icon2">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iU1-DB-UNZ">
-                                <rect key="frame" x="0.0" y="8" width="74" height="22"/>
+                                <rect key="frame" x="0.0" y="8" width="155" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="PQO-Kl-CyN"/>
-                                    <constraint firstAttribute="width" constant="74" id="WkQ-oQ-v0u"/>
+                                    <constraint firstAttribute="height" constant="22" id="X8Q-ju-4oM"/>
+                                    <constraint firstAttribute="width" constant="155" id="wz9-Kq-PWC"/>
                                 </constraints>
                                 <state key="normal" title=" Like" image="like_icon">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hve-YJ-BoE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0X-9R-4q6">
+                                <rect key="frame" x="163" y="9" width="149" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="7Rn-et-xo7"/>
+                                    <constraint firstAttribute="height" constant="22" id="qF9-ox-wmF"/>
+                                </constraints>
+                                <state key="normal" title=" Comment" image="comment_icon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="g0X-9R-4q6" firstAttribute="centerY" secondItem="kW9-xb-YxO" secondAttribute="centerY" id="2ej-eQ-zRG"/>
                             <constraint firstAttribute="height" constant="39" id="6kf-ke-Vtg"/>
-                            <constraint firstAttribute="bottom" secondItem="H41-N6-nIO" secondAttribute="bottom" constant="7" id="7aO-au-mXX"/>
-                            <constraint firstItem="iU1-DB-UNZ" firstAttribute="top" secondItem="kW9-xb-YxO" secondAttribute="top" constant="8" id="A46-uT-OA9"/>
-                            <constraint firstAttribute="trailing" secondItem="H41-N6-nIO" secondAttribute="trailing" constant="8" id="IV3-OU-rsD"/>
-                            <constraint firstItem="iU1-DB-UNZ" firstAttribute="leading" secondItem="kW9-xb-YxO" secondAttribute="leading" id="K4P-M2-hmH"/>
-                            <constraint firstItem="g0X-9R-4q6" firstAttribute="centerY" secondItem="kW9-xb-YxO" secondAttribute="centerY" id="XG2-Mp-0Gy"/>
-                            <constraint firstItem="g0X-9R-4q6" firstAttribute="centerX" secondItem="kW9-xb-YxO" secondAttribute="centerX" id="cai-gN-Fbq"/>
-                            <constraint firstAttribute="bottom" secondItem="iU1-DB-UNZ" secondAttribute="bottom" constant="9" id="kkM-Py-SfK"/>
-                            <constraint firstItem="H41-N6-nIO" firstAttribute="top" secondItem="kW9-xb-YxO" secondAttribute="top" constant="8" id="xOu-Cd-dxc"/>
+                            <constraint firstItem="iU1-DB-UNZ" firstAttribute="centerY" secondItem="kW9-xb-YxO" secondAttribute="centerY" id="F5P-2j-LO7"/>
+                            <constraint firstItem="iU1-DB-UNZ" firstAttribute="leading" secondItem="kW9-xb-YxO" secondAttribute="leading" id="REd-d5-TvQ"/>
+                            <constraint firstItem="g0X-9R-4q6" firstAttribute="trailing" secondItem="kW9-xb-YxO" secondAttribute="trailingMargin" id="uEk-Sv-NSQ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -110,6 +99,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="commentButton" destination="g0X-9R-4q6" id="9O2-qu-GwX"/>
+                <outlet property="likeButton" destination="iU1-DB-UNZ" id="5xN-Q5-J52"/>
                 <outlet property="nameOfUser" destination="94y-1O-qeO" id="059-Ai-ySw"/>
                 <outlet property="profilePicture" destination="fQf-Tj-3kw" id="dfp-ln-AKy"/>
                 <outlet property="textBody" destination="Yui-Ao-wch" id="rWB-hn-bir"/>
@@ -120,6 +111,5 @@
     <resources>
         <image name="comment_icon" width="20" height="20"/>
         <image name="like_icon" width="20" height="20"/>
-        <image name="share_icon2" width="24" height="24"/>
     </resources>
 </document>
