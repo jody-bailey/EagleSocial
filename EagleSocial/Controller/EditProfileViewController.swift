@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 protocol DataSentDelegate
 {
@@ -21,6 +22,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
+    
+    
     
     override func viewDidLoad()
     {
@@ -48,6 +51,13 @@ class EditProfileViewController: UIViewController {
                 let ageData = ageText.text
                 let majorData = majorText.text
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
+                
+                /*let ref = Database.database().reference().child("")
+                
+                
+                ref.updateChildValues([
+                    "values": []
+                    ])*/
                 dismiss(animated: true, completion: nil)
             }
         }
