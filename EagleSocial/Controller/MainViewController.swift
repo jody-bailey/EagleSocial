@@ -38,6 +38,8 @@ class MainViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
+    
+    
     /*
     // MARK: - Navigation
 

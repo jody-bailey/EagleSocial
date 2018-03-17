@@ -14,6 +14,18 @@ protocol DataSentDelegate
     func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class EditProfileViewController: UIViewController {
 
     var delegate: DataSentDelegate? = nil
@@ -22,7 +34,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
-    
     
     
     override func viewDidLoad()
