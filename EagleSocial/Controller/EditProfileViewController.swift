@@ -23,6 +23,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
     
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

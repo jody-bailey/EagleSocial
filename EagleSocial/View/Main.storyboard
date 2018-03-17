@@ -158,7 +158,7 @@
                                     <constraint firstAttribute="width" constant="187" id="TIm-j4-APn"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
                                 <rect key="frame" x="240" y="40" width="120" height="124"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -166,12 +166,9 @@
                                     <constraint firstAttribute="height" constant="124" id="ioY-tZ-VA9"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-8i-6R4">
-                                <rect key="frame" x="262" y="172" width="76" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="76" id="20I-1E-jIU"/>
-                                    <constraint firstAttribute="height" constant="30" id="nve-2Z-0ey"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Es-8i-6R4">
+                                <rect key="frame" x="149" y="588" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit Profile">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -179,13 +176,26 @@
                                     <action selector="editButtonPressed:" destination="wcH-Bb-9Ux" eventType="touchUpInside" id="q72-j6-2xs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVg-iw-nfJ">
+                                <rect key="frame" x="250" y="172" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EEe-bi-fv2"/>
+                                    <constraint firstAttribute="width" constant="100" id="VdT-y1-ft2"/>
+                                </constraints>
+                                <state key="normal" title="Add Photo">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImage:" destination="wcH-Bb-9Ux" eventType="touchUpInside" id="gha-Dd-n2y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="fVS-2S-AGZ" firstAttribute="centerY" secondItem="iiK-ik-Yfd" secondAttribute="centerY" constant="81" id="2TT-U1-sTI"/>
                             <constraint firstItem="fVS-2S-AGZ" firstAttribute="centerX" secondItem="iiK-ik-Yfd" secondAttribute="centerX" id="7aA-SG-19H"/>
-                            <constraint firstItem="wbc-bt-LM8" firstAttribute="trailing" secondItem="3Es-8i-6R4" secondAttribute="trailing" constant="37" id="7dj-TE-lsY"/>
-                            <constraint firstItem="3Es-8i-6R4" firstAttribute="top" secondItem="m4T-3b-JKb" secondAttribute="bottom" constant="8" id="9Tl-qC-1tu"/>
+                            <constraint firstItem="wbc-bt-LM8" firstAttribute="trailing" secondItem="xVg-iw-nfJ" secondAttribute="trailing" constant="25" id="GFw-ee-eqY"/>
+                            <constraint firstItem="xVg-iw-nfJ" firstAttribute="top" secondItem="m4T-3b-JKb" secondAttribute="bottom" constant="8" id="IhG-3L-MI6"/>
                             <constraint firstItem="dqi-zB-Drd" firstAttribute="leading" secondItem="wbc-bt-LM8" secondAttribute="leading" constant="25" id="Q3v-gv-6wW"/>
                             <constraint firstItem="m4T-3b-JKb" firstAttribute="top" secondItem="wbc-bt-LM8" secondAttribute="top" constant="20" id="QPG-W4-FZm"/>
                             <constraint firstItem="dqi-zB-Drd" firstAttribute="top" secondItem="wbc-bt-LM8" secondAttribute="top" constant="20" id="rNx-AU-nVg"/>
@@ -197,6 +207,7 @@
                     <connections>
                         <outlet property="ageLabel" destination="oe7-wZ-IE6" id="hj4-kX-V3D"/>
                         <outlet property="firstNameLabel" destination="ImU-5l-NLk" id="lpp-oQ-RPW"/>
+                        <outlet property="imageView" destination="m4T-3b-JKb" id="g44-0m-JOj"/>
                         <outlet property="lastNameLabel" destination="nvZ-AW-Md8" id="NIC-6L-cUh"/>
                         <outlet property="majorLabel" destination="eIF-QZ-11C" id="xAB-2i-OF7"/>
                         <outlet property="schoolYearLabel" destination="9bN-4W-Dks" id="rTi-RX-Hf8"/>
