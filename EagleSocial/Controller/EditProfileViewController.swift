@@ -7,43 +7,61 @@
 //
 
 import UIKit
+import FirebaseDatabase
+
+protocol DataSentDelegate
+{
+    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
+}
 
 class EditProfileViewController: UIViewController {
 
+    var delegate: DataSentDelegate? = nil
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var firstAndLastText: UITextField!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
-    @IBOutlet weak var personalInterestText: UITextField!
-    @IBOutlet weak var aboutMeText: UITextView!
     
-    override func viewDidLoad() {
+    
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @IBAction func doneButtonPressed(_ sender: UIButton)
+    {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonPressed(_ sender: Any)
     {
+        if delegate != nil
+        {
+            if firstNameText.text != nil && lastNameText.text != nil && ageText.text != nil && majorText.text != nil
+            {
+                let fNameData = firstNameText.text
+                let lNameData = lastNameText.text
+                let ageData = ageText.text
+                let majorData = majorText.text
+                delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
+                
+                /*let ref = Database.database().reference().child("")
+                
+                
+                ref.updateChildValues([
+                    "values": []
+                    ])*/
+                dismiss(animated: true, completion: nil)
+            }
+        }
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -70,6 +70,7 @@ class SignUpViewController: UIViewController {
         //gradientLoadingBar.show()
         
         //TODO: Set up a new user on our Firbase database
+        
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print(error!)
@@ -84,19 +85,10 @@ class SignUpViewController: UIViewController {
                 
                 
                 self.performSegue(withIdentifier: "goToProfileCreation", sender: self)
-                
-                
-                
-                
-//                self.dismiss(animated: true, completion: nil)
-                
-                
-                
-                
-                
+             
             }
         }
-        
+        Auth.auth().currentUser?.sendEmailVerification(completion: nil)
         
     }
     

@@ -9,55 +9,88 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
-    var nameFromEdit :String = ""
-    var ageFromEdit :String = ""
-    var majorFromEdit :String = ""
-    var interestFromEdit :String = ""
-    var aboutFromEdit :String = ""
+class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate /*, UITableViewDelegate, UITableViewDataSource*/
+{
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
+    @IBOutlet weak var schoolYearLabel: UILabel!
+    @IBOutlet weak var userStatusTableView: UITableView!
+    @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userAgeLabel: UILabel!
-    @IBOutlet weak var userMajorLabel: UILabel!
-    @IBOutlet weak var userInterestLabel: UILabel!
-    @IBOutlet weak var userAboutLabel: UILabel!
-    
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-       // userNameLabel.text = nameFromEdit
-       // userAgeLabel.text = ageFromEdit
-       // userMajorLabel.text = majorFromEdit
-       // userInterestLabel.text = interestFromEdit
-       // userAboutLabel.text = aboutFromEdit
         
+       /* userStatusTableView.delegate = self
+        userStatusTableView.dataSource = self*/
+    }
+    
+    @IBAction func chooseImage(_ sender: Any)
+    {
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        let imagePickerControler = UIImagePickerController()
+        imagePickerControler.delegate = self
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerControler.sourceType = .camera
+            self.present(imagePickerControler, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerControler.sourceType = .photoLibrary
+            self.present(imagePickerControler, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        imageView.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+   /* func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }*/
+    
+    
+    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
+    {
+        firstNameLabel.text = fNameData
+        lastNameLabel.text = lNameData
+        ageLabel.text = ageData
+        majorLabel.text = majorData
     }
 
-    override func didReceiveMemoryWarning() {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToEdit"
+        {
+            let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
+            editProfileViewController.delegate = self
+        }
+    }
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        print("edit button was pressed")
+    @IBAction func editButtonPressed(_ sender: Any)
+    {
         performSegue(withIdentifier: "goToEdit", sender: self)
-        
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
