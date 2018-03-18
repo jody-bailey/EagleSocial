@@ -42,11 +42,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        firstNameText.delegate = self
-        lastNameText.delegate = self
-        ageText.delegate = self
-        majorText.delegate = self
-
+        hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning()
@@ -84,17 +80,5 @@ class EditProfileViewController: UIViewController {
     }
 
 
-    @IBAction func editMajorDone(_ sender: UITextField) {
-
-        majorText.resignFirstResponder()
-    }
-
-
 }
 
-extension EditProfileViewController : UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-}

@@ -37,6 +37,8 @@
 		C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D52022AC3300AF492D /* SettingsViewController.swift */; };
 		C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */; };
 		C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */; };
+		C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2ABB2205DF84400D77D97 /* CommentCell.swift */; };
+		C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D2ABB3205DF84400D77D97 /* CommentCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		C8A771D52022AC3300AF492D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
+		C8D2ABB2205DF84400D77D97 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		C8D2ABB3205DF84400D77D97 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EagleSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +142,8 @@
 				C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */,
 				C8049BB22046064D00FAC2CC /* FriendTableViewCell.swift */,
 				C8049BB32046064D00FAC2CC /* FriendTableViewCell.xib */,
+				C8D2ABB2205DF84400D77D97 /* CommentCell.swift */,
+				C8D2ABB3205DF84400D77D97 /* CommentCell.xib */,
 			);
 			path = EagleSocial;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
+				C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */,
 				C8049BB52046064D00FAC2CC /* FriendTableViewCell.xib in Resources */,
 				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
 				C8A771CC202282C300AF492D /* Main.storyboard in Resources */,
@@ -340,6 +347,7 @@
 				279847222043618100C4D5A3 /* ChangeEmailViewController.swift in Sources */,
 				C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */,
 				C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */,
+				C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */,
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
