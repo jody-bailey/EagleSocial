@@ -8,6 +8,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate /*, UITableViewDelegate, UITableViewDataSource*/
 {
@@ -47,6 +49,23 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(actionSheet, animated: true, completion: nil)
+        
+        /*let storageRef = Storage.storage().reference()
+        
+        if let uploadData = UIImagePNGRepresentation(self.imageView.image!)
+        {
+            storageRef.putData(uploadData, metadata: nil, completion: {(metadata, error) in
+                if error != nil
+                {
+                    print(error)
+                    return
+                }
+                
+                print(metadata)
+            })
+        }
+        */
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

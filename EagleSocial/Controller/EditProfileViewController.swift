@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseDatabase
 
 protocol DataSentDelegate
