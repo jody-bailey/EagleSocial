@@ -20,8 +20,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var ref: DatabaseReference?
     var likeRef: DatabaseReference?
+    var commentRef: DatabaseReference?
     var refHandle: DatabaseHandle?
     var likeHandle: DatabaseHandle?
+    var commentHandle: DatabaseHandle?
+    
     
     var postData = [String]()
     
@@ -34,6 +37,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        
+        likeRef = Database.database().reference()
+        commentRef = Database.database().reference()
         
         // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
         NewsFeedTable.refreshControl = refreshControl
@@ -233,10 +239,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            //            let newCategory = Category()
-            //            newCategory.name = textField.text!
-            //
-            //            self.save(category: newCategory)
+            let userId = Auth.auth().currentUser?.uid
+            
+            let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
+            let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
+            if indexPath != nil {
+                print("comment button pressed from new function")
+                
+                self.commentRef?.child("postComments").child(self.posts[(indexPath?.row)! - 1].postId).childByAutoId().setValue(["user": userId!,
+                                                        "comment" : textField.text!])
+                
+            }
+            self.NewsFeedTable.reloadData()
             
         }
         

@@ -62,14 +62,6 @@ class NewsFeedTableViewCell: UITableViewCell {
     //MARK: - Comment Button Pressed
     @IBAction func commentButtonPressed(_ sender: UIButton) {
         
-//        
-//        var pickerVC = HomeViewController();
-//        if((delegate?.showAlert()) != nil)
-//        {
-//            delegate?.showAlert()
-//        }
-//        
-        
         
     }
     func setPost(post: [Post]) {
@@ -79,10 +71,5 @@ class NewsFeedTableViewCell: UITableViewCell {
     func getLiked() -> Bool {
         return liked
     }
-    
-    func showAlert() {
-        
-    }
-    
     
 }
