@@ -147,6 +147,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
+            cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             
             let userId = Auth.auth().currentUser?.uid
             
@@ -223,6 +224,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         self.NewsFeedTable.reloadData()
+    }
+    
+    @objc func commentButtonPressed(sender:AnyObject) {
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            
+            //            let newCategory = Category()
+            //            newCategory.name = textField.text!
+            //
+            //            self.save(category: newCategory)
+            
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Add a new comment"
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
     /*

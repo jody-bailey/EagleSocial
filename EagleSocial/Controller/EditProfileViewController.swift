@@ -23,7 +23,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func dismissKeyboard()
     {
         view.endEditing(true)
@@ -38,24 +38,28 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
-    
-    
+
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        firstNameText.delegate = self
+        lastNameText.delegate = self
+        ageText.delegate = self
+        majorText.delegate = self
+
     }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
-    
+
     @IBAction func doneButtonPressed(_ sender: UIButton)
     {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func saveButtonPressed(_ sender: Any)
     {
         if delegate != nil
@@ -67,17 +71,31 @@ class EditProfileViewController: UIViewController {
                 let ageData = ageText.text
                 let majorData = majorText.text
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
-                
+
                 /*let ref = Database.database().reference().child("")
-                
-                
+
+
                 ref.updateChildValues([
                     "values": []
                     ])*/
                 dismiss(animated: true, completion: nil)
             }
         }
-        
+
     }
 
+
+    @IBAction func editMajorDone(_ sender: UITextField) {
+
+        majorText.resignFirstResponder()
+    }
+
+
+}
+
+extension EditProfileViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

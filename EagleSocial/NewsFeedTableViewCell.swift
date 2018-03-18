@@ -10,7 +10,13 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+protocol commentProtocol {
+    func showAlert()
+}
+
 class NewsFeedTableViewCell: UITableViewCell {
+    
+    var delegate: commentProtocol?
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameOfUser: UILabel!
@@ -53,12 +59,29 @@ class NewsFeedTableViewCell: UITableViewCell {
         
     }
     
+    //MARK: - Comment Button Pressed
+    @IBAction func commentButtonPressed(_ sender: UIButton) {
+        
+//        
+//        var pickerVC = HomeViewController();
+//        if((delegate?.showAlert()) != nil)
+//        {
+//            delegate?.showAlert()
+//        }
+//        
+        
+        
+    }
     func setPost(post: [Post]) {
         self.post = post
     }
     
     func getLiked() -> Bool {
         return liked
+    }
+    
+    func showAlert() {
+        
     }
     
     
