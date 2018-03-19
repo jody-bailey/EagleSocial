@@ -33,7 +33,8 @@ class MessageViewController: UIViewController {
     */
     @IBAction func backbtnPressed(_ sender: UIBarButtonItem) {
         
-        performSegue(withIdentifier: "toNewConversation", sender: self)
+        dismiss(animated: true, completion: nil)
+        
     }
     
 }

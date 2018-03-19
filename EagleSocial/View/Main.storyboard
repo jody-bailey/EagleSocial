@@ -438,7 +438,7 @@
                                             <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="newConversation:" destination="QA6-E5-Fvl" id="mGJ-di-8iH"/>
-                                                <segue destination="tSf-Jd-RKD" kind="show" identifier="toNewConversation" id="Z5o-n6-GeB"/>
+                                                <segue destination="tSf-Jd-RKD" kind="presentation" identifier="toConversation" id="Z5o-n6-GeB"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -496,11 +496,18 @@
                                     <color key="textColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Message" id="Fys-mU-UEW"/>
+                                    <navigationItem title="Message" id="Fys-mU-UEW">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="back_btn" id="ktR-hG-FaT">
+                                            <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="backbtnPressed:" destination="tSf-Jd-RKD" id="Bk1-F8-onW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QNC-Sd-1qc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" id="n9v-LB-15u" customClass="MessageCell" customModule="EagleSocial" customModuleProvider="target">
@@ -514,7 +521,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y54-9h-pwR" userLabel="Compose View">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-4n-gcR" userLabel="Message Textfield">
                                         <rect key="frame" x="8" y="10" width="305" height="30"/>
@@ -564,6 +571,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NK2-lW-ucR"/>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhQ-vF-icM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1428,6 +1436,7 @@
     <resources>
         <image name="USMLogo" width="765" height="408"/>
         <image name="add_friend_btn" width="20" height="20"/>
+        <image name="back_btn" width="13" height="21"/>
         <image name="chat_icon" width="20" height="20"/>
         <image name="friends_icon" width="32" height="32"/>
         <image name="home_icon" width="32" height="32"/>
