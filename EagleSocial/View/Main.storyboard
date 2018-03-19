@@ -434,12 +434,6 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Eagle Messages" id="bZT-CL-adF">
-                                        <barButtonItem key="leftBarButtonItem" image="home_icon" id="4l8-Lt-SQZ" userLabel="Home icon">
-                                            <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <segue destination="FKd-uy-yPU" kind="showDetail" id="l8K-M0-zo9"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="add_friend_btn" id="YNU-hw-azT" userLabel="New Convo Icon">
                                             <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -484,7 +478,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlE-su-mdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-399.19999999999999" y="-602.24887556221893"/>
+            <point key="canvasLocation" x="-489" y="-864"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="HXM-Ba-Ggt">
@@ -573,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhQ-vF-icM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="-1312"/>
+            <point key="canvasLocation" x="505" y="-935"/>
         </scene>
         <!--Home-->
         <scene sceneID="EqU-9e-2vn">
