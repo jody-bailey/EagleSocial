@@ -12,6 +12,12 @@
 		27984724204365A800C4D5A3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */; };
 		3F0201B12041148600C959B9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0201B02041148600C959B9 /* EditProfileViewController.swift */; };
 		4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */; };
+		644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867D6205F0DBB00A90512 /* MessageListTableCell.swift */; };
+		644867D9205F0DBB00A90512 /* MessageListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644867D7205F0DBB00A90512 /* MessageListTableCell.xib */; };
+		644867DF205F498000A90512 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867DE205F498000A90512 /* MessageViewController.swift */; };
+		644867E1205F4DE100A90512 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E0205F4DE100A90512 /* Message.swift */; };
+		644867E6205F51AB00A90512 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E4205F51AB00A90512 /* MessageCell.swift */; };
+		644867E7205F51AB00A90512 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644867E5205F51AB00A90512 /* MessageCell.xib */; };
 		C8049BAB20427F9000FAC2CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAA20427F9000FAC2CC /* Post.swift */; };
 		C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAC2042850000FAC2CC /* PostSnapshot.swift */; };
 		C8049BAF2043898D00FAC2CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAE2043898D00FAC2CC /* User.swift */; };
@@ -47,6 +53,12 @@
 		279847212043618100C4D5A3 /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
 		27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		3F0201B02041148600C959B9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		644867D6205F0DBB00A90512 /* MessageListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListTableCell.swift; sourceTree = "<group>"; };
+		644867D7205F0DBB00A90512 /* MessageListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageListTableCell.xib; sourceTree = "<group>"; };
+		644867DE205F498000A90512 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		644867E0205F4DE100A90512 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		644867E4205F51AB00A90512 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		644867E5205F51AB00A90512 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		C8049BAA20427F9000FAC2CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C8049BAC2042850000FAC2CC /* PostSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSnapshot.swift; sourceTree = "<group>"; };
 		C8049BAE2043898D00FAC2CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -109,6 +121,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		644867D4205F0D5900A90512 /* MessageListTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				644867D6205F0DBB00A90512 /* MessageListTableCell.swift */,
+				644867D7205F0DBB00A90512 /* MessageListTableCell.xib */,
+			);
+			path = MessageListTableCell;
+			sourceTree = "<group>";
+		};
+		644867D5205F0D6F00A90512 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				644867E4205F51AB00A90512 /* MessageCell.swift */,
+				644867E5205F51AB00A90512 /* MessageCell.xib */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
 		C86ABB6D2018E8A900163279 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +196,7 @@
 				279847212043618100C4D5A3 /* ChangeEmailViewController.swift */,
 				27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */,
 				C8049BB02043A5C200FAC2CC /* ProfileCreationViewController.swift */,
+				644867DE205F498000A90512 /* MessageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +208,7 @@
 				C8049BAC2042850000FAC2CC /* PostSnapshot.swift */,
 				C8049BAE2043898D00FAC2CC /* User.swift */,
 				C874CF502058740F002ADE7F /* Like.swift */,
+				644867E0205F4DE100A90512 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +216,8 @@
 		C86ABB9320197D3000163279 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				644867D5205F0D6F00A90512 /* MessageCell */,
+				644867D4205F0D5900A90512 /* MessageListTableCell */,
 				C86ABB822018E8A900163279 /* LaunchScreen.storyboard */,
 				C8A771CB202282C300AF492D /* Main.storyboard */,
 			);
@@ -253,9 +287,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
+				644867D9205F0DBB00A90512 /* MessageListTableCell.xib in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
 				C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */,
+				644867E7205F51AB00A90512 /* MessageCell.xib in Resources */,
 				C8049BB52046064D00FAC2CC /* FriendTableViewCell.xib in Resources */,
 				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
 				C8A771CC202282C300AF492D /* Main.storyboard in Resources */,
@@ -340,8 +376,11 @@
 				27984724204365A800C4D5A3 /* ChangePasswordViewController.swift in Sources */,
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
 				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
+				644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */,
 				C8049BB42046064D00FAC2CC /* FriendTableViewCell.swift in Sources */,
 				C8049BAB20427F9000FAC2CC /* Post.swift in Sources */,
+				644867E1205F4DE100A90512 /* Message.swift in Sources */,
+				644867DF205F498000A90512 /* MessageViewController.swift in Sources */,
 				C874CF512058740F002ADE7F /* Like.swift in Sources */,
 				C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */,
 				279847222043618100C4D5A3 /* ChangeEmailViewController.swift in Sources */,
@@ -357,6 +396,7 @@
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
 				279847202043570000C4D5A3 /* ChangeNameViewController.swift in Sources */,
 				C8049BAF2043898D00FAC2CC /* User.swift in Sources */,
+				644867E6205F51AB00A90512 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

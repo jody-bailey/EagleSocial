@@ -413,21 +413,167 @@
             </objects>
             <point key="canvasLocation" x="1376.8" y="441.22938530734638"/>
         </scene>
-        <!--Chat-->
+        <!--Eagle Messages-->
         <scene sceneID="z8y-fq-606">
             <objects>
-                <viewController id="QA6-E5-Fvl" customClass="ChatViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Eagle Messages" id="QA6-E5-Fvl" customClass="ChatViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nZx-aa-fvU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleAspectFit" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj4-FO-nmr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                    <color key="textColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Eagle Messages" id="bZT-CL-adF">
+                                        <barButtonItem key="leftBarButtonItem" image="home_icon" id="4l8-Lt-SQZ" userLabel="Home icon">
+                                            <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <segue destination="FKd-uy-yPU" kind="showDetail" id="l8K-M0-zo9"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="add_friend_btn" id="YNU-hw-azT" userLabel="New Convo Icon">
+                                            <color key="tintColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="newConversation:" destination="QA6-E5-Fvl" id="mGJ-di-8iH"/>
+                                                <segue destination="tSf-Jd-RKD" kind="show" identifier="toNewConversation" id="Z5o-n6-GeB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y9K-Zg-WOY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageListCell" rowHeight="23" id="Uoj-KJ-qHA" customClass="MessageListTableCell" customModule="EagleSocial" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="23"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uoj-KJ-qHA" id="Rwy-NF-ACa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="22.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="y9K-Zg-WOY" firstAttribute="leading" secondItem="dog-EO-MYa" secondAttribute="leading" id="9cc-fg-3Th"/>
+                            <constraint firstItem="oj4-FO-nmr" firstAttribute="top" secondItem="nZx-aa-fvU" secondAttribute="top" constant="20" id="Ekw-1T-E9n"/>
+                            <constraint firstItem="oj4-FO-nmr" firstAttribute="leading" secondItem="dog-EO-MYa" secondAttribute="leading" id="FRb-ga-69s"/>
+                            <constraint firstItem="dog-EO-MYa" firstAttribute="trailing" secondItem="y9K-Zg-WOY" secondAttribute="trailing" id="nZe-x6-3XU"/>
+                            <constraint firstItem="y9K-Zg-WOY" firstAttribute="top" secondItem="oj4-FO-nmr" secondAttribute="bottom" id="p0y-2J-bfH"/>
+                            <constraint firstItem="dog-EO-MYa" firstAttribute="bottom" secondItem="y9K-Zg-WOY" secondAttribute="bottom" id="t55-3I-naU"/>
+                            <constraint firstItem="oj4-FO-nmr" firstAttribute="trailing" secondItem="dog-EO-MYa" secondAttribute="trailing" id="wjN-RO-9Vg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dog-EO-MYa"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="chat_icon" id="Mg5-SJ-KXI"/>
+                    <connections>
+                        <outlet property="messageTableView" destination="y9K-Zg-WOY" id="W1g-Xd-K9k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlE-su-mdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-398" y="-602"/>
+            <point key="canvasLocation" x="-399.19999999999999" y="-602.24887556221893"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="HXM-Ba-Ggt">
+            <objects>
+                <viewController id="tSf-Jd-RKD" customClass="MessageViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xAQ-ND-o9Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCF-Fj-5Gs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                    <color key="textColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Message" id="Fys-mU-UEW"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QNC-Sd-1qc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="553"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessageCell" id="n9v-LB-15u" customClass="MessageCell" customModule="EagleSocial" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n9v-LB-15u" id="KmD-Ra-xni">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y54-9h-pwR" userLabel="Compose View">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-4n-gcR" userLabel="Message Textfield">
+                                        <rect key="frame" x="8" y="10" width="305" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="QDf-I3-Kwh"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AM-eE-GgO">
+                                        <rect key="frame" x="321" y="10" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gMy-Q5-t4q"/>
+                                            <constraint firstAttribute="width" constant="46" id="s7L-qD-IbF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1AM-eE-GgO" firstAttribute="leading" secondItem="9T7-4n-gcR" secondAttribute="trailing" constant="8" id="4We-FW-2bo"/>
+                                    <constraint firstAttribute="trailing" secondItem="1AM-eE-GgO" secondAttribute="trailing" constant="8" id="8av-nR-S10"/>
+                                    <constraint firstItem="9T7-4n-gcR" firstAttribute="top" secondItem="Y54-9h-pwR" secondAttribute="top" constant="10" id="B53-O6-JcE"/>
+                                    <constraint firstItem="1AM-eE-GgO" firstAttribute="leading" secondItem="9T7-4n-gcR" secondAttribute="trailing" constant="8" id="GlC-aH-Jak"/>
+                                    <constraint firstItem="9T7-4n-gcR" firstAttribute="leading" secondItem="Y54-9h-pwR" secondAttribute="leading" constant="8" id="JQj-ic-5Pc"/>
+                                    <constraint firstAttribute="bottom" secondItem="1AM-eE-GgO" secondAttribute="bottom" constant="10" id="uwe-9u-ms0"/>
+                                    <constraint firstItem="1AM-eE-GgO" firstAttribute="top" secondItem="Y54-9h-pwR" secondAttribute="top" constant="10" id="z6q-pK-0Od"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="top" secondItem="QNC-Sd-1qc" secondAttribute="bottom" id="Erv-Wb-JZi"/>
+                            <constraint firstItem="HCF-Fj-5Gs" firstAttribute="top" secondItem="xAQ-ND-o9Z" secondAttribute="top" constant="20" id="LXX-Vp-ZXc"/>
+                            <constraint firstItem="QNC-Sd-1qc" firstAttribute="top" secondItem="HCF-Fj-5Gs" secondAttribute="bottom" id="UaQ-BB-KP0"/>
+                            <constraint firstItem="HCF-Fj-5Gs" firstAttribute="trailing" secondItem="NK2-lW-ucR" secondAttribute="trailing" id="VBo-7a-LUy"/>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="VbC-Jv-T20"/>
+                            <constraint firstItem="QNC-Sd-1qc" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="Zoa-SX-t1P"/>
+                            <constraint firstItem="NK2-lW-ucR" firstAttribute="trailing" secondItem="Y54-9h-pwR" secondAttribute="trailing" id="dpM-UK-Rau"/>
+                            <constraint firstItem="NK2-lW-ucR" firstAttribute="bottom" secondItem="Y54-9h-pwR" secondAttribute="bottom" id="oeG-cj-hzC"/>
+                            <constraint firstItem="QNC-Sd-1qc" firstAttribute="trailing" secondItem="NK2-lW-ucR" secondAttribute="trailing" id="vG4-kE-je6"/>
+                            <constraint firstItem="HCF-Fj-5Gs" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="ven-v1-2RV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NK2-lW-ucR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QhQ-vF-icM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="610" y="-1312"/>
         </scene>
         <!--Home-->
         <scene sceneID="EqU-9e-2vn">
@@ -1287,6 +1433,7 @@
     </scenes>
     <resources>
         <image name="USMLogo" width="765" height="408"/>
+        <image name="add_friend_btn" width="20" height="20"/>
         <image name="chat_icon" width="20" height="20"/>
         <image name="friends_icon" width="32" height="32"/>
         <image name="home_icon" width="32" height="32"/>
