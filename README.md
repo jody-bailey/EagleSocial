@@ -5,7 +5,7 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 ## Main Screen
 <HTML>
 ![](/initial.png)
-<img src="/initial.png" alt="Drawing" style="width: 100px;"/>
+<img src="/initial.png" width="200" />
 </HTML>
 
 ## Login 
