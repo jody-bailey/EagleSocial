@@ -13,5 +13,11 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 ## News Feed
 ![Alt text](/news_feed.png?raw=true "News Feed")
 
+## Adding Comment
+![Alt text](/show_alert.png?raw=true "Add Comment")
+
+## Post Likes
+![Alt text](/show_likes.png?raw=true "Post Likes")
+
 ## Friends List
 ![Alt text](/friend_list.png?raw=true "Friends List")
