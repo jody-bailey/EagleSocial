@@ -4,24 +4,10 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 
 <HTML>
   
-  ## Main Screen
-  <img src="/initial.png" width="200" /> <img src="/login.png" width="200" />
-
-  ## Login
-  <img src="/login.png" width="200" />
-
-  ## Sign-Up
-  <img src="/signup.png" width="200" />
-
-  ## News Feed
-  <img src="/news_feed.png" width="200" />
-
-  ## Adding Comment
-  <img src="/show_alert.png" width="200" />
-
-  ## Post Likes
-  <img src="/show_likes.png" width="200" />
-
-  ## Friends List
-  <img src="/friend_list.png" width="200" />
+  ## Screenshots
+  <img src="/initial.png" width="200" /> <img src="/login.png" width="200" /> 
+  <img src="/signup.png" width="200" /> <img src="/news_feed.png" width="200" />
+  <img src="/show_alert.png" width="200" /> <img src="/show_likes.png" width="200" />
+  <img src="/friend_list.png" width="200" alight="center" />
+  
 </HTML>
