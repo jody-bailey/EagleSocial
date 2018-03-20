@@ -3,9 +3,8 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 
 
 <HTML>
-  ## Main Screen                          |## Login
-  :--------------------------------------:|:--------------------------------------:
-  <img src="/initial.png" width="200" />  |
+  ## Main Screen
+  <img src="/initial.png" width="200" /> <img src="/login.png" width="200" />
 
   ## Login
   <img src="/login.png" width="200" />
