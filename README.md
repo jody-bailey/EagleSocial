@@ -4,6 +4,7 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 
 ## Main Screen
 ![](initial.png =50x)
+<img src="initial.png" alt="Drawing" style="width: 200px;"/>
 
 ## Login 
 ![Alt text](/login.png?raw=true "Login")
