@@ -38,35 +38,44 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
         
 //        var user : User?
         
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let username = value?["name"] as? String ?? ""
-            let user = User(username: username)
+        if statusTextField.text?.trimmingCharacters(in: .whitespaces) != "" {
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let username = value?["name"] as? String ?? ""
+                let user = User(username: username)
+                
+                // ...
+                let text = self.statusTextField.text
+                
+                let dateString = String(describing: Date())
+                
+                let parameters =    ["user": user?.name,
+                                     "message": text,
+                                     "date": dateString,
+                                     "userId": userID]
+                
+                
+                self.ref.child("posts").childByAutoId().setValue(parameters)
+                self.statusTextField.text = ""
+            }) { (error) in
+                print(error.localizedDescription)
+            }
             
-            // ...
-            let text = self.statusTextField.text
-            
-            let dateString = String(describing: Date())
-            
-            let parameters =    ["user": user?.name,
-                                 "message": text,
-                                 "date": dateString,
-                                 "userId": userID]
-            
-            
-            self.ref.child("posts").childByAutoId().setValue(parameters)
-            self.statusTextField.text = ""
-        }) { (error) in
-            print(error.localizedDescription)
+            statusTextField.resignFirstResponder()
+
+        } else {
+            statusTextField.text = ""
+            statusTextField.placeholder = "You must enter text"
         }
         
         
         
         
         
-        statusTextField.resignFirstResponder()
+        
+        
         
     }
     
