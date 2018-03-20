@@ -3,7 +3,7 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 
 
 ## Main Screen
-![Alt text](initial.png = 50x)
+![Alt text](initial.png =50x)
 
 ## Login 
 ![Alt text](/login.png?raw=true "Login")
