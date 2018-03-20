@@ -3,8 +3,10 @@ This is a school project for the Universty of Southern Mississippi. It is going 
 
 
 ## Main Screen
+<HTML>
 ![](/initial.png)
 <img src="initial.png" alt="Drawing" style="width: 200px;"/>
+</HTML>
 
 ## Login 
 ![Alt text](/login.png?raw=true "Login")
