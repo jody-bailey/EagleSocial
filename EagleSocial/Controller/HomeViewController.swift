@@ -150,6 +150,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
+            cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
