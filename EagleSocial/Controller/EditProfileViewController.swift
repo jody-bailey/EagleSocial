@@ -63,17 +63,20 @@ class EditProfileViewController: UIViewController {
             {
                 let fNameData = firstNameText.text
                 let lNameData = lastNameText.text
+                let fullName = fNameData! + " " + lNameData!
                 let ageData = ageText.text
                 let majorData = majorText.text
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
                 
                 
-                /*let ref = Database.database().reference().child("")
+                
+                /*
+                let ref = Database.database().reference().child("")
 
-
-                ref.updateChildValues([
-                    "values": []
-                    ])*/
+                ref.updateChildValues(["name": fullName,
+                               "age": ageData,
+                               "major": majorData])
+                */
                 dismiss(animated: true, completion: nil)
             }
         }

@@ -93,9 +93,11 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         {
             self.imageView.image = image
         }
-        
         picker.dismiss(animated: true, completion: nil)
-    }
+        
+        saveUserProfilePicToFireBase()
+            
+        }
     
     //user can cancel their selection to dismiss the picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -114,6 +116,37 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         lastNameLabel.text = lNameData
         ageLabel.text = ageData
         majorLabel.text = majorData
+    }
+    
+    func saveUserProfilePicToFireBase()
+    {
+       /* let storage = Storage.storage()
+        let storageRef = storage.reference()
+        var databaseRef: DatabaseReference!
+        
+        databaseRef = Database.database().reference()
+        
+        var data = NSData()
+        data = UIImageJPEGRepresentation(imageView.image!, 0.8)! as NSData
+        // set upload path
+        let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        storageRef.child(filePath).putData(data as Data, metadata: metaData)
+        {
+            (metaData,error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            else
+            {
+                //store downloadURL
+                let downloadURL = metaData!.downloadURL()!.absoluteString
+                //store downloadURL at database
+                databaseRef.child("users").child(Auth.auth().currentUser!.uid).updateChildValues(["userPhoto": downloadURL])
+            }
+        }*/
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected
