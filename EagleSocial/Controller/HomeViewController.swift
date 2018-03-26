@@ -38,9 +38,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
-        likeRef = Database.database().reference()
-        commentRef = Database.database().reference()
-        
         // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
         NewsFeedTable.refreshControl = refreshControl
        
@@ -62,6 +59,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
         NewsFeedTable.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+        
+        NewsFeedTable.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         NewsFeedTable.addGestureRecognizer(tapGesture)
@@ -150,6 +149,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
+            cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
@@ -171,6 +171,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
             })
+            
+//            commentRef = Database.database().reference()
+//            commentHandle = commentRef?.child("postComments").child(posts[indexPath.row - 1].postId).observe(.value, with: { (snapshot) in
+//
+//                guard let snapDict = snapshot.value as? [String : [String : String]] else { return }
+////                print(snapDict)
+//                for (_, snap) in snapDict {
+//                    for snip in snap {
+//                        print(snip.value)
+//
+//                        let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
+//
+//                    }
+//                }
+//            })
+            
+            
             return cell
         }
         else {
@@ -225,11 +242,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
+            if self.posts[(indexPath?.row)! - 1].likes! == true {
+                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
+                self.NewsFeedTable.reloadData()
+            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
+                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
+                self.NewsFeedTable.reloadData()
+            }
             
-            self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
             
         }
-        self.NewsFeedTable.reloadData()
+//        self.NewsFeedTable.reloadData()
     }
     
     @objc func commentButtonPressed(sender:AnyObject) {
