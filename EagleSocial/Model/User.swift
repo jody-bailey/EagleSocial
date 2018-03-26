@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct User {
+struct User
+{
     let name: String
     
     init?(username: String) {
