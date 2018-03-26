@@ -47,11 +47,14 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         
         let imagePickerControler = UIImagePickerController()
         imagePickerControler.delegate = self
+        imagePickerControler.allowsEditing = true
+
         
         //User has the choice of selecting the camera
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             imagePickerControler.sourceType = .camera
             self.present(imagePickerControler, animated: true, completion: nil)
+            
         }))
         //user has the choice of selecting the photo library
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
@@ -86,9 +89,10 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     
     //method uses the users selected image as their profile photo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        imageView.image = image
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage
+        {
+            self.imageView.image = image
+        }
         
         picker.dismiss(animated: true, completion: nil)
     }
