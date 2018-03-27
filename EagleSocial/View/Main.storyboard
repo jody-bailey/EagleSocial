@@ -536,6 +536,9 @@
                                         <state key="normal" title="Send">
                                             <color key="titleColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendButtonPressed:" destination="tSf-Jd-RKD" eventType="touchUpInside" id="Ig7-pF-jN2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -573,11 +576,12 @@
                         <outlet property="conversationTableView" destination="QNC-Sd-1qc" id="Igo-4s-gRK"/>
                         <outlet property="heightConstraint" destination="OyG-xS-j2A" id="fvP-Zg-jAb"/>
                         <outlet property="messageTextField" destination="9T7-4n-gcR" id="uNE-jc-XOq"/>
+                        <outlet property="sendButton" destination="1AM-eE-GgO" id="EU5-cZ-xsP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhQ-vF-icM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="505" y="-935"/>
+            <point key="canvasLocation" x="504.80000000000001" y="-935.08245877061472"/>
         </scene>
         <!--Home-->
         <scene sceneID="EqU-9e-2vn">

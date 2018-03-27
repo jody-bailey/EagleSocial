@@ -52,6 +52,12 @@
                             <constraint firstItem="Gvs-Xy-uNg" firstAttribute="top" secondItem="fY9-Dx-bKq" secondAttribute="bottom" constant="10" id="yT5-BH-f6D"/>
                             <constraint firstAttribute="trailing" secondItem="fY9-Dx-bKq" secondAttribute="trailing" constant="10" id="ymG-Mb-dBT"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
