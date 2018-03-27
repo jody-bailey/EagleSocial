@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct User {
+struct User
+{
     let name: String
     
     init?(username: String) {
@@ -18,3 +19,5 @@ struct User {
         self.name = username
     }
 }
+
+//changes need to be made to the user struct to store user attributes other than user name. These other attributes are needed to share user info between view controllers. I attempted to make changes, but this caused an error with the user status table view. I reverted the changes so that the team could discuss the best approach.

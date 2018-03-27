@@ -82,7 +82,7 @@
         <scene sceneID="tJB-zO-giN">
             <objects>
                 <viewController id="wcH-Bb-9Ux" customClass="ProfileViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iiK-ik-Yfd">
+                    <view key="view" contentMode="scaleAspectFill" id="iiK-ik-Yfd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -158,7 +158,7 @@
                                     <constraint firstAttribute="width" constant="187" id="TIm-j4-APn"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
                                 <rect key="frame" x="230" y="40" width="130" height="142"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -278,9 +278,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="editMajorDone:" destination="lav-IM-FbT" eventType="editingDidEnd" id="fF4-5N-m9r"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oQw-4i-RW8">
                                 <rect key="frame" x="16" y="157" width="343" height="30"/>
@@ -525,9 +522,6 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9T7-4n-gcR" userLabel="Message Textfield">
                                         <rect key="frame" x="8" y="10" width="305" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="QDf-I3-Kwh"/>
-                                        </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -549,9 +543,8 @@
                                     <constraint firstItem="1AM-eE-GgO" firstAttribute="leading" secondItem="9T7-4n-gcR" secondAttribute="trailing" constant="8" id="4We-FW-2bo"/>
                                     <constraint firstAttribute="trailing" secondItem="1AM-eE-GgO" secondAttribute="trailing" constant="8" id="8av-nR-S10"/>
                                     <constraint firstItem="9T7-4n-gcR" firstAttribute="top" secondItem="Y54-9h-pwR" secondAttribute="top" constant="10" id="B53-O6-JcE"/>
-                                    <constraint firstItem="1AM-eE-GgO" firstAttribute="leading" secondItem="9T7-4n-gcR" secondAttribute="trailing" constant="8" id="GlC-aH-Jak"/>
                                     <constraint firstItem="9T7-4n-gcR" firstAttribute="leading" secondItem="Y54-9h-pwR" secondAttribute="leading" constant="8" id="JQj-ic-5Pc"/>
-                                    <constraint firstAttribute="bottom" secondItem="1AM-eE-GgO" secondAttribute="bottom" constant="10" id="uwe-9u-ms0"/>
+                                    <constraint firstAttribute="height" constant="50" id="OyG-xS-j2A"/>
                                     <constraint firstItem="1AM-eE-GgO" firstAttribute="top" secondItem="Y54-9h-pwR" secondAttribute="top" constant="10" id="z6q-pK-0Od"/>
                                 </constraints>
                             </view>
@@ -559,7 +552,10 @@
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Y54-9h-pwR" firstAttribute="top" secondItem="QNC-Sd-1qc" secondAttribute="bottom" id="Erv-Wb-JZi"/>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="trailing" secondItem="NK2-lW-ucR" secondAttribute="trailing" id="Icv-k1-0Aw"/>
                             <constraint firstItem="HCF-Fj-5Gs" firstAttribute="top" secondItem="xAQ-ND-o9Z" secondAttribute="top" constant="20" id="LXX-Vp-ZXc"/>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="LdA-3J-CvB"/>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="top" secondItem="QNC-Sd-1qc" secondAttribute="bottom" id="QbU-xj-oaM"/>
                             <constraint firstItem="QNC-Sd-1qc" firstAttribute="top" secondItem="HCF-Fj-5Gs" secondAttribute="bottom" id="UaQ-BB-KP0"/>
                             <constraint firstItem="HCF-Fj-5Gs" firstAttribute="trailing" secondItem="NK2-lW-ucR" secondAttribute="trailing" id="VBo-7a-LUy"/>
                             <constraint firstItem="Y54-9h-pwR" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="VbC-Jv-T20"/>
@@ -568,10 +564,16 @@
                             <constraint firstItem="NK2-lW-ucR" firstAttribute="bottom" secondItem="Y54-9h-pwR" secondAttribute="bottom" id="oeG-cj-hzC"/>
                             <constraint firstItem="QNC-Sd-1qc" firstAttribute="trailing" secondItem="NK2-lW-ucR" secondAttribute="trailing" id="vG4-kE-je6"/>
                             <constraint firstItem="HCF-Fj-5Gs" firstAttribute="leading" secondItem="NK2-lW-ucR" secondAttribute="leading" id="ven-v1-2RV"/>
+                            <constraint firstItem="Y54-9h-pwR" firstAttribute="bottom" secondItem="NK2-lW-ucR" secondAttribute="bottom" id="wow-Ab-UJo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NK2-lW-ucR"/>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="conversationTableView" destination="QNC-Sd-1qc" id="Igo-4s-gRK"/>
+                        <outlet property="heightConstraint" destination="OyG-xS-j2A" id="fvP-Zg-jAb"/>
+                        <outlet property="messageTextField" destination="9T7-4n-gcR" id="uNE-jc-XOq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QhQ-vF-icM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

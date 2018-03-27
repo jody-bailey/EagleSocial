@@ -39,8 +39,14 @@ class ProfileCreationViewController: UIViewController {
         
         if let userId = user?.uid {
             let username = self.firstNameTextField.text! + " " + self.lastNameTextField.text!
+            let age = 0
+            let major = "undetermined"
+            let schoolYear = "undertermined"
             
-            let parameters = ["name": username]
+            let parameters = ["name": username,
+                              "age": age,
+                              "major": major,
+                              "school year": schoolYear] as [String : Any]
             
             ref?.child("Users/\(userId)").setValue(parameters)
         }
