@@ -43,6 +43,9 @@
 		C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D52022AC3300AF492D /* SettingsViewController.swift */; };
 		C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */; };
 		C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */; };
+		C8C10875206A07BF008ED717 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C10874206A07BF008ED717 /* Friend.swift */; };
+		C8C10877206A089D008ED717 /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C10876206A089D008ED717 /* FriendList.swift */; };
+		C8C1087B206A10E7008ED717 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C1087A206A10E7008ED717 /* Person.swift */; };
 		C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2ABB2205DF84400D77D97 /* CommentCell.swift */; };
 		C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D2ABB3205DF84400D77D97 /* CommentCell.xib */; };
 /* End PBXBuildFile section */
@@ -86,6 +89,9 @@
 		C8A771D52022AC3300AF492D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C8A771DB2022BDD500AF492D /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		C8A771DC2022BDD500AF492D /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
+		C8C10874206A07BF008ED717 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		C8C10876206A089D008ED717 /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
+		C8C1087A206A10E7008ED717 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C8D2ABB2205DF84400D77D97 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		C8D2ABB3205DF84400D77D97 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EagleSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +215,9 @@
 				C8049BAE2043898D00FAC2CC /* User.swift */,
 				C874CF502058740F002ADE7F /* Like.swift */,
 				644867E0205F4DE100A90512 /* Message.swift */,
+				C8C10874206A07BF008ED717 /* Friend.swift */,
+				C8C10876206A089D008ED717 /* FriendList.swift */,
+				C8C1087A206A10E7008ED717 /* Person.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C1087B206A10E7008ED717 /* Person.swift in Sources */,
 				3F0201B12041148600C959B9 /* EditProfileViewController.swift in Sources */,
 				C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */,
 				C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */,
@@ -385,6 +395,7 @@
 				C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */,
 				279847222043618100C4D5A3 /* ChangeEmailViewController.swift in Sources */,
 				C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */,
+				C8C10875206A07BF008ED717 /* Friend.swift in Sources */,
 				C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */,
 				C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */,
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
@@ -396,6 +407,7 @@
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
 				279847202043570000C4D5A3 /* ChangeNameViewController.swift in Sources */,
 				C8049BAF2043898D00FAC2CC /* User.swift in Sources */,
+				C8C10877206A089D008ED717 /* FriendList.swift in Sources */,
 				644867E6205F51AB00A90512 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

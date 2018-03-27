@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var posts = [Post]()
     
-    var likes = [Like]()
+//    var likes = [Like]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,11 +140,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if indexPath.row > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
             
-            if posts[indexPath.row - 1].likes == true {
-                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-            } else {
-                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
-            }
+//            if posts[indexPath.row - 1].likes == true {
+//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+//            } else {
+//                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+//            }
             
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
@@ -162,11 +162,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let snapDict = snapshot.value as? [String: Int] else { return }
                 for snap in snapDict {
                     if snap.key == self.posts[indexPath.row - 1].postId {
-                        if snap.value == 1 {
-                            self.posts[indexPath.row - 1].likes = true
-                        } else {
-                            self.posts[indexPath.row - 1].likes = false
-                        }
+//                        if snap.value == 1 {
+//                            self.posts[indexPath.row - 1].likes = true
+//                        } else {
+//                            self.posts[indexPath.row - 1].likes = false
+//                        }
                     }
                 }
                 
@@ -242,13 +242,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-            if self.posts[(indexPath?.row)! - 1].likes! == true {
-                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
-                self.NewsFeedTable.reloadData()
-            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
-                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
-                self.NewsFeedTable.reloadData()
-            }
+//            if self.posts[(indexPath?.row)! - 1].likes == true {
+//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
+//                self.NewsFeedTable.reloadData()
+//            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
+//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
+//                self.NewsFeedTable.reloadData()
+//            }
             
             
         }
