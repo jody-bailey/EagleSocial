@@ -8,15 +8,17 @@
 
 import Foundation
 
-struct Post {
+class Post {
     
     let username: String
     let message: String
     let date: Date
-    var likes: Bool?
+    var likes = [Like]()
     let postId: String
     
     init?(postId: String, dict: [String: Any]) {
+        
+        self.likes = []
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
@@ -27,11 +29,18 @@ struct Post {
             let date = dateFormatter.date(from: dateString)
             else { return nil }
         
+        let likes = dict["likes"] as? [String]
+
+        
+        for like in likes! where likes != nil {
+            // This is storing the user id into the array of likes
+            self.likes.append(Like(user: like))
+        }
+        
         self.postId = postId
         self.username = username
         self.message = message
         self.date = date
-//        self.likes = false
     }
     
 }

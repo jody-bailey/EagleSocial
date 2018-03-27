@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct User
+class User
 {
     let name: String
     
-    init?(username: String) {
+    init(username: String) {
         
         let username = username
         

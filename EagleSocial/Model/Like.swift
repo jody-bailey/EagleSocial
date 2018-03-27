@@ -9,22 +9,13 @@
 import Foundation
 import FirebaseAuth
 
-struct Like {
+class Like {
     
     let userId: String
-    var likes: Bool?
-    let postId: String
     
-    init?(postId: String, dict: [String: Any]) {
+    init(user : String) {
         
-        let user = Auth.auth().currentUser?.uid
-        
-        guard let username = dict[user!] as? String
-            else { return nil }
-        
-        self.postId = postId
-        self.userId = username
-        self.likes = false
+        self.userId = user
     }
     
 }

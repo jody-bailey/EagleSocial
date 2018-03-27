@@ -51,10 +51,12 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
                 
                 let dateString = String(describing: Date())
                 
-                let parameters =    ["user": user?.name,
-                                     "message": text,
+                let likes : [String : Bool] = ["likes" : false]
+                
+                let parameters =    ["user": user.name,
+                                     "message": text!,
                                      "date": dateString,
-                                     "userId": userID]
+                                     "userId": userID!] //= likes
                 
                 
                 self.ref.child("posts").childByAutoId().setValue(parameters)
