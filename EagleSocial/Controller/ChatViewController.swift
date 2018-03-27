@@ -14,7 +14,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Set self as the delagate and datasource here:
         messageTableView.delegate = self
         messageTableView.dataSource = self
@@ -47,12 +47,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
     */
     
     //Determine how many rows to display.
