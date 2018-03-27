@@ -51,7 +51,7 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
                 
                 let dateString = String(describing: Date())
                 
-                let parameters =    ["user": user?.name,
+                let parameters =    ["user": user.name,
                                      "message": text,
                                      "date": dateString,
                                      "userId": userID]
