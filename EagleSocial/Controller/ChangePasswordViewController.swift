@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChangePasswordViewController: UIViewController {
 
@@ -34,6 +35,10 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        
+    
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     

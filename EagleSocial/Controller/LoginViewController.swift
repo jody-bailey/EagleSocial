@@ -45,6 +45,9 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
+                SVProgressHUD.dismiss()
+                self.passwordTextField.text = ""
+                self.passwordTextField.placeholder = "Incorrect password"
                 print("\(String(describing: error))")
             }else {
                 print("login successful")
