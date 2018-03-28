@@ -12,16 +12,43 @@ import FirebaseDatabase
 
 class User
 {
-    
-    
+    let userID: String
     let name: String
+    let age: String
+    let major: String
+    let schoolYear: String
+    let photo: String
+
+
+    init(username: String, userID: String)
+{
+    let username = username
+    self.userID = userID
+    self.name = username
+    self.age = ""
+    self.major = ""
+    self.schoolYear = ""
+    self.photo = ""
+}
+
+/*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
+{
     
-    init(username: String) {
-        
-        let username = username
-        
-        self.name = username
-    }
+    let username = username
+    let userAge = userAge
+    let userMajor = userMajor
+    let userSchoolYear = userSchoolYear
+    let userPhoto = userPhoto
+    
+    self.name = username
+    self.age = userAge
+    self.major = userMajor
+    self.schoolYear = userSchoolYear
+    self.photo = userPhoto
+    
+    }*/
+
+
     
     
     
@@ -33,7 +60,7 @@ class User
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["name"] as? String ?? ""
-            instance = User(username: username)
+            instance = User(username: username, userID: userId!)
         })
 
 
