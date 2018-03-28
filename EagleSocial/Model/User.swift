@@ -12,7 +12,33 @@ import FirebaseDatabase
 
 class User
 {
+    let userID: String
+    let name: String
+    let age: String
+    let major: String
+    let schoolYear: String
+    let photo: String
+
+
+    init(username: String, userID: String)
+{
+    let username = username
+    self.userID = userID
+    self.name = username
+    self.age = ""
+    self.major = ""
+    self.schoolYear = ""
+    self.photo = ""
+}
+
+/*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
+{
     
+    let username = username
+    let userAge = userAge
+    let userMajor = userMajor
+    let userSchoolYear = userSchoolYear
+    let userPhoto = userPhoto
     
     let name: String
     let uid: String
