@@ -15,12 +15,14 @@ class User
     
     
     let name: String
+    let uid: String
     
-    init(username: String) {
+    init(username: String, uid: String) {
         
         let username = username
         
         self.name = username
+        self.uid = uid
     }
     
     
@@ -33,7 +35,7 @@ class User
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["name"] as? String ?? ""
-            instance = User(username: username)
+            instance = User(username: username, uid: userId!)
         })
 
 
