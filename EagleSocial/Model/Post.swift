@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseDatabase
 
 class Post {
     
@@ -17,7 +19,7 @@ class Post {
     let postId: String
     
     init?(postId: String, dict: [String: Any]) {
-        
+        let ref = Database.database().reference()
         self.likes = []
         
         let dateFormatter = DateFormatter()
@@ -29,13 +31,25 @@ class Post {
             let date = dateFormatter.date(from: dateString)
             else { return nil }
         
-        let likes = dict["likes"] as? [String]
-
+        ref.child("posts").child(postId).child("likes").observeSingleEvent(of: .value) { (snapshot) in
         
-//        for like in likes! where likes != nil {
-            // This is storing the user id into the array of likes
-//            self.likes.append(Like(user: like))
+            if let likes = snapshot.children.allObjects as? [String] {
+                for like in likes {
+                    print("got a like")
+                }
+            }
+        }
+//        var userLikes = [Like]()
+//        if dict.keys.contains("likes"){
+//            let likes = dict["likes"] as? [DataSnapshot]
+//            for like in likes!{
+//                userLikes.append(Like(user: like))
+//            }
+//            self.likes = userLikes
+//        } else {
+//            self.likes = [Like]()
 //        }
+        
         
         self.postId = postId
         self.username = username

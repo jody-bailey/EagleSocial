@@ -9,7 +9,11 @@
 import Foundation
 import FirebaseAuth
 
-class Like {
+class Like : Equatable {
+    static func ==(lhs: Like, rhs: Like) -> Bool {
+        return lhs.userId == rhs.userId
+    }
+    
     
     let userId: String
     

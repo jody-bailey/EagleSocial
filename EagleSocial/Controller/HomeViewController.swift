@@ -153,22 +153,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             
-            let userId = Auth.auth().currentUser?.uid
-            
-            likeRef = Database.database().reference()
-            likeHandle = likeRef?.child("postLikes").child(userId!).observe(.value, with: { (snapshot) in
-                guard let snapDict = snapshot.value as? [String: Int] else { return }
-                for snap in snapDict {
-                    if snap.key == self.posts[indexPath.row - 1].postId {
-//                        if snap.value == 1 {
-//                            self.posts[indexPath.row - 1].likes = true
-//                        } else {
-//                            self.posts[indexPath.row - 1].likes = false
-//                        }
-                    }
-                }
-                
-            })
+            if posts[indexPath.row - 1].likes.contains(Like(user: thisUser.userID)){
+                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+            } else {
+                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+            }
             
 //            commentRef = Database.database().reference()
 //            commentHandle = commentRef?.child("postComments").child(posts[indexPath.row - 1].postId).observe(.value, with: { (snapshot) in
@@ -234,15 +223,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func likeButtonPressed(sender:AnyObject) {
         
-        let userId = Auth.auth().currentUser?.uid
+//        let userId = Auth.auth().currentUser?.uid
         
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-//            if self.posts[(indexPath?.row)! - 1].likes == true {
-//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
-//                self.NewsFeedTable.reloadData()
+            if !self.posts[(indexPath?.row)! - 1].likes.contains(Like(user: thisUser.userID)){
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").childByAutoId().setValue(thisUser.userID)
+                    self.NewsFeedTable.reloadData()
+                }
 //            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
 //                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
 //                self.NewsFeedTable.reloadData()
