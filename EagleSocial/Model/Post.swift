@@ -32,10 +32,10 @@ class Post {
         let likes = dict["likes"] as? [String]
 
         
-        for like in likes! where likes != nil {
+//        for like in likes! where likes != nil {
             // This is storing the user id into the array of likes
-            self.likes.append(Like(user: like))
-        }
+//            self.likes.append(Like(user: like))
+//        }
         
         self.postId = postId
         self.username = username
