@@ -120,7 +120,7 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     
     func saveUserProfilePicToFireBase()
     {
-       /* let storage = Storage.storage()
+        /*let storage = Storage.storage()
         let storageRef = storage.reference()
         var databaseRef: DatabaseReference!
         

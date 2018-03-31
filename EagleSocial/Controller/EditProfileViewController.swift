@@ -70,13 +70,13 @@ class EditProfileViewController: UIViewController {
                 
                 
                 
-                /*
-                let ref = Database.database().reference().child("")
+                
+                let ref = Database.database().reference().child("User/\(thisUser.userID)")
 
                 ref.updateChildValues(["name": fullName,
-                               "age": ageData,
-                               "major": majorData])
-                */
+                               "age": ageData!,
+                               "major": majorData!])
+                
                 dismiss(animated: true, completion: nil)
             }
         }
