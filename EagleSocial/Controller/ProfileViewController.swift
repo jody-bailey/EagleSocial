@@ -11,8 +11,10 @@
 // to select an edit profile button and an upload photo button. 
 //
 
-import UIKit
+import Foundation
 import Firebase
+import FirebaseAuth
+import FirebaseStorage
 import FirebaseDatabase
 
 
@@ -67,24 +69,6 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         
         self.present(actionSheet, animated: true, completion: nil)
         
-        
-        //code to store the users selected photo in the database
-        /*let storageRef = Storage.storage().reference()
-        
-        if let uploadData = UIImagePNGRepresentation(self.imageView.image!)
-        {
-            storageRef.putData(uploadData, metadata: nil, completion: {(metadata, error) in
-                if error != nil
-                {
-                    print(error)
-                    return
-                }
-                
-                print(metadata)
-            })
-        }
-        */
-        
     }
     
     //method uses the users selected image as their profile photo
@@ -118,35 +102,21 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         majorLabel.text = majorData
     }
     
+    
+    // some code for this function is derived from https://github.com/maranathApp/WhatsApp-Clone/blob/master/WhatsAppClone/AuthenticationService.swift 
     func saveUserProfilePicToFireBase()
     {
-        /*let storage = Storage.storage()
+        var data = Data()
+        data = UIImagePNGRepresentation(self.imageView.image!)!
+        let storage = Storage.storage()
         let storageRef = storage.reference()
-        var databaseRef: DatabaseReference!
         
-        databaseRef = Database.database().reference()
+        let imagePath = "image\(thisUser.userID)/userPic.jpg"
+        let imageRef = storageRef.child(imagePath)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
         
-        var data = NSData()
-        data = UIImageJPEGRepresentation(imageView.image!, 0.8)! as NSData
-        // set upload path
-        let filePath = "\(Auth.auth().currentUser!.uid)/\("userPhoto")"
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        storageRef.child(filePath).putData(data as Data, metadata: metaData)
-        {
-            (metaData,error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            else
-            {
-                //store downloadURL
-                let downloadURL = metaData!.downloadURL()!.absoluteString
-                //store downloadURL at database
-                databaseRef.child("users").child(Auth.auth().currentUser!.uid).updateChildValues(["userPhoto": downloadURL])
-            }
-        }*/
+        imageRef.putData(data, metadata: metadata)
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected
