@@ -42,6 +42,16 @@ class ProfileCreationViewController: UIViewController {
             let age = 0
             let major = "undetermined"
             let schoolYear = "undertermined"
+            let changeRequest = user?.createProfileChangeRequest()
+            changeRequest?.displayName = username
+            
+            changeRequest?.commitChanges { error in
+                if let error = error {
+                    print("Error committing change request \(error)")
+                } else {
+                    print("Change request successful")
+                }
+            }
             
             let parameters = ["name": username,
                               "age": age,

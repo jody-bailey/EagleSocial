@@ -10,20 +10,57 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
+
+let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+
 class User
 {
+    let userID: String
+    var name: String
+    var age: String
+    var major: String
+    var schoolYear: String
+    var photo: String
+
+
+    init(username: String, userID: String)
+{
+    self.userID = userID
+    self.name = username
+    self.age = ""
+    self.major = ""
+    self.schoolYear = ""
+    self.photo = ""
+}
+
+/*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
+{
     
+    let username = username
+    let userAge = userAge
+    let userMajor = userMajor
+    let userSchoolYear = userSchoolYear
+    let userPhoto = userPhoto
     
     let name: String
+    let uid: String
     
-    init(username: String) {
+    init(username: String, uid: String) {
         
         let username = username
         
         self.name = username
+        self.uid = uid
+    }*/
+    
+    public func getName() -> String {
+        return self.name
     }
     
-    
+    public func setName(userName: String)
+    {
+        self.name = userName
+    }
     
     static let thisUser : User = {
         let userId = Auth.auth().currentUser?.uid
@@ -33,7 +70,7 @@ class User
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["name"] as? String ?? ""
-            instance = User(username: username)
+            instance = User(username: username, userID: userId!)
         })
 
 

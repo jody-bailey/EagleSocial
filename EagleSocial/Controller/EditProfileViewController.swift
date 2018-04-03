@@ -69,14 +69,14 @@ class EditProfileViewController: UIViewController {
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
                 
                 
+                var ref: DatabaseReference!
                 
-                /*
-                let ref = Database.database().reference().child("")
-
-                ref.updateChildValues(["name": fullName,
-                               "age": ageData,
-                               "major": majorData])
-                */
+                ref = Database.database().reference()
+                
+                ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
+                                                                             "age": ageData!,
+                                                                             "major": majorData!])
+                
                 dismiss(animated: true, completion: nil)
             }
         }

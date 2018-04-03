@@ -27,7 +27,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var postData = [String]()
-    
     var posts = [Post]()
     
 //    var likes = [Like]()
@@ -51,7 +50,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.NewsFeedTable.reloadData()
             
         })
-        
         
         NewsFeedTable.delegate = self
         NewsFeedTable.dataSource = self
