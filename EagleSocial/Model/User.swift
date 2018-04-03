@@ -16,11 +16,11 @@ let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: 
 class User
 {
     let userID: String
-    let name: String
-    let age: String
-    let major: String
-    let schoolYear: String
-    let photo: String
+    var name: String
+    var age: String
+    var major: String
+    var schoolYear: String
+    var photo: String
 
 
     init(username: String, userID: String)
@@ -55,6 +55,11 @@ class User
     
     public func getName() -> String {
         return self.name
+    }
+    
+    public func setName(userName: String)
+    {
+        self.name = userName
     }
     
     static let thisUser : User = {
