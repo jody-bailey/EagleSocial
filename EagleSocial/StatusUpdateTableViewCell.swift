@@ -44,7 +44,7 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 let username = value?["name"] as? String ?? ""
-                let user = User(username: username)
+                let user = User(username: username, userID: userID!)
                 
                 // ...
                 let text = self.statusTextField.text
