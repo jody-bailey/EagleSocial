@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var postData = [String]()
     var posts = [Post]()
     
-//    var likes = [Like]()
+    var likes = [Like]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             
-            if posts[indexPath.row - 1].likes.contains(Like(user: thisUser.userID)){
+            if self.posts[indexPath.row - 1].likes.keys.contains(thisUser.userID) {
                 cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
             } else {
                 cell.likeButton.setTitleColor(UIColor.black, for: .normal)
@@ -229,8 +229,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-            if !self.posts[(indexPath?.row)! - 1].likes.contains(Like(user: thisUser.userID)){
-                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").childByAutoId().setValue(thisUser.userID)
+            self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: thisUser.userID)
+            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
                     self.NewsFeedTable.reloadData()
                 }
 //            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
