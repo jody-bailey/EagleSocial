@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -33,6 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
@@ -126,8 +128,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.shareButton.layer.cornerRadius = 10
             cell.userName.text = "Jody Bailey"
-            cell.profileImage.image = #imageLiteral(resourceName: "jodybobae")
-            cell.profileImage.layer.cornerRadius = 32
+            cell.profileImage.image = thisUser.profilePic
+            cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
 //            cell.statusTextField.delegate = self
             cell.statusTextField.placeholder = "Enter your status update here!"
@@ -147,7 +149,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
-            cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            
+            if (self.posts[indexPath.row - 1].userId == thisUser.userID){
+                cell.profilePicture.image = thisUser.profilePic
+            } else {
+                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            }
+            cell.profilePicture.layer.cornerRadius = 10
+            cell.profilePicture.layer.masksToBounds = true
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
@@ -198,6 +207,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.endEditing(true)
+    }
+    
+    @objc func reloadNewsFeed() {
+        NewsFeedTable.reloadData()
     }
     
     

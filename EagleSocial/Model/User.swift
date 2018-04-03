@@ -9,6 +9,9 @@
 import Foundation
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
+
+
 
 
 let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
@@ -21,16 +24,35 @@ class User
     var major: String
     var schoolYear: String
     var photo: String
+    var profilePic: UIImage
 
+    let storage = Storage.storage()
 
     init(username: String, userID: String)
 {
+    let uid : String = (Auth.auth().currentUser?.uid)!
+    let storageRef = storage.reference(withPath: "image\(uid)/userPic.jpg")
+    
     self.userID = userID
     self.name = username
     self.age = ""
     self.major = ""
     self.schoolYear = ""
     self.photo = ""
+    self.profilePic = #imageLiteral(resourceName: "profile_icon")
+    
+    var image : UIImage?
+    storageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error getting image from storage, \(error)")
+        } else {
+            // Data for "images/island.jpg" is returned
+            print("image retreived successfully")
+            image = UIImage(data: data!)
+        }
+        self.setProfilePic(image: image!)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
 }
 
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
@@ -60,6 +82,18 @@ class User
     public func setName(userName: String)
     {
         self.name = userName
+    }
+    
+    public func setProfilePic(image: UIImage) {
+        self.profilePic = image
+    }
+    
+    public func hasProfilePic() -> Bool {
+        if self.profilePic != profilePic {
+            return true
+        } else {
+            return false
+        }
     }
     
     static let thisUser : User = {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -85,6 +85,7 @@
                 <constraints>
                     <constraint firstItem="Yui-Ao-wch" firstAttribute="leading" secondItem="fQf-Tj-3kw" secondAttribute="trailing" constant="8" id="96n-zD-gTy"/>
                     <constraint firstItem="Yui-Ao-wch" firstAttribute="top" secondItem="94y-1O-qeO" secondAttribute="bottom" constant="8" id="Ahg-4g-pBb"/>
+                    <constraint firstItem="kW9-xb-YxO" firstAttribute="top" secondItem="fQf-Tj-3kw" secondAttribute="bottom" constant="20" id="DCi-Ie-1Pu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="94y-1O-qeO" secondAttribute="trailing" constant="37" id="Hcc-4H-XfG"/>
                     <constraint firstItem="fQf-Tj-3kw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NB1-ps-8aw"/>
                     <constraint firstItem="fQf-Tj-3kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="NCS-LK-izH"/>
