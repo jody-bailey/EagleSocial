@@ -9,11 +9,15 @@
 import UIKit
 import Firebase
 
+protocol CanRecieve {
+    func dataReceived(data: String)
+}
 
 class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
+    var delagate : CanRecieve?
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet var messageTextField: UITextField!
@@ -21,7 +25,8 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet var sendButton: UIButton!
     
     //TODO: - Relace with code to get conversationID from the Chat view controller. 
-    var conversationID : String = "-L8Y8gof4Ky_3ieWi6Ek"
+    //var conversationID : String = "-L8Y8gof4Ky_3ieWi6Ek"
+    var conversationID : String = ""
     
     //Used to capture the keyboard height so that the messageText field
     // Will appear above the keyboard even on different devices of differen screen
@@ -79,6 +84,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         messageCell.nameLabel.text = messageArray[indexPath.row].getSenderId()
         
         //Load the user's profile image into the profilImageView in the TableView Message Cell
+        //TODO: - Modify the classes/models to pull down user's profile picture.
         messageCell.profileImageView.image = UIImage(named: "profile_icon")
         
         //Post the newly created messageCell into the TableView.
@@ -128,7 +134,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             let message = Message(membersa: members, messageDictionarya: messageDictionary)
             
             //Send the message.
-            message.sendMessage()
+            self.conversationID = message.sendMessage()
             
             //ReEnable the messageTextField so the user can compose more messages.
             self.messageTextField.isEnabled = true
@@ -147,30 +153,33 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Retrive messages as they come in.
         //Make a call to the retrieveMessages method of the
         //Message class.
-        
-            let messageDB = Database.database().reference().child("Conversation").child(conversationID).child("Messages")
-            //let message1 = Message()
-        
-            messageDB.observe(.childAdded) { (snapshot) in
-                let snapshotValue = snapshot.value as! Dictionary<String,Any>
-                let message1 = Message()
+        if conversationID != "" {
             
-                message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
-                message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
-                //message1.conversationID = self.conversationID
-                message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
-                                                         "MessageBody": snapshotValue["MessageBody"]!,
-                                                         "ConversationID" : self.conversationID])
-        
-                //return message1
+                let messageDB = Database.database().reference().child("Conversation").child(conversationID).child("Messages")
+                //let messageDB = Database.database().reference().child("Conversation").child("Messages")
+                //let message1 = Message()
             
-                //message.retrieveMessages(conversation: conversationID)
-        
-                self.messageArray.append(message1)
-        
-                self.configureTableView()
-        
-                self.conversationTableView.reloadData()
+                messageDB.observe(.childAdded) { (snapshot) in
+                    let snapshotValue = snapshot.value as! Dictionary<String,Any>
+                    let message1 = Message()
+                
+                    message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
+                    message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
+                    //message1.conversationID = self.conversationID
+                    message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
+                                                             "MessageBody": snapshotValue["MessageBody"]!,
+                                                             "ConversationID" : self.conversationID])
+            
+                    //return message1
+                
+                    //message.retrieveMessages(conversation: conversationID)
+            
+                    self.messageArray.append(message1)
+            
+                    self.configureTableView()
+            
+                    self.conversationTableView.reloadData()
+            }
         }
     }
     /*
@@ -178,12 +187,18 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     */
     @IBAction func backbtnPressed(_ sender: UIBarButtonItem) {
         
+        //clear the conversation ID property.
+        delagate?.dataReceived(data: "")
+        
         //Dissmiss the messages screen.
         //Return to the message list.
         dismiss(animated: true, completion: nil)
         
+       
+        
     }
     
+
     //Configure the conversationTableView properties here:
     func configureTableView() {
         //TODO: - Figureout why this line of code isn't working.

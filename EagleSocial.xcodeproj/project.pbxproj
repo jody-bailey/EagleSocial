@@ -18,6 +18,8 @@
 		644867E1205F4DE100A90512 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E0205F4DE100A90512 /* Message.swift */; };
 		644867E6205F51AB00A90512 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E4205F51AB00A90512 /* MessageCell.swift */; };
 		644867E7205F51AB00A90512 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644867E5205F51AB00A90512 /* MessageCell.xib */; };
+		644D5D1E20713EC1003A469B /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644D5D1D20713EC1003A469B /* Conversation.swift */; };
+		644D5D2020713ED2003A469B /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644D5D1F20713ED2003A469B /* ConversationList.swift */; };
 		C8049BAB20427F9000FAC2CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAA20427F9000FAC2CC /* Post.swift */; };
 		C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAC2042850000FAC2CC /* PostSnapshot.swift */; };
 		C8049BAF2043898D00FAC2CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAE2043898D00FAC2CC /* User.swift */; };
@@ -62,6 +64,8 @@
 		644867E0205F4DE100A90512 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		644867E4205F51AB00A90512 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		644867E5205F51AB00A90512 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		644D5D1D20713EC1003A469B /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		644D5D1F20713ED2003A469B /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
 		C8049BAA20427F9000FAC2CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C8049BAC2042850000FAC2CC /* PostSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSnapshot.swift; sourceTree = "<group>"; };
 		C8049BAE2043898D00FAC2CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 				C8C10874206A07BF008ED717 /* Friend.swift */,
 				C8C10876206A089D008ED717 /* FriendList.swift */,
 				C8C1087A206A10E7008ED717 /* Person.swift */,
+				644D5D1D20713EC1003A469B /* Conversation.swift */,
+				644D5D1F20713ED2003A469B /* ConversationList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -387,12 +393,14 @@
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
 				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
 				644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */,
+				644D5D2020713ED2003A469B /* ConversationList.swift in Sources */,
 				C8049BB42046064D00FAC2CC /* FriendTableViewCell.swift in Sources */,
 				C8049BAB20427F9000FAC2CC /* Post.swift in Sources */,
 				644867E1205F4DE100A90512 /* Message.swift in Sources */,
 				644867DF205F498000A90512 /* MessageViewController.swift in Sources */,
 				C874CF512058740F002ADE7F /* Like.swift in Sources */,
 				C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */,
+				644D5D1E20713EC1003A469B /* Conversation.swift in Sources */,
 				279847222043618100C4D5A3 /* ChangeEmailViewController.swift in Sources */,
 				C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */,
 				C8C10875206A07BF008ED717 /* Friend.swift in Sources */,
