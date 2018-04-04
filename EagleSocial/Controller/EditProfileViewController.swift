@@ -76,6 +76,19 @@ class EditProfileViewController: UIViewController {
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!])
+                
+                let user = Auth.auth().currentUser
+                let changeRequest = user?.createProfileChangeRequest()
+                changeRequest?.displayName = fullName
+                changeRequest?.commitChanges { error in
+                    if let error = error {
+                        print("Error committing change request \(error)")
+                    } else {
+                        print("Change request successful")
+                    }
+                }
+                
+                
                 dismiss(animated: true, completion: nil)
             }
         }
