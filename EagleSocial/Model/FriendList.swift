@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseDatabase
+
+let friendList = FriendList()
 
 class FriendList {
     
@@ -16,6 +20,32 @@ class FriendList {
     init() {
         // Initialize the friends list as an empty array
         self.friendList = []
+        self.updateList()
+    }
+    
+    public func updateList() {
+        let ref = Database.database().reference()
+        var friends : [Friend] = []
+        let refHandle = ref.child("Users").observe(.value) { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            for snap in snapDict {
+                //                print(snap.value.index(forKey: "name")!)
+                for snip in snap.value {
+                    if snip.key == "name" {
+                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
+                    }
+                }
+            }
+            self.friendList = friends
+        }
+//        self.friendList = friends
+    }
+    
+    public func printList() {
+        for friend in self.friendList {
+            print("printing list")
+            print(friend)
+        }
     }
     
     // Adds a friend to the friends list
@@ -28,7 +58,7 @@ class FriendList {
         var count : Int = 0
         
         for person in self.friendList {
-            if person.email == friend.email {
+            if person.userId == friend.userId {
                 self.friendList.remove(at: count)
             }
             count += 1
@@ -44,5 +74,16 @@ class FriendList {
     // can have access to the list and display the friends
     func getFriendList() -> [Friend] {
         return self.friendList
+    }
+    
+    func getFriend(userId: String) -> Friend {
+        var myFriend : Friend?
+        for friend in friendList {
+            if friend.userId == userId {
+                myFriend = friend
+                break
+            }
+        }
+        return myFriend!
     }
 }
