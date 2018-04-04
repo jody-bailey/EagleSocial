@@ -76,7 +76,6 @@ class EditProfileViewController: UIViewController {
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!])
-                
                 dismiss(animated: true, completion: nil)
             }
         }

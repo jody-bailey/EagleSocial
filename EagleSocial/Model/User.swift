@@ -42,7 +42,7 @@ class User
     self.profilePic = #imageLiteral(resourceName: "profile_icon")
     
     var image : UIImage?
-    storageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+    storageRef.getData(maxSize: 4 * 1024 * 1024) { data, error in
         if let error = error {
             print("Error getting image from storage, \(error)")
         } else {
@@ -95,7 +95,7 @@ class User
         let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")
         
         var image : UIImage?
-        storageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+        storageRef.getData(maxSize: 4 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Error getting image from storage, \(error)")
             } else {
