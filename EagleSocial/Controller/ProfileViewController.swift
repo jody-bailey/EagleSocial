@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let imagePath = "image\(thisUser.userID)/userPic.jpg"
+        let imagePath = "image/\(thisUser.userID)/userPic.jpg"
         let imageRef = storageRef.child(imagePath)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
