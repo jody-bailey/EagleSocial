@@ -10,8 +10,10 @@ import UIKit
 import Firebase 
 import FirebaseAuth
 
+// Settings Main class
 class SettingsViewController: UIViewController {
 
+    // Variables
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var changeNameButton: UIButton!
     @IBOutlet weak var changeEmailButton: UIButton!
@@ -19,6 +21,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // This is for the buttons to make them all the same size.
         self.changeNameButton.layer.cornerRadius = 15
         self.changeEmailButton.layer.cornerRadius = 15
         self.changePasswordButton.layer.cornerRadius = 15
@@ -31,6 +34,7 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Logout button click action
     @IBAction func logoutPressed(_ sender: UIButton) {
         do{
             try Auth.auth().signOut()
@@ -54,13 +58,14 @@ class SettingsViewController: UIViewController {
         performSegue(withIdentifier: "goToChangeName", sender: self)
     }
     
-    
+    // Click action to go to the change email page
     @IBAction func changeEmailPressed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "goToChangeEmail", sender: self)
         
     }
     
+     // Click action to go to the change password page
     @IBAction func changePasswordPressed(_ sender: UIButton) {
         
         performSegue(withIdentifier: "goToChangePassword", sender: self)

@@ -9,8 +9,10 @@
 import UIKit
 import FirebaseAuth
 
+// Change Password Class
 class ChangePasswordViewController: UIViewController {
 
+    // Variables
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -28,12 +30,14 @@ class ChangePasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Click action to Cancel
     @IBAction func canelButtonPressed(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
+    // Click action to save the settings
     @IBAction func saveButtonPressed(_ sender: UIButton) {
     }
     
