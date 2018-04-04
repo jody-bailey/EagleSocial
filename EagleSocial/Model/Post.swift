@@ -18,9 +18,9 @@ class Post {
     var likes : [String : Bool]
     let postId: String
     let userId: String
+    var comments : [String : String]
     
     init?(postId: String, dict: [String: Any]) {
-        let ref = Database.database().reference()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
@@ -32,9 +32,8 @@ class Post {
             let date = dateFormatter.date(from: dateString)
             else { return nil }
         
-        var allLikes : [String : Bool] = [:]
-        
         let likes = dict["likes"] as? [String : Bool]
+        let comments = dict["comments"] as? [String : String]
         
 //        ref.child("posts").child(postId).child("likes").observeSingleEvent(of: .value) { (snapshot) in
 //        print(snapshot)
@@ -49,6 +48,7 @@ class Post {
         self.message = message
         self.date = date
         self.userId = userid
+        self.comments = comments ?? [:]
     }
     
 }

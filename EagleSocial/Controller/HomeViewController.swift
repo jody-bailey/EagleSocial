@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             
-            if self.posts[indexPath.row - 1].likes.keys.contains(thisUser.userID) {
+            if self.posts[indexPath.row - 1].likes[thisUser.userID] == true {
                 cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
             } else {
                 cell.likeButton.setTitleColor(UIColor.black, for: .normal)
@@ -242,7 +242,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-            self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: thisUser.userID)
+            
+            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: thisUser.userID)
+            } else {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: thisUser.userID)
+            }
             if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
                 self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
                     self.NewsFeedTable.reloadData()
@@ -264,15 +269,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let userId = Auth.auth().currentUser?.uid
-            
             let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
             let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
                 print("comment button pressed from new function")
                 
-                self.commentRef?.child("postComments").child(self.posts[(indexPath?.row)! - 1].postId).childByAutoId().setValue(["user": userId!,
-                                                        "comment" : textField.text!])
+                if !self.posts[(indexPath?.row)! - 1].comments.isEmpty {
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").setValue(self.posts[(indexPath?.row)! - 1].comments)
+                    self.NewsFeedTable.reloadData()
+                }
                 
             }
             self.NewsFeedTable.reloadData()
