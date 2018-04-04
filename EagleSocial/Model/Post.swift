@@ -7,18 +7,20 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseDatabase
 
 class Post {
     
     let username: String
     let message: String
     let date: Date
-    var likes = [Like]()
+    var likes : [String : Bool]
     let postId: String
+    let userId: String
+    var comments : [String : String]
     
     init?(postId: String, dict: [String: Any]) {
-        
-        self.likes = []
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
@@ -26,21 +28,27 @@ class Post {
         guard let username = dict["user"] as? String,
             let message = dict["message"] as? String,
             let dateString = dict["date"] as? String,
+            let userid = dict["userId"] as? String,
             let date = dateFormatter.date(from: dateString)
             else { return nil }
         
-        let likes = dict["likes"] as? [String]
-
+        let likes = dict["likes"] as? [String : Bool]
+        let comments = dict["comments"] as? [String : String]
         
-//        for like in likes! where likes != nil {
-            // This is storing the user id into the array of likes
-//            self.likes.append(Like(user: like))
+//        ref.child("posts").child(postId).child("likes").observeSingleEvent(of: .value) { (snapshot) in
+//        print(snapshot)
+//            guard let likes = snapshot.value as? [String : Bool] else { return }
+//            print(likes)
+//            allLikes = likes
 //        }
         
+        self.likes = likes ?? [:]
         self.postId = postId
         self.username = username
         self.message = message
         self.date = date
+        self.userId = userid
+        self.comments = comments ?? [:]
     }
     
 }

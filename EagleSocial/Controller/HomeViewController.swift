@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -29,10 +30,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var postData = [String]()
     var posts = [Post]()
     
-//    var likes = [Like]()
+    var likes = [Like]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
@@ -126,8 +128,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.shareButton.layer.cornerRadius = 10
             cell.userName.text = "Jody Bailey"
-            cell.profileImage.image = #imageLiteral(resourceName: "jodybobae")
-            cell.profileImage.layer.cornerRadius = 32
+            cell.profileImage.image = thisUser.profilePic
+            cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
 //            cell.statusTextField.delegate = self
             cell.statusTextField.placeholder = "Enter your status update here!"
@@ -147,28 +149,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
-            cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            
+            if (self.posts[indexPath.row - 1].userId == thisUser.userID){
+                cell.profilePicture.image = thisUser.profilePic
+            } else {
+                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            }
+            cell.profilePicture.layer.cornerRadius = 10
+            cell.profilePicture.layer.masksToBounds = true
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             
-            let userId = Auth.auth().currentUser?.uid
-            
-            likeRef = Database.database().reference()
-            likeHandle = likeRef?.child("postLikes").child(userId!).observe(.value, with: { (snapshot) in
-                guard let snapDict = snapshot.value as? [String: Int] else { return }
-                for snap in snapDict {
-                    if snap.key == self.posts[indexPath.row - 1].postId {
-//                        if snap.value == 1 {
-//                            self.posts[indexPath.row - 1].likes = true
-//                        } else {
-//                            self.posts[indexPath.row - 1].likes = false
-//                        }
-                    }
-                }
-                
-            })
+            if self.posts[indexPath.row - 1].likes[thisUser.userID] == true {
+                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+            } else {
+                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+            }
             
 //            commentRef = Database.database().reference()
 //            commentHandle = commentRef?.child("postComments").child(posts[indexPath.row - 1].postId).observe(.value, with: { (snapshot) in
@@ -211,6 +209,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         textField.endEditing(true)
     }
     
+    @objc func reloadNewsFeed() {
+        NewsFeedTable.reloadData()
+    }
+    
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -234,15 +236,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func likeButtonPressed(sender:AnyObject) {
         
-        let userId = Auth.auth().currentUser?.uid
+//        let userId = Auth.auth().currentUser?.uid
         
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-//            if self.posts[(indexPath?.row)! - 1].likes == true {
-//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
-//                self.NewsFeedTable.reloadData()
+            
+            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: thisUser.userID)
+            } else {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: thisUser.userID)
+            }
+            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
+                    self.NewsFeedTable.reloadData()
+                }
 //            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
 //                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
 //                self.NewsFeedTable.reloadData()
@@ -260,15 +269,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let userId = Auth.auth().currentUser?.uid
-            
             let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
             let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
                 print("comment button pressed from new function")
                 
-                self.commentRef?.child("postComments").child(self.posts[(indexPath?.row)! - 1].postId).childByAutoId().setValue(["user": userId!,
-                                                        "comment" : textField.text!])
+                if !self.posts[(indexPath?.row)! - 1].comments.isEmpty {
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").setValue(self.posts[(indexPath?.row)! - 1].comments)
+                    self.NewsFeedTable.reloadData()
+                }
                 
             }
             self.NewsFeedTable.reloadData()

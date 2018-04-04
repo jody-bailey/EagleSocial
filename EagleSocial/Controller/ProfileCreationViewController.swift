@@ -45,6 +45,7 @@ class ProfileCreationViewController: UIViewController {
             let changeRequest = user?.createProfileChangeRequest()
             changeRequest?.displayName = username
             
+            
             changeRequest?.commitChanges { error in
                 if let error = error {
                     print("Error committing change request \(error)")
