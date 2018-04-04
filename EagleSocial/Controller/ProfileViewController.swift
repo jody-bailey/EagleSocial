@@ -111,12 +111,14 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let imagePath = "image\(thisUser.userID)/userPic.jpg"
+        let imagePath = "image/\(thisUser.userID)/userPic.jpg"
         let imageRef = storageRef.child(imagePath)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
         imageRef.putData(data, metadata: metadata)
+        
+        thisUser.updateProfilePic()
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected

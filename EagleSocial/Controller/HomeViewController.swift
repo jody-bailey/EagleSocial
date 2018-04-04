@@ -26,7 +26,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var likeHandle: DatabaseHandle?
     var commentHandle: DatabaseHandle?
     
-    
     var postData = [String]()
     var posts = [Post]()
     
@@ -35,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
+        friendList.printList()
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
@@ -153,7 +152,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (self.posts[indexPath.row - 1].userId == thisUser.userID){
                 cell.profilePicture.image = thisUser.profilePic
             } else {
-                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true

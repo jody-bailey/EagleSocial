@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
+    
 //        if(userLoginStatus){
 //            print("user is logged in")
 //            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Eagle", bundle: nil)

@@ -29,31 +29,17 @@ class User
     let storage = Storage.storage()
 
     init(username: String, userID: String)
-{
-    let uid : String = (Auth.auth().currentUser?.uid)!
-    let storageRef = storage.reference(withPath: "image\(uid)/userPic.jpg")
-    
-    self.userID = userID
-    self.name = username
-    self.age = ""
-    self.major = ""
-    self.schoolYear = ""
-    self.photo = ""
-    self.profilePic = #imageLiteral(resourceName: "profile_icon")
-    
-    var image : UIImage?
-    storageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
-        if let error = error {
-            print("Error getting image from storage, \(error)")
-        } else {
-            // Data for "images/island.jpg" is returned
-            print("image retreived successfully")
-            image = UIImage(data: data!)
-        }
-        self.setProfilePic(image: image!)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    {
+        self.userID = userID
+        self.name = username
+        self.age = ""
+        self.major = ""
+        self.schoolYear = ""
+        self.photo = ""
+        self.profilePic = #imageLiteral(resourceName: "profile_icon")
+        
+        self.updateProfilePic()
     }
-}
 
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
 {
@@ -86,6 +72,26 @@ class User
     
     public func setProfilePic(image: UIImage) {
         self.profilePic = image
+    }
+    
+    public func updateProfilePic() {
+        let uid : String = (Auth.auth().currentUser?.uid)!
+        let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")
+        
+        var image : UIImage?
+        storageRef.getData(maxSize: 4 * 1024 * 1024) { data, error in
+            if let error = error {
+                print("Error getting image from storage, \(error)")
+            } else {
+                // Data for "images/island.jpg" is returned
+                print("image retreived successfully")
+                image = UIImage(data: data!)
+            }
+            if image != nil {
+                self.setProfilePic(image: image!)
+            }
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        }
     }
     
     public func hasProfilePic() -> Bool {
