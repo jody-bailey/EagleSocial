@@ -117,6 +117,8 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         metadata.contentType = "image/jpeg"
         
         imageRef.putData(data, metadata: metadata)
+        
+        thisUser.updateProfilePic()
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected
