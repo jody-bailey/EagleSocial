@@ -23,6 +23,8 @@ class NewsFeedTableViewCell: UITableViewCell {
     @IBOutlet weak var textBody: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var viewCommentsButton: UIButton!
     
     var ref: DatabaseReference!
     var liked: Bool = false
