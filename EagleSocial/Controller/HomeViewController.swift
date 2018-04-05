@@ -81,7 +81,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.NewsFeedTable.reloadData()
             
         })
-        
+        thisUser.updateProfilePic()
+
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
@@ -137,6 +138,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.profilePicture.image = thisUser.profilePic
             } else {
                 cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
+//                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true

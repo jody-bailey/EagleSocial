@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import SVProgressHUD
-import GradientLoadingBar
 
 class LoginViewController: UIViewController {
 
@@ -17,9 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    let gradientLoadingBar = GradientLoadingBar()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
