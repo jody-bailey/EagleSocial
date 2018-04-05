@@ -144,6 +144,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
+            cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
             
             if self.posts[indexPath.row - 1].likes[thisUser.userID] == true {
                 cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
@@ -269,6 +270,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func viewComments(sender: AnyObject) {
+        performSegue(withIdentifier: "goToComments", sender: self)
     }
 
 }
