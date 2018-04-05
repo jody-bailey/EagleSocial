@@ -82,15 +82,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         })
         
-//        likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
-//            print(snapshot)
-//            print("hit the like handle")
-//            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-//            self.posts = postsSnapshot.posts
-//            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-//            self.NewsFeedTable.reloadData()
-//        })
-        
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
@@ -130,7 +121,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.profileImage.image = thisUser.profilePic
             cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
-//            cell.statusTextField.delegate = self
             cell.statusTextField.placeholder = "Enter your status update here!"
             cell.backgroundColor = UIColor.lightGray
             
@@ -138,12 +128,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else if indexPath.row > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-            
-//            if posts[indexPath.row - 1].likes == true {
-//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-//            } else {
-//                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
-//            }
             
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
@@ -166,22 +150,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 cell.likeButton.setTitleColor(UIColor.black, for: .normal)
             }
-            
-//            commentRef = Database.database().reference()
-//            commentHandle = commentRef?.child("postComments").child(posts[indexPath.row - 1].postId).observe(.value, with: { (snapshot) in
-//
-//                guard let snapDict = snapshot.value as? [String : [String : String]] else { return }
-////                print(snapDict)
-//                for (_, snap) in snapDict {
-//                    for snip in snap {
-//                        print(snip.value)
-//
-//                        let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-//
-//                    }
-//                }
-//            })
-            
             
             return cell
         }
@@ -235,8 +203,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func likeButtonPressed(sender:AnyObject) {
         
-//        let userId = Auth.auth().currentUser?.uid
-        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
@@ -249,16 +215,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
                 self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
-                    self.NewsFeedTable.reloadData()
-                }
-//            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
-//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
-//                self.NewsFeedTable.reloadData()
-//            }
-            
-            
+                self.NewsFeedTable.reloadData()
+            }
         }
-//        self.NewsFeedTable.reloadData()
     }
     
     @objc func commentButtonPressed(sender:AnyObject) {
@@ -273,10 +232,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if indexPath != nil {
                 print("comment button pressed from new function")
                 
-                if !self.posts[(indexPath?.row)! - 1].comments.isEmpty {
-                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").setValue(self.posts[(indexPath?.row)! - 1].comments)
-                    self.NewsFeedTable.reloadData()
+                var parameters : [String : String] = [:]
+                
+                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
+//                    self.posts[(indexPath?.row)! - 1].comments["name"] = thisUser.name
+//                    self.posts[(indexPath?.row)! - 1].comments["userId"] = thisUser.userID
+//                    self.posts[(indexPath?.row)! - 1].comments["message"] = textField.text
+                    parameters = ["name" : thisUser.name,
+                                  "userId" : thisUser.userID,
+                                  "message" : textField.text!]
+                } else {
+//                    self.posts[(indexPath?.row)! - 1].comments["name"] = friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name
+//                    self.posts[(indexPath?.row)! - 1].comments["userId"] = friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId
+//                    self.posts[(indexPath?.row)! - 1].comments["message"] = textField.text
+                    
+                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
+                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
+                                  "message" : textField.text!]
                 }
+                
+//                if !self.posts[(indexPath?.row)! - 1].comments.isEmpty {
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.NewsFeedTable.reloadData()
+//                }
                 
             }
             self.NewsFeedTable.reloadData()
@@ -292,15 +270,5 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         present(alert, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

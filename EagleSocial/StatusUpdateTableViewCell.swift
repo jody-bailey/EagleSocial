@@ -52,7 +52,8 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
                                                   "message": text!,
                                                   "date": dateString,
                                                   "userId": thisUser.userID,
-                                                  "likes": []
+                                                  "likes": [],
+                                                  "comments": []
                                                 ] //= likes
                 
                 

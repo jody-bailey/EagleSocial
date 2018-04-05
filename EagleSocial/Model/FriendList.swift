@@ -26,7 +26,7 @@ class FriendList {
     public func updateList() {
         let ref = Database.database().reference()
         var friends : [Friend] = []
-        let refHandle = ref.child("Users").observe(.value) { (snapshot) in
+        _ = ref.child("Users").observe(.value) { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
             for snap in snapDict {
                 //                print(snap.value.index(forKey: "name")!)

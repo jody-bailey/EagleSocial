@@ -18,7 +18,7 @@ class Post {
     var likes : [String : Bool]
     let postId: String
     let userId: String
-    var comments : [String : String]
+    var comments : [String : Array<[String : String]>]
     
     init?(postId: String, dict: [String: Any]) {
         
@@ -33,8 +33,21 @@ class Post {
             else { return nil }
         
         let likes = dict["likes"] as? [String : Bool]
-        let comments = dict["comments"] as? [String : String]
+        let allComments = dict["comments"] as? [String : [String : String]]
+        var comments : [[String : String]] = []
+        var postComments : [String : Array<[String : String]>] = [:]
         
+        if allComments != nil {
+            for comment in (allComments)! {
+                let key = comment.key
+//                print(comment)
+                for value in comment.value {
+//                    print(value)
+                    comments.append([value.key : value.value])
+                }
+                postComments[key] = comments
+            }
+        }
 //        ref.child("posts").child(postId).child("likes").observeSingleEvent(of: .value) { (snapshot) in
 //        print(snapshot)
 //            guard let likes = snapshot.value as? [String : Bool] else { return }
@@ -48,7 +61,7 @@ class Post {
         self.message = message
         self.date = date
         self.userId = userid
-        self.comments = comments ?? [:]
+        self.comments = postComments
     }
     
 }
