@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
@@ -32,8 +33,11 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
+        self.fetchFirebaseUserData()
+        self.imageView.image = thisUser.profilePic
+        
         super.viewDidLoad()
-        imageView.image = thisUser.profilePic
+        
         firstNameLabel.text = thisUser.name
         ageLabel.text = thisUser.age
         majorLabel.text = thisUser.major
@@ -144,6 +148,29 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     @IBAction func editButtonPressed(_ sender: Any)
     {
         performSegue(withIdentifier: "goToEdit", sender: self)
+    }
+    
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////
+    func fetchFirebaseUserData()
+    {
+        thisUser.userID = (Auth.auth().currentUser?.uid)!
+        let ref = Database.database().reference()
+        ref.child("Users").child(thisUser.userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            thisUser.name = value?["username"] as? String ?? ""
+           // thisUser.age = value?["age"] as? String ?? ""
+           // thisUser.major = value?["major"] as? String ?? ""
+           // thisUser.schoolYear = value?["school year"] as? String ?? ""
+            thisUser.updateProfilePic()
+            
+            
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
 }

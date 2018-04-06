@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
 
 
-
 let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+
 
 class User
 {
-    let userID: String
+    var userID: String
     var name: String
     var age: String
     var major: String
@@ -26,6 +27,7 @@ class User
     var photo: String
     var profilePic: UIImage
 
+    let ref = Database.database().reference()
     let storage = Storage.storage()
 
     init(username: String, userID: String)
@@ -39,8 +41,23 @@ class User
     self.profilePic = #imageLiteral(resourceName: "profile_icon")
     
     self.updateProfilePic()
-}
 
+}
+    
+
+   /* init(snapshot: DataSnapshot)
+    {
+        let databaseHandle = ref?.child("Users")
+        self.userID = (Auth.auth().currentUser?.uid)!
+        self.name = (Auth.auth().currentUser?.displayName!)!
+        self.age = (snapshot.value! as! NSDictionary)["age"] as! String
+        self.major = (snapshot.value! as! NSDictionary)["major"] as! String
+        self.schoolYear = (snapshot.value! as! NSDictionary)["school year"] as! String
+        self.photo = ""
+        self.profilePic = #imageLiteral(resourceName: "profile_icon")
+        
+    }*/
+    
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
 {
     
