@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
             
             cell.shareButton.layer.cornerRadius = 10
-            cell.userName.text = "Jody Bailey"
+            cell.userName.text = thisUser.name
             cell.profileImage.image = thisUser.profilePic
             cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
@@ -147,6 +147,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
+//            cell.likesLabel.text = String(self.posts[indexPath.row - 1].likes.count) + " like(s)"
+            var likeCount : Int = 0
+            for like in self.posts[indexPath.row - 1].likes {
+                if like.value == true {
+                    likeCount += 1
+                }
+            }
+            if likeCount == 1 {
+                cell.likesLabel.text = String(likeCount) + " like"
+            } else {
+                cell.likesLabel.text = String(likeCount) + " likes"
+            }
             
             if self.posts[indexPath.row - 1].likes[thisUser.userID] == true {
                 cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
@@ -197,7 +209,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func configureTableView() {
         NewsFeedTable.rowHeight = UITableViewAutomaticDimension
-        NewsFeedTable.estimatedRowHeight = 240.0
+        NewsFeedTable.estimatedRowHeight = 500.0
     }
     
     @objc func tableViewTapped() {
@@ -237,27 +249,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 var parameters : [String : String] = [:]
                 
-                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
-//                    self.posts[(indexPath?.row)! - 1].comments["name"] = thisUser.name
-//                    self.posts[(indexPath?.row)! - 1].comments["userId"] = thisUser.userID
-//                    self.posts[(indexPath?.row)! - 1].comments["message"] = textField.text
+//                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
                     parameters = ["name" : thisUser.name,
                                   "userId" : thisUser.userID,
                                   "message" : textField.text!]
-                } else {
-//                    self.posts[(indexPath?.row)! - 1].comments["name"] = friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name
-//                    self.posts[(indexPath?.row)! - 1].comments["userId"] = friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId
-//                    self.posts[(indexPath?.row)! - 1].comments["message"] = textField.text
-                    
-                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
-                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
-                                  "message" : textField.text!]
-                }
+//                } else {
+//
+//                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
+//                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
+//                                  "message" : textField.text!]
+//                }
                 
-//                if !self.posts[(indexPath?.row)! - 1].comments.isEmpty {
+                if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
                     self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
                     self.NewsFeedTable.reloadData()
-//                }
+                }
                 
             }
             self.NewsFeedTable.reloadData()
@@ -275,7 +281,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func viewComments(sender: AnyObject) {
-        performSegue(withIdentifier: "goToComments", sender: self)
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
+        let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
+        performSegue(withIdentifier: "goToComments", sender: indexPath)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if segue.destination is CommentsViewController {
+            
+            let vc = segue.destination as? CommentsViewController
+            if let indexPath = sender as? IndexPath {
+                vc?.post = self.posts[indexPath.row - 1]
+            }
+        }
+    }
 }

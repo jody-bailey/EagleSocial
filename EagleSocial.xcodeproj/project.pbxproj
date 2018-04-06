@@ -26,6 +26,7 @@
 		C8049BB52046064D00FAC2CC /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8049BB32046064D00FAC2CC /* FriendTableViewCell.xib */; };
 		C8479F7A203806E9002A9E9E /* StatusUpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */; };
 		C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */; };
+		C84B419320772B8F00CB2FB4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84B419220772B8F00CB2FB4 /* Comment.swift */; };
 		C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB792018E8A900163279 /* AppDelegate.swift */; };
 		C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86ABB7B2018E8A900163279 /* LoginViewController.swift */; };
 		C86ABB812018E8A900163279 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C86ABB802018E8A900163279 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		C8049BB32046064D00FAC2CC /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		C8479F78203806E9002A9E9E /* StatusUpdateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateTableViewCell.swift; sourceTree = "<group>"; };
 		C8479F79203806E9002A9E9E /* StatusUpdateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusUpdateTableViewCell.xib; sourceTree = "<group>"; };
+		C84B419220772B8F00CB2FB4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C86ABB762018E8A900163279 /* EagleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EagleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86ABB792018E8A900163279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C86ABB7B2018E8A900163279 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				C8C10874206A07BF008ED717 /* Friend.swift */,
 				C8C10876206A089D008ED717 /* FriendList.swift */,
 				C8C1087A206A10E7008ED717 /* Person.swift */,
+				C84B419220772B8F00CB2FB4 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
+				C84B419320772B8F00CB2FB4 /* Comment.swift in Sources */,
 				279847202043570000C4D5A3 /* ChangeNameViewController.swift in Sources */,
 				C8049BAF2043898D00FAC2CC /* User.swift in Sources */,
 				C8C10877206A089D008ED717 /* FriendList.swift in Sources */,
