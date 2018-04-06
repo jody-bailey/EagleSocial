@@ -66,6 +66,7 @@ class EditProfileViewController: UIViewController {
                 let fullName = fNameData! + " " + lNameData!
                 let ageData = ageText.text
                 let majorData = majorText.text
+                let schoolYearData = "Freshmeat"
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
                 
                 
@@ -76,6 +77,7 @@ class EditProfileViewController: UIViewController {
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!])
+                thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
                 
                 let user = Auth.auth().currentUser
                 let changeRequest = user?.createProfileChangeRequest()

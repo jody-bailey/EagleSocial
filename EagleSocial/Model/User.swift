@@ -74,6 +74,14 @@ class User
         self.profilePic = image
     }
     
+    public func updateUserAttributes(username: String, userAge: String, userMajor: String, userSchoolYear: String)
+    {
+        name = username
+        age = userAge
+        major = userMajor
+        schoolYear = userSchoolYear
+    }
+    
     public func updateProfilePic() {
         let uid : String = (Auth.auth().currentUser?.uid)!
         let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")

@@ -32,8 +32,12 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
-        imageView.image = thisUser.profilePic
+        //imageView.image = thisUser.profilePic
         super.viewDidLoad()
+        
+        firstNameLabel.text = thisUser.name
+        ageLabel.text = thisUser.age
+        majorLabel.text = thisUser.major
         
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
@@ -97,10 +101,9 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //view controller 
     func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
     {
-        firstNameLabel.text = fNameData
-        lastNameLabel.text = lNameData
+        /*firstNameLabel.text = fNameData
         ageLabel.text = ageData
-        majorLabel.text = majorData
+        majorLabel.text = majorData*/
     }
     
     
