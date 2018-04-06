@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
             
             cell.shareButton.layer.cornerRadius = 10
-            cell.userName.text = "Jody Bailey"
+            cell.userName.text = thisUser.name
             cell.profileImage.image = thisUser.profilePic
             cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
