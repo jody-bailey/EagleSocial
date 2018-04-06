@@ -86,11 +86,12 @@ class User
                 // Data for "images/island.jpg" is returned
                 print("image retreived successfully")
                 image = UIImage(data: data!)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
             }
             if image != nil {
                 self.setProfilePic(image: image!)
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
     }
     

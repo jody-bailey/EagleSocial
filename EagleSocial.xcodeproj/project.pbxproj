@@ -48,6 +48,7 @@
 		C8C1087B206A10E7008ED717 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C1087A206A10E7008ED717 /* Person.swift */; };
 		C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2ABB2205DF84400D77D97 /* CommentCell.swift */; };
 		C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D2ABB3205DF84400D77D97 /* CommentCell.xib */; };
+		C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FB6E872076B1B100856484 /* CommentsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		C8C1087A206A10E7008ED717 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C8D2ABB2205DF84400D77D97 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		C8D2ABB3205DF84400D77D97 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		C8FB6E872076B1B100856484 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EagleSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EagleSocial.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 				27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */,
 				C8049BB02043A5C200FAC2CC /* ProfileCreationViewController.swift */,
 				644867DE205F498000A90512 /* MessageViewController.swift */,
+				C8FB6E872076B1B100856484 /* CommentsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -263,7 +266,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jody Bailey";
 				TargetAttributes = {
 					C86ABB752018E8A900163279 = {
@@ -320,7 +323,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-EagleSocial/Pods-EagleSocial-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GradientLoadingBar/GradientLoadingBar.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -329,7 +331,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientLoadingBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -402,6 +403,7 @@
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
 				C8A771CE2022864E00AF492D /* EagleMainViewController.swift in Sources */,
+				C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
 				C86ABB7A2018E8A900163279 /* AppDelegate.swift in Sources */,
@@ -440,6 +442,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -447,6 +450,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -497,6 +501,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -504,6 +509,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
