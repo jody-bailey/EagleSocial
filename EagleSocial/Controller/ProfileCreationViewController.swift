@@ -54,7 +54,7 @@ class ProfileCreationViewController: UIViewController {
                     print("Change request successful")
                 }
             }
-           thisUser.updateUserAttributes(username: username, userAge: age, userMajor: major, userSchoolYear: schoolYear)
+            thisUser?.updateUserAttributes(username: username, userAge: age, userMajor: major, userSchoolYear: schoolYear)
             
             let parameters = ["name": username,
                               "age": age,

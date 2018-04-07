@@ -15,7 +15,7 @@ import FirebaseStorage
 
 //let thisUser = User()
 
-let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+//let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
 
 class User
 {
@@ -31,7 +31,7 @@ class User
     let storage = Storage.storage()
     let snapshot = DataSnapshot()
 
-  /*  init(username: String, userID: String)
+    init(username: String, userID: String)
 {
     self.userID = userID
     self.name = username
@@ -43,20 +43,10 @@ class User
     
     self.updateProfilePic()
 
-}*/
+}
     
 
-   init(username: String, userID: String)
-    {
-        self.userID = userID
-        self.name = username
-        self.age = (snapshot.value! as! NSDictionary)["age"] as! String
-        self.major = (snapshot.value! as! NSDictionary)["major"] as! String
-        self.schoolYear = (snapshot.value! as! NSDictionary)["school year"] as! String
-        self.photo = ""
-        self.profilePic = #imageLiteral(resourceName: "profile_icon")
-        
-    }
+
     
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
 {
@@ -91,20 +81,24 @@ class User
         self.profilePic = image
     }
     
+    public func setUserAttributes()
+    {
+        let ref = Database.database().reference().child("Users").child(self.userID)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.name = value?["name"] as? String ?? ""
+            self.age = value?["age"] as! String
+            self.major = value?["major"] as! String
+            self.schoolYear = value?["school year"] as! String
+        }
+        )}
+    
     public func updateUserAttributes(username: String, userAge: String, userMajor: String, userSchoolYear: String)
     {
         name = username
         age = userAge
         major = userMajor
         schoolYear = userSchoolYear
-    }
-    
-    public func setUserAttributes()
-    {
-        self.name = (snapshot.value! as! NSDictionary)["name"] as! String
-        self.age = (snapshot.value! as! NSDictionary)["age"] as! String
-        self.major = (snapshot.value! as! NSDictionary)["major"] as! String
-        self.schoolYear = (snapshot.value! as! NSDictionary)["school year"] as! String
     }
     
     public func updateProfilePic() {
@@ -135,6 +129,8 @@ class User
             return false
         }
     }
+ 
+
     
     static let thisUser : User = {
         let userId = Auth.auth().currentUser?.uid
@@ -152,6 +148,7 @@ class User
 //
         return instance!
     }()
+
 }
 
 //changes need to be made to the user struct to store user attributes other than user name. These other attributes are needed to share user info between view controllers. I attempted to make changes, but this caused an error with the user status table view. I reverted the changes so that the team could discuss the best approach.
