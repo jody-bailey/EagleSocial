@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
@@ -32,8 +33,19 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
-        super.viewDidLoad()
+        //self.fetchFirebaseUserData()
+        self.imageView.image = thisUser?.profilePic
         
+        super.viewDidLoad()
+
+                
+
+        
+        firstNameLabel.text = thisUser?.name
+        ageLabel.text = thisUser?.age
+        majorLabel.text = thisUser?.major
+        
+
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
        /* userStatusTableView.delegate = self
@@ -96,10 +108,9 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //view controller 
     func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
     {
-        firstNameLabel.text = fNameData
-        lastNameLabel.text = lNameData
+        /*firstNameLabel.text = fNameData
         ageLabel.text = ageData
-        majorLabel.text = majorData
+        majorLabel.text = majorData*/
     }
     
     
@@ -111,12 +122,14 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let imagePath = "image\(thisUser.userID)/userPic.jpg"
+        let imagePath = "image/\(thisUser?.userID)/userPic.jpg"
         let imageRef = storageRef.child(imagePath)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
         imageRef.putData(data, metadata: metadata)
+        
+        thisUser?.updateProfilePic()
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected
@@ -139,6 +152,29 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     @IBAction func editButtonPressed(_ sender: Any)
     {
         performSegue(withIdentifier: "goToEdit", sender: self)
+    }
+    
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////
+    func fetchFirebaseUserData()
+    {
+        thisUser?.userID = (Auth.auth().currentUser?.uid)!
+        let ref = Database.database().reference()
+        ref.child("Users").child((thisUser?.userID)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            thisUser?.name = value?["username"] as? String ?? ""
+           // thisUser.age = value?["age"] as? String ?? ""
+           // thisUser.major = value?["major"] as? String ?? ""
+           // thisUser.schoolYear = value?["school year"] as? String ?? ""
+            thisUser?.updateProfilePic()
+            
+            
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
 }

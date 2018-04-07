@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import GradientLoadingBar
 import SVProgressHUD
 
 class SignUpViewController: UIViewController {
@@ -25,9 +24,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
-    
-    let gradientLoadingBar = GradientLoadingBar()
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToProfileCreation" {
             if let modalVC1 = segue.destination as? ProfileCreationViewController {

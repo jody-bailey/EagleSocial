@@ -39,11 +39,13 @@ class ProfileCreationViewController: UIViewController {
         
         if let userId = user?.uid {
             let username = self.firstNameTextField.text! + " " + self.lastNameTextField.text!
-            let age = 0
+            let age = "0"
             let major = "undetermined"
             let schoolYear = "undertermined"
             let changeRequest = user?.createProfileChangeRequest()
             changeRequest?.displayName = username
+            
+           
             
             changeRequest?.commitChanges { error in
                 if let error = error {
@@ -52,6 +54,7 @@ class ProfileCreationViewController: UIViewController {
                     print("Change request successful")
                 }
             }
+            thisUser?.updateUserAttributes(username: username, userAge: age, userMajor: major, userSchoolYear: schoolYear)
             
             let parameters = ["name": username,
                               "age": age,
@@ -60,10 +63,11 @@ class ProfileCreationViewController: UIViewController {
             
             ref?.child("Users/\(userId)").setValue(parameters)
         }
-        
+        friendList.updateList()
         delegate?.dismissed()
 //        self.dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func firstNameDone() {
     }

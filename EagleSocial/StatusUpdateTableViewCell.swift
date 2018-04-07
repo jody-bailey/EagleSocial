@@ -39,31 +39,29 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
 //        var user : User?
         
         if statusTextField.text?.trimmingCharacters(in: .whitespaces) != "" {
-            let userID = Auth.auth().currentUser?.uid
-            ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+//            let userID = Auth.auth().currentUser?.uid
+//            ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
-                let value = snapshot.value as? NSDictionary
-                let username = value?["name"] as? String ?? ""
-                let user = User(username: username, userID: userID!)
                 
                 // ...
-                let text = self.statusTextField.text
-                
-                let dateString = String(describing: Date())
-                
-                let likes : [String : Bool] = ["likes" : false]
-                
-                let parameters =    ["user": user.name,
-                                     "message": text!,
-                                     "date": dateString,
-                                     "userId": userID!] //= likes
+            let text = self.statusTextField.text
+            
+            let dateString = String(describing: Date())
+            
+            let parameters : [String : Any] =    ["user": thisUser!.getName(),
+                                                  "message": text!,
+                                                  "date": dateString,
+                                                  "userId": thisUser!.userID,
+                                                  "likes": [],
+                                                  "comments": []
+                                                ] //= likes
                 
                 
                 self.ref.child("posts").childByAutoId().setValue(parameters)
                 self.statusTextField.text = ""
-            }) { (error) in
-                print(error.localizedDescription)
-            }
+//            }) { (error) in
+//                print(error.localizedDescription)
+//            }
             
             statusTextField.resignFirstResponder()
 

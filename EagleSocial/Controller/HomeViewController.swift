@@ -10,11 +10,12 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+
+var thisUser: User?
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    
-
     @IBOutlet weak var NewsFeedTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -24,16 +25,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var refHandle: DatabaseHandle?
     var likeHandle: DatabaseHandle?
     var commentHandle: DatabaseHandle?
-    
+    var thisUser: User?
     
     var postData = [String]()
     var posts = [Post]()
     
-//    var likes = [Like]()
+    var likes = [Like]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+      
+        thisUser?.setUserAttributes()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
+        friendList.printList()
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
@@ -80,16 +86,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.NewsFeedTable.reloadData()
             
         })
-        
-//        likeHandle = likeRef?.child("postLikes").observe(.value, with: { (snapshot) in
-//            print(snapshot)
-//            print("hit the like handle")
-//            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-//            self.posts = postsSnapshot.posts
-//            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-//            self.NewsFeedTable.reloadData()
-//        })
-        
+        thisUser?.updateProfilePic()
+
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
@@ -97,15 +95,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidAppear(_ animated: Bool) {
         
-        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        if (Auth.auth().currentUser) != nil
+        {
+            thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+           
+        }
         
-        if (userLoginStatus){
-            print("user is logged in from tabbarcontroller")
+        else
+        {
+             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
         }
-        else {
-            print("user not logged in")
-            performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
-        }
+//
+//        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+//
+//        if (userLoginStatus){
+//            print("user is logged in from tabbarcontroller")
+//        }
+//        else {
+//            print("user not logged in")
+//           // performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,11 +134,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
             
             cell.shareButton.layer.cornerRadius = 10
-            cell.userName.text = "Jody Bailey"
-            cell.profileImage.image = #imageLiteral(resourceName: "jodybobae")
-            cell.profileImage.layer.cornerRadius = 32
+            cell.userName.text = thisUser?.name
+            cell.profileImage.image = thisUser?.profilePic
+            cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
-//            cell.statusTextField.delegate = self
             cell.statusTextField.placeholder = "Enter your status update here!"
             cell.backgroundColor = UIColor.lightGray
             
@@ -138,53 +146,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         else if indexPath.row > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
             
-//            if posts[indexPath.row - 1].likes == true {
-//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-//            } else {
-//                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
-//            }
-            
             cell.nameOfUser.text = posts[indexPath.row - 1].username
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
-            cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            
+            if (self.posts[indexPath.row - 1].userId == thisUser?.userID){
+                cell.profilePicture.image = thisUser?.profilePic
+            } else {
+                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
+//                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
+            }
+            cell.profilePicture.layer.cornerRadius = 10
+            cell.profilePicture.layer.masksToBounds = true
             
             cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
-            
-            let userId = Auth.auth().currentUser?.uid
-            
-            likeRef = Database.database().reference()
-            likeHandle = likeRef?.child("postLikes").child(userId!).observe(.value, with: { (snapshot) in
-                guard let snapDict = snapshot.value as? [String: Int] else { return }
-                for snap in snapDict {
-                    if snap.key == self.posts[indexPath.row - 1].postId {
-//                        if snap.value == 1 {
-//                            self.posts[indexPath.row - 1].likes = true
-//                        } else {
-//                            self.posts[indexPath.row - 1].likes = false
-//                        }
-                    }
+            cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
+//            cell.likesLabel.text = String(self.posts[indexPath.row - 1].likes.count) + " like(s)"
+            var likeCount : Int = 0
+            for like in self.posts[indexPath.row - 1].likes {
+                if like.value == true {
+                    likeCount += 1
                 }
-                
-            })
+            }
+            if likeCount == 1 {
+                cell.likesLabel.text = String(likeCount) + " like"
+            } else {
+                cell.likesLabel.text = String(likeCount) + " likes"
+            }
             
-//            commentRef = Database.database().reference()
-//            commentHandle = commentRef?.child("postComments").child(posts[indexPath.row - 1].postId).observe(.value, with: { (snapshot) in
-//
-//                guard let snapDict = snapshot.value as? [String : [String : String]] else { return }
-////                print(snapDict)
-//                for (_, snap) in snapDict {
-//                    for snip in snap {
-//                        print(snip.value)
-//
-//                        let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-//
-//                    }
-//                }
-//            })
-            
+            if self.posts[indexPath.row - 1].likes[(thisUser?.userID)!]! == true {
+                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+            } else {
+                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+            }
             
             return cell
         }
@@ -211,6 +207,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         textField.endEditing(true)
     }
     
+    @objc func reloadNewsFeed() {
+        NewsFeedTable.reloadData()
+    }
+    
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -225,7 +225,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func configureTableView() {
         NewsFeedTable.rowHeight = UITableViewAutomaticDimension
-        NewsFeedTable.estimatedRowHeight = 240.0
+        NewsFeedTable.estimatedRowHeight = 500.0
     }
     
     @objc func tableViewTapped() {
@@ -234,23 +234,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func likeButtonPressed(sender:AnyObject) {
         
-        let userId = Auth.auth().currentUser?.uid
-        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             print("like button pressed from new function")
-//            if self.posts[(indexPath?.row)! - 1].likes == true {
-//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(false)
-//                self.NewsFeedTable.reloadData()
-//            } else if self.posts[(indexPath?.row)! - 1].likes! == false {
-//                self.likeRef?.child("postLikes").child(userId!).child(self.posts[(indexPath?.row)! - 1].postId).setValue(true)
-//                self.NewsFeedTable.reloadData()
-//            }
             
-            
+            if self.posts[(indexPath?.row)! - 1].likes[(thisUser?.userID)!]! == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser?.userID)!)
+            } else {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser?.userID)!)
+            }
+            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
+                self.NewsFeedTable.reloadData()
+            }
         }
-//        self.NewsFeedTable.reloadData()
     }
     
     @objc func commentButtonPressed(sender:AnyObject) {
@@ -260,15 +258,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let userId = Auth.auth().currentUser?.uid
-            
             let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
             let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
                 print("comment button pressed from new function")
                 
-                self.commentRef?.child("postComments").child(self.posts[(indexPath?.row)! - 1].postId).childByAutoId().setValue(["user": userId!,
-                                                        "comment" : textField.text!])
+                var parameters : [String : String] = [:]
+                
+//                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
+                parameters = ["name" : (self.thisUser?.name)!,
+                              "userId" : (self.self.thisUser?.userID)!,
+                                  "message" : textField.text!]
+//                } else {
+//
+//                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
+//                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
+//                                  "message" : textField.text!]
+//                }
+                
+                if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.NewsFeedTable.reloadData()
+                }
                 
             }
             self.NewsFeedTable.reloadData()
@@ -285,14 +296,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(alert, animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func viewComments(sender: AnyObject) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
+        let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
+        performSegue(withIdentifier: "goToComments", sender: indexPath)
     }
-    */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if segue.destination is CommentsViewController {
+            
+            let vc = segue.destination as? CommentsViewController
+            if let indexPath = sender as? IndexPath {
+                vc?.post = self.posts[indexPath.row - 1]
+            }
+        }
+    }
 }
