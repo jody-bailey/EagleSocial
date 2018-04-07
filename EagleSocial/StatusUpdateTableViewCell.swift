@@ -48,10 +48,10 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
             
             let dateString = String(describing: Date())
             
-            let parameters : [String : Any] =    ["user": thisUser.getName(),
+            let parameters : [String : Any] =    ["user": thisUser!.getName(),
                                                   "message": text!,
                                                   "date": dateString,
-                                                  "userId": thisUser.userID,
+                                                  "userId": thisUser!.userID,
                                                   "likes": [],
                                                   "comments": []
                                                 ] //= likes
