@@ -37,11 +37,15 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         self.imageView.image = thisUser?.profilePic
         
         super.viewDidLoad()
+
+                
+
         
         firstNameLabel.text = thisUser?.name
         ageLabel.text = thisUser?.age
         majorLabel.text = thisUser?.major
         
+
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
        /* userStatusTableView.delegate = self
