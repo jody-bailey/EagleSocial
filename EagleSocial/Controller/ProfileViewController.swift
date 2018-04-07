@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+                
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
        /* userStatusTableView.delegate = self
