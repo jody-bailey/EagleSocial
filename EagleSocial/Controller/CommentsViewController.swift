@@ -50,8 +50,8 @@ class CommentsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCommentCell", for: indexPath) as! CommentCell
         cell.userName.text = self.comments[indexPath.row].username
         cell.commentLabel.text = self.comments[indexPath.row].message
-        if (self.comments[indexPath.row].userId == thisUser.userID){
-            cell.profileImage.image = thisUser.profilePic
+        if (self.comments[indexPath.row].userId == thisUser?.userID){
+            cell.profileImage.image = thisUser?.profilePic
         } else {
             cell.profileImage.image = friendList.getFriend(userId: self.comments[indexPath.row].userId).profilePic
             //                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
