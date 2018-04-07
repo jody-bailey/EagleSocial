@@ -12,8 +12,8 @@
 		27984724204365A800C4D5A3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */; };
 		3F0201B12041148600C959B9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0201B02041148600C959B9 /* EditProfileViewController.swift */; };
 		4F2AB188817708726C4F4639 /* Pods_EagleSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EAFF70536E4D9D3775ECB /* Pods_EagleSocial.framework */; };
-		64007BC52079551B008750F9 /* SelectFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64007BC32079551B008750F9 /* SelectFriendTableViewCell.swift */; };
-		64007BC62079551B008750F9 /* SelectFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64007BC42079551B008750F9 /* SelectFriendTableViewCell.xib */; };
+		64007BCA2079691D008750F9 /* SelectFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64007BC82079691D008750F9 /* SelectFriendTableViewCell.swift */; };
+		64007BCB2079691D008750F9 /* SelectFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64007BC92079691D008750F9 /* SelectFriendTableViewCell.xib */; };
 		644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867D6205F0DBB00A90512 /* MessageListTableCell.swift */; };
 		644867D9205F0DBB00A90512 /* MessageListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644867D7205F0DBB00A90512 /* MessageListTableCell.xib */; };
 		644867DF205F498000A90512 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867DE205F498000A90512 /* MessageViewController.swift */; };
@@ -61,8 +61,8 @@
 		279847212043618100C4D5A3 /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
 		27984723204365A800C4D5A3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		3F0201B02041148600C959B9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		64007BC32079551B008750F9 /* SelectFriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectFriendTableViewCell.swift; path = "EagleSocial/View/New Group/SelectFriendTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		64007BC42079551B008750F9 /* SelectFriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectFriendTableViewCell.xib; path = "EagleSocial/View/New Group/SelectFriendTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		64007BC82079691D008750F9 /* SelectFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectFriendTableViewCell.swift; path = EagleSocial/View/SelectFriendTableViewCell/SelectFriendTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		64007BC92079691D008750F9 /* SelectFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectFriendTableViewCell.xib; path = EagleSocial/View/SelectFriendTableViewCell/SelectFriendTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		644867D6205F0DBB00A90512 /* MessageListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListTableCell.swift; sourceTree = "<group>"; };
 		644867D7205F0DBB00A90512 /* MessageListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageListTableCell.xib; sourceTree = "<group>"; };
 		644867DE205F498000A90512 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
@@ -140,8 +140,8 @@
 		64007BC720795530008750F9 /* SelectFriendTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				64007BC32079551B008750F9 /* SelectFriendTableViewCell.swift */,
-				64007BC42079551B008750F9 /* SelectFriendTableViewCell.xib */,
+				64007BC82079691D008750F9 /* SelectFriendTableViewCell.swift */,
+				64007BC92079691D008750F9 /* SelectFriendTableViewCell.xib */,
 			);
 			name = SelectFriendTableViewCell;
 			path = "New Group";
@@ -328,7 +328,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86ABB842018E8A900163279 /* LaunchScreen.storyboard in Resources */,
-				64007BC62079551B008750F9 /* SelectFriendTableViewCell.xib in Resources */,
 				644867D9205F0DBB00A90512 /* MessageListTableCell.xib in Resources */,
 				C86ABB812018E8A900163279 /* Assets.xcassets in Resources */,
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
@@ -336,6 +335,7 @@
 				644867E7205F51AB00A90512 /* MessageCell.xib in Resources */,
 				C8049BB52046064D00FAC2CC /* FriendTableViewCell.xib in Resources */,
 				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
+				64007BCB2079691D008750F9 /* SelectFriendTableViewCell.xib in Resources */,
 				C8A771CC202282C300AF492D /* Main.storyboard in Resources */,
 				C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */,
 			);
@@ -423,9 +423,9 @@
 				644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */,
 				644D5D2020713ED2003A469B /* ConversationList.swift in Sources */,
 				C8049BB42046064D00FAC2CC /* FriendTableViewCell.swift in Sources */,
-				64007BC52079551B008750F9 /* SelectFriendTableViewCell.swift in Sources */,
 				C8049BAB20427F9000FAC2CC /* Post.swift in Sources */,
 				644867E1205F4DE100A90512 /* Message.swift in Sources */,
+				64007BCA2079691D008750F9 /* SelectFriendTableViewCell.swift in Sources */,
 				644867DF205F498000A90512 /* MessageViewController.swift in Sources */,
 				C874CF512058740F002ADE7F /* Like.swift in Sources */,
 				C8049BB12043A5C200FAC2CC /* ProfileCreationViewController.swift in Sources */,
