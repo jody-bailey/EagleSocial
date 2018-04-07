@@ -36,7 +36,7 @@ class Message {
     }
    
     //MARK: - Send Messages
-    func sendMessage()
+    func sendMessage() -> String
     {
         let conversationDB = Database.database().reference().child("Conversation")
         //let messagesDB = conversationDB.child("Messages")
@@ -44,10 +44,13 @@ class Message {
         //conversationID = conversationIDb
         
         //If this is a new conversation
-        if conversationID == "Optional(\"\")" {
+        if conversationID == "Optional(\"\")" || conversationID == "" {
             conversationID = conversationDB.childByAutoId().key
             messageDictionary["ConversationID"] = conversationID
-            conversationDB.child(conversationID).updateChildValues(["Members" : members]) {
+            let convo = Conversation(convoId: conversationID, mem: members, mes: messageDictionary)
+            convo.postNewConversation()
+            
+            /*conversationDB.child(conversationID).updateChildValues(["Members" : members]) {
                 (error, reference) in
                 
                 
@@ -55,11 +58,25 @@ class Message {
                     print(error!)
                     
                 } else {
+                    
+                    
                     conversationDB.child(self.conversationID).child("Messages").childByAutoId().updateChildValues(self.messageDictionary)
+                    
+                    print (self.conversationID + " Message saved successfully!!")
+                }
+            }
+            conversationDB.child(conversationID + "/LastMessage").setValue(messageDictionary["MessageBody"])
+            {
+                (error, reference) in
+                
+                if error != nil {
+                    print(error!)
+                    
+                } else {
                     
                     print ("Message saved successfully!!")
                 }
-            }
+            }*/
         }
         //If this is an existing conversation
         else  {
@@ -74,8 +91,20 @@ class Message {
                     print ("Message saved successfully!!")
                 }
             }
+            conversationDB.child(conversationID + "/LastMessage").setValue(messageDictionary["MessageBody"])
+            {
+                (error, reference) in
+                
+                if error != nil {
+                    print(error!)
+                    
+                } else {
+                    
+                    print ("Message saved successfully!!")
+                }
+            }
         }
-        
+        return conversationID
     }
     
     //MARK: - Receive Messages
