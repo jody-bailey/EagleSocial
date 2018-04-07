@@ -35,9 +35,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
        
-      
-        thisUser?.setUserAttributes()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
         friendList.printList()
         let refreshControl = UIRefreshControl()
@@ -98,7 +95,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (Auth.auth().currentUser) != nil
         {
             thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
-           
+            thisUser?.setUserAttributes()
+
         }
         
         else
@@ -176,11 +174,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.likesLabel.text = String(likeCount) + " likes"
             }
             
-            if self.posts[indexPath.row - 1].likes[(thisUser?.userID)!]! == true {
-                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-            } else {
-                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
-            }
+//            if self.posts[indexPath.row - 1].likes[(thisUser?.userID)!]! == true {
+//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+//            } else {
+//                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+//            }
             
             return cell
         }

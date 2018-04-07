@@ -90,6 +90,7 @@ class User
             self.age = value?["age"] as! String
             self.major = value?["major"] as! String
             self.schoolYear = value?["school year"] as! String
+            self.updateProfilePic()
         }
         )}
     
