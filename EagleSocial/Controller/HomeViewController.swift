@@ -14,8 +14,6 @@ import FirebaseStorage
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    
-
     @IBOutlet weak var NewsFeedTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -33,6 +31,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        thisUser.setUserAttributes()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
         friendList.printList()
         let refreshControl = UIRefreshControl()

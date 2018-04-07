@@ -13,9 +13,9 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
+//let thisUser = User()
 
 let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
-
 
 class User
 {
@@ -27,10 +27,11 @@ class User
     var photo: String
     var profilePic: UIImage
 
-    let ref = Database.database().reference()
+    //let ref = Database.database().reference()
     let storage = Storage.storage()
+    let snapshot = DataSnapshot()
 
-    init(username: String, userID: String)
+  /*  init(username: String, userID: String)
 {
     self.userID = userID
     self.name = username
@@ -42,21 +43,20 @@ class User
     
     self.updateProfilePic()
 
-}
+}*/
     
 
-   /* init(snapshot: DataSnapshot)
+   init(username: String, userID: String)
     {
-        let databaseHandle = ref?.child("Users")
-        self.userID = (Auth.auth().currentUser?.uid)!
-        self.name = (Auth.auth().currentUser?.displayName!)!
+        self.userID = userID
+        self.name = username
         self.age = (snapshot.value! as! NSDictionary)["age"] as! String
         self.major = (snapshot.value! as! NSDictionary)["major"] as! String
         self.schoolYear = (snapshot.value! as! NSDictionary)["school year"] as! String
         self.photo = ""
         self.profilePic = #imageLiteral(resourceName: "profile_icon")
         
-    }*/
+    }
     
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
 {
@@ -97,6 +97,14 @@ class User
         age = userAge
         major = userMajor
         schoolYear = userSchoolYear
+    }
+    
+    public func setUserAttributes()
+    {
+        self.name = (snapshot.value! as! NSDictionary)["name"] as! String
+        self.age = (snapshot.value! as! NSDictionary)["age"] as! String
+        self.major = (snapshot.value! as! NSDictionary)["major"] as! String
+        self.schoolYear = (snapshot.value! as! NSDictionary)["school year"] as! String
     }
     
     public func updateProfilePic() {
