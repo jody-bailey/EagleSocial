@@ -45,9 +45,10 @@ class Conversation {
             lastMessage = lastMessageDictionary["MessageBody"]! as! String
         }
         
-        
-        //Set the username property.
         username = ""
+        displayName = "Still working on getting name"
+      /*  //Set the username property.
+        
         //Loop through and get the user name of the other person in the conversation.
         for (userIDkey, userIDvalue) in mem {
             if userIDkey != ((Auth.auth().currentUser?.uid)!) {
@@ -57,13 +58,13 @@ class Conversation {
         }
         
         let userDB = Database.database().reference().child("Users").child(username)
-        displayName = "Still working on getting name"
+        
         userDB.observeSingleEvent(of: .value, with: {(snapshot) in
             let snapshotValue = snapshot.value as! Dictionary<String,Any>
             print("MJP " + (snapshotValue["name"] as! String))
             self.displayName = String(describing: snapshotValue["name"]! )
             
-        })
+        })*/
     }
     
     //MARK: - Getters

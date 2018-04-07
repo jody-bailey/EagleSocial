@@ -23,8 +23,16 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var conversationTableView: UITableView!
     @IBOutlet var sendButton: UIButton!
+    @IBOutlet var addNewUserToolBar: UIView!
+    @IBOutlet var addNewUserToolBarHeightConstraint: NSLayoutConstraint!
     
-    //TODO: - Relace with code to get conversationID from the Chat view controller. 
+    @IBOutlet var receipientLabel: UILabel!
+    @IBOutlet var receipientLabelBackgroundView: UIView!
+    @IBOutlet var addNewUserToConversationButton: UIButton!
+    
+    @IBOutlet var removeSelectedUserButton: UIButton!
+    
+    //TODO: - Relace with code to get conversationID from the Chat view controller.
     //var conversationID : String = "-L8Y8gof4Ky_3ieWi6Ek"
     var conversationID : String = ""
     
@@ -61,6 +69,19 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //See function definition for more information on what this item does.
         configureTableView()
         
+        //Hide the Add New User Tool Bar if it is an existing
+        //conversation.
+        updateUserInterface()
+        
+        if conversationID != "" {
+            addNewUserToolBar.isHidden = true
+            addNewUserToolBarHeightConstraint.constant = 0
+        }
+        //Show the Add New User Tool bar if it is a new conversation.
+        else {
+            addNewUserToolBar.isHidden = false
+            
+        }
         //Retrieve messages upon loading the message screen.
         retrieveMessage()
 
@@ -122,7 +143,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             
             //Construct the members list for the current conversation/message.
             let members : [String : Bool] = [String((Auth.auth().currentUser?.uid)!) : true,
-                                             String("WzRw6ypWLvOAOo6iCd680Oz4Fwx1") : true]
+                                             String("IJHzyU11xmgk29y68TIhT7YkZHQ2") : true]
             
             //Construct the message dictionary for the current conversation/message.
             //Sender, MessageBody, Conversation
@@ -197,6 +218,20 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
        
         
     }
+    @IBAction func addNewUserToConversation(_ sender: Any) {
+        
+        performSegue(withIdentifier: "selectUserToChatWith", sender: self)
+        
+        receipientLabel.text = "Michael Pearson"
+        updateUserInterface()
+    }
+   
+    @IBAction func removeUserFromConversation(_ sender: Any) {
+        receipientLabel.text = ""
+        
+        //TODO: - clear the userID variable too.
+        updateUserInterface()
+    }
     
 
     //Configure the conversationTableView properties here:
@@ -252,4 +287,17 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Set the height constraint back to 50.
         self.heightConstraint.constant = CGFloat(50.0)
     }
+    func updateUserInterface() {
+     receipientLabelBackgroundView.layer.cornerRadius = 20
+        if receipientLabel.text != "" {
+            receipientLabelBackgroundView.backgroundColor = UIColor(hexString: "FFC14C")
+            addNewUserToConversationButton.isHidden = true
+            removeSelectedUserButton.isHidden = false
+        } else {
+            receipientLabelBackgroundView.backgroundColor = UIColor(named: "Clear")
+            addNewUserToConversationButton.isHidden = false
+            removeSelectedUserButton.isHidden = true
+        }
+    }
 }
+
