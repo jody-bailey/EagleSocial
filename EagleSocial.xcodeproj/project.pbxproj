@@ -42,7 +42,6 @@
 		C8A2EA6D201993CC00B0FC3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */; };
 		C8A771CA20227D6600AF492D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771C920227D6600AF492D /* ProfileViewController.swift */; };
 		C8A771CC202282C300AF492D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A771CB202282C300AF492D /* Main.storyboard */; };
-		C8A771CE2022864E00AF492D /* EagleMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CD2022864E00AF492D /* EagleMainViewController.swift */; };
 		C8A771D0202286E300AF492D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771CF202286E300AF492D /* FriendsViewController.swift */; };
 		C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D32022ABD500AF492D /* ChatViewController.swift */; };
 		C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A771D52022AC3300AF492D /* SettingsViewController.swift */; };
@@ -94,7 +93,6 @@
 		C8A2EA6C201993CC00B0FC3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8A771C920227D6600AF492D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C8A771CB202282C300AF492D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C8A771CD2022864E00AF492D /* EagleMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EagleMainViewController.swift; sourceTree = "<group>"; };
 		C8A771CF202286E300AF492D /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		C8A771D32022ABD500AF492D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C8A771D52022AC3300AF492D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 				C86ABB7B2018E8A900163279 /* LoginViewController.swift */,
 				C8A771C920227D6600AF492D /* ProfileViewController.swift */,
 				3F0201B02041148600C959B9 /* EditProfileViewController.swift */,
-				C8A771CD2022864E00AF492D /* EagleMainViewController.swift */,
 				C86ABB8F20197CCC00163279 /* HomeViewController.swift */,
 				C8A771CF202286E300AF492D /* FriendsViewController.swift */,
 				C8A771D32022ABD500AF492D /* ChatViewController.swift */,
@@ -428,7 +425,6 @@
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
-				C8A771CE2022864E00AF492D /* EagleMainViewController.swift in Sources */,
 				C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
@@ -572,12 +568,13 @@
 			baseConfigurationReference = F29393794219B9D9B080E813 /* Pods-EagleSocial.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VGD3SLFD4M;
+				DEVELOPMENT_TEAM = 3HKK9JZT88;
 				INFOPLIST_FILE = EagleSocial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lacysimpson.EagleSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jodybailey.EagleSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -590,12 +587,13 @@
 			baseConfigurationReference = 2577D5BA0F489535A60EFBDF /* Pods-EagleSocial.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VGD3SLFD4M;
+				DEVELOPMENT_TEAM = 3HKK9JZT88;
 				INFOPLIST_FILE = EagleSocial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lacysimpson.EagleSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jodybailey.EagleSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
