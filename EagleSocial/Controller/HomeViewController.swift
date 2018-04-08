@@ -88,7 +88,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
-    
 
     override func viewDidAppear(_ animated: Bool) {
         
@@ -126,8 +125,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count + 1
     }
@@ -158,7 +155,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.profilePicture.image = thisUser.profilePic
             } else {
                 cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
-//                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
@@ -167,18 +163,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
-//            cell.likesLabel.text = String(self.posts[indexPath.row - 1].likes.count) + " like(s)"
+            
             var likeCount : Int = 0
             for like in self.posts[indexPath.row - 1].likes {
                 if like.value == true {
                     likeCount += 1
                 }
             }
+            
             if likeCount == 1 {
                 cell.likesLabel.text = String(likeCount) + " like"
             } else {
                 cell.likesLabel.text = String(likeCount) + " likes"
             }
+            
             if self.posts[indexPath.row - 1].likes[thisUser.userID] != nil {
                 if self.posts[indexPath.row - 1].likes[thisUser.userID]! == true {
                     cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
@@ -260,6 +258,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func commentButtonPressed(sender:AnyObject) {
         var textField = UITextField()
         
+        
         let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
@@ -297,6 +296,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         alert.addTextField { (field) in
             textField = field
             textField.placeholder = "Add a new comment"
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .sentences
         }
         
         present(alert, animated: true, completion: nil)
@@ -316,5 +317,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 vc?.post = self.posts[indexPath.row - 1]
             }
         }
+    }
+    
+    public func getPosts() -> [Post] {
+        return self.posts
     }
 }

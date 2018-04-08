@@ -34,8 +34,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         friendTableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "friendCell")
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-        friendTableView.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
+//        friendTableView.addGestureRecognizer(tapGesture)
         
         configureTableView()
         
@@ -45,6 +45,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "goToFriendProfile", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendProfileViewController {
+            
+            let vc = segue.destination as? FriendProfileViewController
+            if let indexPath = sender as? IndexPath {
+                vc?.friend = self.friends[indexPath.row]
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,9 +92,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         friendTableView.estimatedRowHeight = 240.0
     }
     
-    @objc func tableViewTapped() {
-        searchBar.endEditing(true)
-    }
+//    @objc func tableViewTapped() {
+//        searchBar.endEditing(true)
+//    }
     
 
     /*

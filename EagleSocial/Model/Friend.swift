@@ -14,15 +14,21 @@ class Friend {
     
     // Variables to store the friends name and email
     let name : String
+    let age : String
+    let major : String
+    let schoolYear : String
     let userId : String
     var profilePic : UIImage
     
     // Initialize the friend with name and email
-    init(name : String, userId : String) {
+    init(name : String, userId : String, age: String, major: String, schoolYear: String) {
         let name : String = name
         let userId : String = userId
         
         self.name = name
+        self.age = age
+        self.major = major
+        self.schoolYear = schoolYear
         self.userId = userId
         self.profilePic = #imageLiteral(resourceName: "profile_icon")
         
@@ -54,7 +60,7 @@ class Friend {
         self.profilePic = image
     }
     
-    public func getFriend() -> Friend {
-        return self
-    }
+//    public func getFriend() -> Friend {
+//        return self
+//    }
 }
