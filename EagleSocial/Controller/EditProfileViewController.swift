@@ -22,8 +22,6 @@ protocol DataSentDelegate
     func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
 }
 
-
-
 //method is loaded after the VC has loaded its view hierarchy into memory
 class EditProfileViewController: UIViewController {
 

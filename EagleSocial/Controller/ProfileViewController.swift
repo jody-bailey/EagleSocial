@@ -19,31 +19,36 @@ import FirebaseStorage
 import FirebaseDatabase
 
 
-class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate /*, UITableViewDelegate, UITableViewDataSource*/
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "profileCell")
+        return cell
+    }
+    
     //variables for the profile VC which contains labels to display the users attributes
-    @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var schoolYearLabel: UILabel!
     @IBOutlet weak var userStatusTableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     
+   
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
-        //self.fetchFirebaseUserData()
-        self.imageView.image = thisUser.profilePic
-        
         super.viewDidLoad()
-
-                
-
         
-        firstNameLabel.text = thisUser.name
+        userNameLabel.text = thisUser.name
         ageLabel.text = thisUser.age
         majorLabel.text = thisUser.major
+        imageView.image = thisUser.profilePic
         
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
@@ -154,27 +159,5 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         performSegue(withIdentifier: "goToEdit", sender: self)
     }
     
-    
-    
-    ///////////////////////////////////////////////////////////////////////////////////////
-    func fetchFirebaseUserData()
-    {
-        thisUser.userID = (Auth.auth().currentUser?.uid)!
-        let ref = Database.database().reference()
-        ref.child("Users").child(thisUser.userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            thisUser.name = value?["username"] as? String ?? ""
-           // thisUser.age = value?["age"] as? String ?? ""
-           // thisUser.major = value?["major"] as? String ?? ""
-           // thisUser.schoolYear = value?["school year"] as? String ?? ""
-            thisUser.updateProfilePic()
-            
-            
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
 
 }
