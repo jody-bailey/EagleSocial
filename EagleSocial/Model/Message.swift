@@ -34,9 +34,9 @@ class Message {
         messageDictionary = messageDictionarya
         members = membersa
     }
-   
+    
     //MARK: - Send Messages
-    func sendMessage()
+    func sendMessage() -> String
     {
         let conversationDB = Database.database().reference().child("Conversation")
         //let messagesDB = conversationDB.child("Messages")
@@ -44,24 +44,41 @@ class Message {
         //conversationID = conversationIDb
         
         //If this is a new conversation
-        if conversationID == "Optional(\"\")" {
+        if conversationID == "Optional(\"\")" || conversationID == "" {
             conversationID = conversationDB.childByAutoId().key
             messageDictionary["ConversationID"] = conversationID
-            conversationDB.child(conversationID).updateChildValues(["Members" : members]) {
-                (error, reference) in
-                
-                
-                if error != nil {
-                    print(error!)
-                    
-                } else {
-                    conversationDB.child(self.conversationID).child("Messages").childByAutoId().updateChildValues(self.messageDictionary)
-                    
-                    print ("Message saved successfully!!")
-                }
-            }
+            let convo = Conversation(convoId: conversationID, mem: members, mes: messageDictionary)
+            convo.postNewConversation()
+            
+            /*conversationDB.child(conversationID).updateChildValues(["Members" : members]) {
+             (error, reference) in
+             
+             
+             if error != nil {
+             print(error!)
+             
+             } else {
+             
+             
+             conversationDB.child(self.conversationID).child("Messages").childByAutoId().updateChildValues(self.messageDictionary)
+             
+             print (self.conversationID + " Message saved successfully!!")
+             }
+             }
+             conversationDB.child(conversationID + "/LastMessage").setValue(messageDictionary["MessageBody"])
+             {
+             (error, reference) in
+             
+             if error != nil {
+             print(error!)
+             
+             } else {
+             
+             print ("Message saved successfully!!")
+             }
+             }*/
         }
-        //If this is an existing conversation
+            //If this is an existing conversation
         else  {
             conversationDB.child(conversationID).child("Messages").childByAutoId().updateChildValues(messageDictionary) {
                 (error, reference) in
@@ -70,40 +87,52 @@ class Message {
                     print(error!)
                     
                 } else {
-                                        
+                    
+                    print ("Message saved successfully!!")
+                }
+            }
+            conversationDB.child(conversationID + "/LastMessage").setValue(messageDictionary["MessageBody"])
+            {
+                (error, reference) in
+                
+                if error != nil {
+                    print(error!)
+                    
+                } else {
+                    
                     print ("Message saved successfully!!")
                 }
             }
         }
-        
+        return conversationID
     }
     
     //MARK: - Receive Messages
     //TODO: - Refactor to use the class to retrieve messages from the database.
     
-   /* func retrieveMessages(conversation: String) -> Message {
-        
-        //let conversationDB = Database.database().reference().child("Conversation")
-            
-            //Members/CurrentUserID
-            //.queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!)
-            //.queryEqual(toValue: true)
-        let messageDB = Database.database().reference().child("Conversation").child(conversation).child("Messages")
-        let message1 = Message()
-        
-        messageDB.observe(.childAdded) { (snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String,Any>
-            
-            
-            message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
-            message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
-            message1.conversationID = conversation
-            message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
-                                      "MessageBody": snapshotValue["MessageBody"]!,
-                                      "ConversationID" : conversation])
-        }
-        return message1
-    }*/
+    /* func retrieveMessages(conversation: String) -> Message {
+     
+     //let conversationDB = Database.database().reference().child("Conversation")
+     
+     //Members/CurrentUserID
+     //.queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!)
+     //.queryEqual(toValue: true)
+     let messageDB = Database.database().reference().child("Conversation").child(conversation).child("Messages")
+     let message1 = Message()
+     
+     messageDB.observe(.childAdded) { (snapshot) in
+     let snapshotValue = snapshot.value as! Dictionary<String,Any>
+     
+     
+     message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
+     message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
+     message1.conversationID = conversation
+     message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
+     "MessageBody": snapshotValue["MessageBody"]!,
+     "ConversationID" : conversation])
+     }
+     return message1
+     }*/
     
     //MARK: - Getters
     func getSenderId() -> String {
@@ -133,3 +162,4 @@ class Message {
         messageDictionary = messageDict
     }
 }
+
