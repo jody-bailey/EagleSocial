@@ -9,19 +9,33 @@
 import UIKit
 import Firebase
 
+protocol CanRecieve {
+    func dataReceived(data: String)
+}
 
 class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
+    
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
+    var delagate : CanRecieve?
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var conversationTableView: UITableView!
     @IBOutlet var sendButton: UIButton!
+    @IBOutlet var addNewUserToolBar: UIView!
+    @IBOutlet var addNewUserToolBarHeightConstraint: NSLayoutConstraint!
     
-    //TODO: - Relace with code to get conversationID from the Chat view controller. 
-    var conversationID : String = "-L8Y8gof4Ky_3ieWi6Ek"
+    @IBOutlet var receipientLabel: UILabel!
+    @IBOutlet var receipientLabelBackgroundView1: UIView!
+    @IBOutlet var receipientLabelBackgroundView: UIView!
+    @IBOutlet var addNewUserToConversationButton: UIButton!
+    
+    @IBOutlet var removeSelectedUserButton: UIButton!
+    
+    //TODO: - Relace with code to get conversationID from the Chat view controller.
+    //var conversationID : String = "-L8Y8gof4Ky_3ieWi6Ek"
+    var conversationID : String = ""
     
     //Used to capture the keyboard height so that the messageText field
     // Will appear above the keyboard even on different devices of differen screen
@@ -56,11 +70,24 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //See function definition for more information on what this item does.
         configureTableView()
         
+        //Hide the Add New User Tool Bar if it is an existing
+        //conversation.
+        updateUserInterface()
+        
+        if conversationID != "" {
+            addNewUserToolBar.isHidden = true
+            addNewUserToolBarHeightConstraint.constant = 0
+        }
+            //Show the Add New User Tool bar if it is a new conversation.
+        else {
+            addNewUserToolBar.isHidden = false
+            
+        }
         //Retrieve messages upon loading the message screen.
         retrieveMessage()
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,6 +106,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         messageCell.nameLabel.text = messageArray[indexPath.row].getSenderId()
         
         //Load the user's profile image into the profilImageView in the TableView Message Cell
+        //TODO: - Modify the classes/models to pull down user's profile picture.
         messageCell.profileImageView.image = UIImage(named: "profile_icon")
         
         //Post the newly created messageCell into the TableView.
@@ -100,9 +128,9 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         
-        //Prevent blank messages from being sent. 
+        //Prevent blank messages from being sent.
         if messageTextField.text != "" {
-        
+            
             //End editing for the messageTextField.
             messageTextField.endEditing(true)
             
@@ -116,19 +144,19 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             
             //Construct the members list for the current conversation/message.
             let members : [String : Bool] = [String((Auth.auth().currentUser?.uid)!) : true,
-                                             String("WzRw6ypWLvOAOo6iCd680Oz4Fwx1") : true]
+                                             String("IJHzyU11xmgk29y68TIhT7YkZHQ2") : true]
             
             //Construct the message dictionary for the current conversation/message.
             //Sender, MessageBody, Conversation
             let messageDictionary : [String : String] = ["Sender": (Auth.auth().currentUser?.email)!,
-                                                      "MessageBody": messageTextField.text!,
-                                                      "ConversationID" : String(conversationID)]
+                                                         "MessageBody": messageTextField.text!,
+                                                         "ConversationID" : String(conversationID)]
             
             //Build the message object to prepare sending.
             let message = Message(membersa: members, messageDictionarya: messageDictionary)
             
             //Send the message.
-            message.sendMessage()
+            self.conversationID = message.sendMessage()
             
             //ReEnable the messageTextField so the user can compose more messages.
             self.messageTextField.isEnabled = true
@@ -147,42 +175,65 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Retrive messages as they come in.
         //Make a call to the retrieveMessages method of the
         //Message class.
-        
+        if conversationID != "" {
+            
             let messageDB = Database.database().reference().child("Conversation").child(conversationID).child("Messages")
+            //let messageDB = Database.database().reference().child("Conversation").child("Messages")
             //let message1 = Message()
-        
+            
             messageDB.observe(.childAdded) { (snapshot) in
                 let snapshotValue = snapshot.value as! Dictionary<String,Any>
                 let message1 = Message()
-            
+                
                 message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
                 message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
                 //message1.conversationID = self.conversationID
                 message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
-                                                         "MessageBody": snapshotValue["MessageBody"]!,
-                                                         "ConversationID" : self.conversationID])
-        
+                                                             "MessageBody": snapshotValue["MessageBody"]!,
+                                                             "ConversationID" : self.conversationID])
+                
                 //return message1
-            
+                
                 //message.retrieveMessages(conversation: conversationID)
-        
+                
                 self.messageArray.append(message1)
-        
+                
                 self.configureTableView()
-        
+                
                 self.conversationTableView.reloadData()
+            }
         }
     }
     /*
-    // MARK: - Navigation
-    */
+     // MARK: - Navigation
+     */
     @IBAction func backbtnPressed(_ sender: UIBarButtonItem) {
+        
+        //clear the conversation ID property.
+        delagate?.dataReceived(data: "")
         
         //Dissmiss the messages screen.
         //Return to the message list.
         dismiss(animated: true, completion: nil)
         
+        
+        
     }
+    @IBAction func addNewUserToConversation(_ sender: Any) {
+        
+        performSegue(withIdentifier: "selectUserToChatWith", sender: self)
+        
+        receipientLabel.text = "Michael Pearson"
+        updateUserInterface()
+    }
+    
+    @IBAction func removeUserFromConversation(_ sender: Any) {
+        receipientLabel.text = ""
+        
+        //TODO: - clear the userID variable too.
+        updateUserInterface()
+    }
+    
     
     //Configure the conversationTableView properties here:
     func configureTableView() {
@@ -197,12 +248,12 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Remove the seperator so there are no lines between message bubbles.
         conversationTableView.separatorStyle = .none
     }
-
+    
     //Determine if the messageTextField has begun being edited.
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         UIView.animate(withDuration: 0.5) {
-
+            
             self.view.layoutIfNeeded()
         }
     }
@@ -237,4 +288,18 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Set the height constraint back to 50.
         self.heightConstraint.constant = CGFloat(50.0)
     }
+    func updateUserInterface() {
+        receipientLabelBackgroundView.layer.cornerRadius = 20
+        if receipientLabel.text != "" {
+            receipientLabelBackgroundView.backgroundColor = UIColor.white
+            addNewUserToConversationButton.isHidden = true
+            removeSelectedUserButton.isHidden = false
+        } else {
+            receipientLabelBackgroundView.backgroundColor = UIColor(named: "Clear")
+            addNewUserToConversationButton.isHidden = false
+            removeSelectedUserButton.isHidden = true
+        }
+    }
 }
+
+
