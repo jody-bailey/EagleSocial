@@ -107,6 +107,7 @@ extension SignUpViewController: DismissedView {
     func dismissed() {
         dismiss(animated: true, completion: nil)
         isDismissed = true
+        self.navigationController?.popToRootViewController(animated: true)
 //        self.dismiss(animated: true, completion: nil)
     }
 }

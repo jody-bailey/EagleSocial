@@ -53,6 +53,7 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                 UserDefaults.standard.synchronize()
                 
+                self.navigationController?.popToRootViewController(animated: true)
                 self.dismiss(animated: true, completion: nil)
                 
                 //self.gradientLoadingBar.hide()

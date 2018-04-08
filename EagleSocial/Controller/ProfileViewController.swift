@@ -34,16 +34,16 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     override func viewDidLoad()
     {
         //self.fetchFirebaseUserData()
-        self.imageView.image = thisUser?.profilePic
+        self.imageView.image = thisUser.profilePic
         
         super.viewDidLoad()
 
                 
 
         
-        firstNameLabel.text = thisUser?.name
-        ageLabel.text = thisUser?.age
-        majorLabel.text = thisUser?.major
+        firstNameLabel.text = thisUser.name
+        ageLabel.text = thisUser.age
+        majorLabel.text = thisUser.major
         
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
@@ -122,14 +122,14 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let imagePath = "image/\(thisUser?.userID)/userPic.jpg"
+        let imagePath = "image/\(thisUser.userID)/userPic.jpg"
         let imageRef = storageRef.child(imagePath)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
         imageRef.putData(data, metadata: metadata)
         
-        thisUser?.updateProfilePic()
+        thisUser.updateProfilePic()
     }
 
     //method prepares the segue to go to the edit profile view controller when the edit button is selected
@@ -159,16 +159,16 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     ///////////////////////////////////////////////////////////////////////////////////////
     func fetchFirebaseUserData()
     {
-        thisUser?.userID = (Auth.auth().currentUser?.uid)!
+        thisUser.userID = (Auth.auth().currentUser?.uid)!
         let ref = Database.database().reference()
-        ref.child("Users").child((thisUser?.userID)!).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("Users").child(thisUser.userID).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
-            thisUser?.name = value?["username"] as? String ?? ""
+            thisUser.name = value?["username"] as? String ?? ""
            // thisUser.age = value?["age"] as? String ?? ""
            // thisUser.major = value?["major"] as? String ?? ""
            // thisUser.schoolYear = value?["school year"] as? String ?? ""
-            thisUser?.updateProfilePic()
+            thisUser.updateProfilePic()
             
             
             // ...
