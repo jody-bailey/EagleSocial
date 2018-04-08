@@ -33,17 +33,11 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
-        //self.fetchFirebaseUserData()
-        self.imageView.image = thisUser.profilePic
-        
         super.viewDidLoad()
-
-                
-
-        
         firstNameLabel.text = thisUser.name
         ageLabel.text = thisUser.age
         majorLabel.text = thisUser.major
+        self.imageView.image = thisUser.profilePic
         
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
