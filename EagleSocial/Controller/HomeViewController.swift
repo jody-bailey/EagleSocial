@@ -89,6 +89,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.endRefreshing()
     }
     
+<<<<<<< HEAD
+=======
+
+    override func viewDidAppear(_ animated: Bool) {
+        
+//        if (Auth.auth().currentUser) != nil
+//        {
+////            User.thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+//           print("User logged in")
+//        }
+//        
+//        else
+//        {
+//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
+//
+//        }
+//        
+//        else
+//        {
+//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
+//
+//        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+//
+//        if (userLoginStatus){
+//            print("user is logged in from tabbarcontroller")
+//        }
+//        else {
+//            print("user not logged in")
+//           // performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
+    }
+    
+>>>>>>> master
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -124,6 +159,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.profilePicture.image = thisUser.profilePic
             } else {
                 cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
+=======
+>>>>>>> master
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true

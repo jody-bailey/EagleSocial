@@ -61,6 +61,7 @@ class User
                 let schoolYear = snapDict["school year"]
                 else { return }
             
+            
             self.userID = userid!
             self.name = name
             self.age = age
