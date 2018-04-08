@@ -31,7 +31,7 @@ class User
     var profilePic: UIImage
 
     //let ref = Database.database().reference()
-    let storage = Storage.storage()
+    
 //    let snapshot = DataSnapshot()
 
     init()
@@ -69,30 +69,6 @@ class User
             self.schoolYear = schoolYear
         }
     }
-    
-    
-// static var thisUser : User = User(username: (Auth.auth().currentUser?.displayName)!, userID: (Auth.auth().currentUser?.uid)!)
-
-    
-/*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
-{
-    
-    let username = username
-    let userAge = userAge
-    let userMajor = userMajor
-    let userSchoolYear = userSchoolYear
-    let userPhoto = userPhoto
-    
-    let name: String
-    let uid: String
-    
-    init(username: String, uid: String) {
-        
-        let username = username
-        
-        self.name = username
-        self.uid = uid
-    }*/
     
     public func getName() -> String {
         return self.name
@@ -138,8 +114,10 @@ class User
     }
     
     public func updateProfilePic() {
+        if Auth.auth().currentUser != nil {
         let uid : String = (Auth.auth().currentUser?.uid)!
-        let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")
+            let storage = Storage.storage()
+            let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")
         
         var image : UIImage?
         storageRef.getData(maxSize: 4 * 1024 * 1024) { data, error in
@@ -153,6 +131,8 @@ class User
             }
             if image != nil {
                 self.setProfilePic(image: image!)
+            }
+            
             }
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
