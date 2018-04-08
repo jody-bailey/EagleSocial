@@ -182,7 +182,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="profile_icon" id="xFo-d4-kdM"/>
                     <connections>
                         <outlet property="ageLabel" destination="oe7-wZ-IE6" id="hj4-kX-V3D"/>
-                        <outlet property="imageView" destination="m4T-3b-JKb" id="g44-0m-JOj"/>
+                        <outlet property="imageView" destination="m4T-3b-JKb" id="hMu-ml-hNN"/>
                         <outlet property="majorLabel" destination="eIF-QZ-11C" id="xAB-2i-OF7"/>
                         <outlet property="schoolYearLabel" destination="9bN-4W-Dks" id="rTi-RX-Hf8"/>
                         <outlet property="userNameLabel" destination="ImU-5l-NLk" id="lpp-oQ-RPW"/>

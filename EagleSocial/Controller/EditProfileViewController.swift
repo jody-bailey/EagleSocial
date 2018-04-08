@@ -88,7 +88,6 @@ class EditProfileViewController: UIViewController {
                     }
                 }
                 
-                
                 dismiss(animated: true, completion: nil)
             }
         }
