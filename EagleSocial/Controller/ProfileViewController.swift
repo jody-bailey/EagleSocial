@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController, DataSentDelegate, UIImagePickerCo
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
-        //self.fetchFirebaseUserData()
+        thisUser?.setUserAttributes()
         self.imageView.image = thisUser?.profilePic
         
         super.viewDidLoad()

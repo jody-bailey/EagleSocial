@@ -92,17 +92,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidAppear(_ animated: Bool) {
         
-        if (Auth.auth().currentUser) != nil
-        {
-            thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
-            thisUser?.setUserAttributes()
-
-        }
-        
-        else
-        {
-             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
-        }
+//        if (Auth.auth().currentUser) != nil
+//        {
+//            thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+//            thisUser?.setUserAttributes()
+//
+//        }
+//        
+//        else
+//        {
+//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
 //
 //        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
 //
