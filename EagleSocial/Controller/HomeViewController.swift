@@ -88,7 +88,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
-    
 
     override func viewDidAppear(_ animated: Bool) {
         
@@ -125,8 +124,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count + 1
@@ -167,18 +164,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
-//            cell.likesLabel.text = String(self.posts[indexPath.row - 1].likes.count) + " like(s)"
+            
             var likeCount : Int = 0
             for like in self.posts[indexPath.row - 1].likes {
                 if like.value == true {
                     likeCount += 1
                 }
             }
+            
             if likeCount == 1 {
                 cell.likesLabel.text = String(likeCount) + " like"
             } else {
                 cell.likesLabel.text = String(likeCount) + " likes"
             }
+            
             if self.posts[indexPath.row - 1].likes[thisUser.userID] != nil {
                 if self.posts[indexPath.row - 1].likes[thisUser.userID]! == true {
                     cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
