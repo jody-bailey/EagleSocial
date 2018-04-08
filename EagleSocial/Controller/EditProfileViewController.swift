@@ -74,10 +74,10 @@ class EditProfileViewController: UIViewController {
                 
                 ref = Database.database().reference()
                 
-                ref.child("Users").child((thisUser?.userID)!).updateChildValues(["name": fullName,
+                ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!])
-                thisUser?.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
+                thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
                 
                 let user = Auth.auth().currentUser
                 let changeRequest = user?.createProfileChangeRequest()
