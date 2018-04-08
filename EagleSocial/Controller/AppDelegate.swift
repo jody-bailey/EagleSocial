@@ -12,9 +12,6 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

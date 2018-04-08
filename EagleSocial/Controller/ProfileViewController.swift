@@ -45,10 +45,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     {
         super.viewDidLoad()
         
+        if Auth.auth().currentUser != nil {
+        thisUser.setUserAttributes()
         userNameLabel.text = thisUser.name
         ageLabel.text = thisUser.age
         majorLabel.text = thisUser.major
-        imageView.image = thisUser.profilePic
+        self.getUserProfilePic()
+            
+        }
+        
         
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
@@ -56,7 +61,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
        /* userStatusTableView.delegate = self
         userStatusTableView.dataSource = self*/
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser != nil {
+            thisUser.setUserAttributes()
+            userNameLabel.text = thisUser.name
+            ageLabel.text = thisUser.age
+            majorLabel.text = thisUser.major
+        }
+    }
     //method uses action sheets to choose an image for the picture box on the profile VC
     @IBAction func chooseImage(_ sender: Any)
     {
@@ -86,6 +98,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.present(actionSheet, animated: true, completion: nil)
         
+    }
+    
+    func getUserProfilePic(){
+        if Auth.auth().currentUser != nil {
+            let uid : String = (Auth.auth().currentUser?.uid)!
+            let storage = Storage.storage()
+            let storageRef = storage.reference(withPath: "image/\(uid)/userPic.jpg")
+            
+            var image : UIImage?
+            storageRef.getData(maxSize: 4 * 1024 * 1024) { data, error in
+                if let error = error {
+                    print("Error getting image from storage, \(error)")
+                } else {
+                    // Data for "images/island.jpg" is returned
+                    print("image retreived successfully")
+                    image = UIImage(data: data!)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                }
+                if image != nil {
+                    self.imageView.image = thisUser.profilePic
+                }
+            }
+            
+        }
     }
     
     //method uses the users selected image as their profile photo
