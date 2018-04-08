@@ -50,6 +50,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         userNameLabel.text = thisUser.name
         ageLabel.text = thisUser.age
         majorLabel.text = thisUser.major
+        schoolYearLabel.text = thisUser.schoolYear
         self.getUserProfilePic()
             
         }
@@ -67,6 +68,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             userNameLabel.text = thisUser.name
             ageLabel.text = thisUser.age
             majorLabel.text = thisUser.major
+            schoolYearLabel.text = thisUser.schoolYear
         }
     }
     //method uses action sheets to choose an image for the picture box on the profile VC
