@@ -23,15 +23,32 @@ protocol DataSentDelegate
 }
 
 //method is loaded after the VC has loaded its view hierarchy into memory
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       return schoolYears[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return schoolYears.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.schoolYearPicked = schoolYears[row]
+    }
+    
 
     // variables for the text boxes and the cancel button of the EditProfileViewController Class
+    let schoolYears = ["Freshman", "Sophomore", "Junior", "Senior", "Senior+", "Graduate"]
     var delegate: DataSentDelegate? = nil
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
+    @IBOutlet weak var schoolYearPickerView: UIPickerView!
+    var schoolYearPicked: String = ""
     // variable is still needed for the picker for the schoolYear
 
     override func viewDidLoad()
@@ -64,7 +81,7 @@ class EditProfileViewController: UIViewController {
                 let fullName = fNameData! + " " + lNameData!
                 let ageData = ageText.text
                 let majorData = majorText.text
-                let schoolYearData = "Freshmeat"
+                let schoolYearData = schoolYearPicked
                 delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
                 
                 
@@ -74,7 +91,8 @@ class EditProfileViewController: UIViewController {
                 
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
-                                                                             "major": majorData!])
+                                                                             "major": majorData!,
+                                                                             "school year": schoolYearPicked])
                 thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
                 
                 let user = Auth.auth().currentUser

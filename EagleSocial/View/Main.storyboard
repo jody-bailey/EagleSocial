@@ -278,6 +278,10 @@
                                     <constraint firstAttribute="height" constant="99" id="06Y-ta-MrU"/>
                                     <constraint firstAttribute="width" constant="343" id="NJv-Az-xkW"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="lav-IM-FbT" id="2q1-0a-0PB"/>
+                                    <outlet property="delegate" destination="lav-IM-FbT" id="D6y-HR-6HS"/>
+                                </connections>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tg8-Fc-rzJ">
                                 <rect key="frame" x="67" y="576" width="240" height="34"/>
@@ -376,6 +380,7 @@
                         <outlet property="firstNameText" destination="ZjI-JH-aDD" id="pjf-rr-Mwc"/>
                         <outlet property="lastNameText" destination="oQw-4i-RW8" id="86p-gR-Pae"/>
                         <outlet property="majorText" destination="NBV-PK-Jyw" id="sOD-9p-bpY"/>
+                        <outlet property="schoolYearPickerView" destination="Ewh-ei-VEv" id="9dl-gI-BwL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzW-aX-Ru3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -749,10 +754,41 @@
                             <outlet property="delegate" destination="W6j-w3-jel" id="2bv-Tl-uYK"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="6hY-t7-dqX" kind="show" identifier="goToCommentsFromFriend" id="lab-aE-mQT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkF-nk-NTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1255" y="1459"/>
+        </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="JB6-jH-6pO">
+            <objects>
+                <tableViewController id="6hY-t7-dqX" customClass="CommentsViewController" customModule="EagleSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MCy-IA-5aS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="M7Q-Uq-WCT">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7Q-Uq-WCT" id="xMr-Hs-YUe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6hY-t7-dqX" id="ROD-hP-A8T"/>
+                            <outlet property="delegate" destination="6hY-t7-dqX" id="60H-ix-OJg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y91-eV-OfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2075" y="1459"/>
         </scene>
         <!--News Feed-->
         <scene sceneID="EqU-9e-2vn">
