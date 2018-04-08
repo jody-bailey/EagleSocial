@@ -46,7 +46,8 @@ class SettingsViewController: UIViewController {
 //        {
 //            present(vc, animated: true, completion: nil)
 //        }
-        tabBarController?.selectedIndex = 0
+//        tabBarController?.selectedIndex = 0
+        tabBarController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func changeNamePressed(_ sender: UIButton) {
         
