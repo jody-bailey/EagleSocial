@@ -88,9 +88,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
     }
-    
-<<<<<<< HEAD
-=======
 
     override func viewDidAppear(_ animated: Bool) {
         
@@ -123,7 +120,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        }
     }
     
->>>>>>> master
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -159,8 +155,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.profilePicture.image = thisUser.profilePic
             } else {
                 cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
-=======
->>>>>>> master
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
