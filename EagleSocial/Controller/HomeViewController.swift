@@ -258,6 +258,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func commentButtonPressed(sender:AnyObject) {
         var textField = UITextField()
         
+        
         let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
@@ -295,6 +296,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         alert.addTextField { (field) in
             textField = field
             textField.placeholder = "Add a new comment"
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .sentences
         }
         
         present(alert, animated: true, completion: nil)
@@ -314,5 +317,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 vc?.post = self.posts[indexPath.row - 1]
             }
         }
+    }
+    
+    public func getPosts() -> [Post] {
+        return self.posts
     }
 }

@@ -48,7 +48,17 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "goToFriendProfile", sender: self)
+        self.performSegue(withIdentifier: "goToFriendProfile", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is FriendProfileViewController {
+            
+            let vc = segue.destination as? FriendProfileViewController
+            if let indexPath = sender as? IndexPath {
+                vc?.friend = self.friends[indexPath.row]
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

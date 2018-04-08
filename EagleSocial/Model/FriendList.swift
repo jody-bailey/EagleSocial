@@ -26,15 +26,29 @@ class FriendList {
     public func updateList() {
         let ref = Database.database().reference()
         var friends : [Friend] = []
+        var friendParts = [String](repeating: "", count: 4)
         _ = ref.child("Users").observe(.value) { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
             for snap in snapDict {
                 //                print(snap.value.index(forKey: "name")!)
                 for snip in snap.value {
-                    if snip.key == "name" {
-                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
+                    switch(snip.key){
+                    case "name":
+                        friendParts[0] = snip.value as! String
+                    case "age":
+                        friendParts[1] = snip.value as! String
+                    case "major":
+                        friendParts[2] = snip.value as! String
+                    case "school year":
+                        friendParts[3] = snip.value as! String
+                    default:
+                        print("Error getting friend details")
                     }
+//                    if snip.key == "name" {
+//                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
+//                    }
                 }
+                friends.append(Friend(name: friendParts[0], userId: snap.key, age: friendParts[1], major: friendParts[2], schoolYear: friendParts[3]))
             }
             self.friendList = friends
         }

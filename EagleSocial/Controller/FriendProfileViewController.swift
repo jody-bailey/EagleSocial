@@ -10,9 +10,12 @@ import UIKit
 
 class FriendProfileViewController: UITableViewController {
 
+    var friend : Friend?
+    var posts : [Post]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -49,12 +52,19 @@ class FriendProfileViewController: UITableViewController {
         return 1
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5.0
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! ProfileHeaderCell
-            cell.profilePic.image = thisUser.profilePic
-            cell.nameLabel.text = "Jody Bailey"
+            cell.profilePic.image = friend!.profilePic
+            cell.nameLabel.text = friend!.name
+            cell.ageLabel.text = "Age: " + friend!.age
+            cell.majorLabel.text = "Major: " + friend!.major
+            cell.gradYearLabel.text = "Grad year: " + friend!.schoolYear
+            cell.aboutMeLabel.text = "This is going to be the users bio."
             
             return cell
         } else if indexPath.section == 1 {
