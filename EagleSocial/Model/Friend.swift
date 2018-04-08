@@ -54,7 +54,7 @@ class Friend {
         self.profilePic = image
     }
     
-    public func getFriend() -> Friend {
-        return self
-    }
+//    public func getFriend() -> Friend {
+//        return self
+//    }
 }
