@@ -108,19 +108,22 @@ class User
     
     public func setUserAttributes()
     {
-        let ref: DatabaseReference?
-        let handle: DatabaseHandle?
-        
-        let user = Auth.auth().currentUser
-        
-        ref = Database.database().reference()
-        
-        handle = ref?.child("Users").child((user?.uid)!).observe(.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            self.name = value?["name"] as? String ?? ""
-            self.age = value?["age"] as! String
-            self.major = value?["major"] as! String
-            self.schoolYear = value?["school year"] as! String
+        let userid = Auth.auth().currentUser?.uid
+        self.ref = Database.database().reference()
+        self.refHandle = self.ref.child("Users").child(userid!).observe(.value) { (snapshot) in
+            print(snapshot)
+            guard let snapDict = snapshot.value as? [String : String] else { return }
+            
+            guard let name = snapDict["name"],
+                let age = snapDict["age"],
+                let major = snapDict["major"],
+                let schoolYear = snapDict["school year"]
+            else { return }
+            
+            self.name = name
+            self.age = age
+            self.major = major
+            self.schoolYear = schoolYear
         }
         
     }

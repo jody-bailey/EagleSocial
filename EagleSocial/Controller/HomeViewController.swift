@@ -33,7 +33,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+    
+        thisUser.setUserAttributes()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
         friendList.printList()
         let refreshControl = UIRefreshControl()
@@ -93,8 +94,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 //        if (Auth.auth().currentUser) != nil
 //        {
-//            thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
-//            thisUser?.setUserAttributes()
+////            User.thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+//           print("User logged in")
+//        }
+//        
+//        else
+//        {
+//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
+//        }
 //
 //        }
 //        
@@ -150,7 +157,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (self.posts[indexPath.row - 1].userId == thisUser.userID){
                 cell.profilePicture.image = thisUser.profilePic
             } else {
-                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
+//                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
 //                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
             }
             cell.profilePicture.layer.cornerRadius = 10
@@ -172,12 +179,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 cell.likesLabel.text = String(likeCount) + " likes"
             }
-            
-//            if self.posts[indexPath.row - 1].likes[(thisUser?.userID)!]! == true {
-//                cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
-//            } else {
-//                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
-//            }
+            if self.posts[indexPath.row - 1].likes[thisUser.userID] != nil {
+                if self.posts[indexPath.row - 1].likes[thisUser.userID]! == true {
+                    cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+                } else {
+                    cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+                }
+            }
             
             
             return cell
