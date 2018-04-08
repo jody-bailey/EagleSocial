@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainViewController: UIViewController {
 
@@ -23,6 +24,20 @@ class MainViewController: UIViewController {
         
         self.loginButton.layer.cornerRadius = 15
         self.signUpButton.layer.cornerRadius = 15
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print("Error signing out, \(error)")
+//        }
+        
+        if Auth.auth().currentUser != nil {
+//            User.thisUser = User(username: (Auth.auth().currentUser?.displayName)!, userID: (Auth.auth().currentUser?.uid)!)
+            thisUser.setUserAttributes()
+            performSegue(withIdentifier: "goToNewsFeedNow", sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {

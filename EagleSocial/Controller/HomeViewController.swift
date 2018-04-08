@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 
-var thisUser: User?
+//var thisUser: User?
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var refHandle: DatabaseHandle?
     var likeHandle: DatabaseHandle?
     var commentHandle: DatabaseHandle?
-    var thisUser: User?
     
     var postData = [String]()
     var posts = [Post]()
@@ -83,7 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.NewsFeedTable.reloadData()
             
         })
-        thisUser?.updateProfilePic()
+        thisUser.updateProfilePic()
 
         NewsFeedTable.reloadData()
         refreshControl.endRefreshing()
@@ -132,8 +131,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
             
             cell.shareButton.layer.cornerRadius = 10
-            cell.userName.text = thisUser?.name
-            cell.profileImage.image = thisUser?.profilePic
+            cell.userName.text = thisUser.name
+            cell.profileImage.image = thisUser.profilePic
             cell.profileImage.layer.cornerRadius = 10
             cell.profileImage.layer.masksToBounds = true
             cell.statusTextField.placeholder = "Enter your status update here!"
@@ -148,8 +147,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.textBody.text = posts[indexPath.row - 1].message
             cell.setPost(post: [posts[indexPath.row - 1]])
             
-            if (self.posts[indexPath.row - 1].userId == thisUser?.userID){
-                cell.profilePicture.image = thisUser?.profilePic
+            if (self.posts[indexPath.row - 1].userId == thisUser.userID){
+                cell.profilePicture.image = thisUser.profilePic
             } else {
                 cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).profilePic
 //                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
@@ -179,6 +178,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            } else {
 //                cell.likeButton.setTitleColor(UIColor.black, for: .normal)
 //            }
+            
             
             return cell
         }
@@ -237,10 +237,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath != nil {
             print("like button pressed from new function")
             
-            if self.posts[(indexPath?.row)! - 1].likes[(thisUser?.userID)!]! == true {
-                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser?.userID)!)
+            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
             } else {
-                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser?.userID)!)
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser.userID))
             }
             if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
                 self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
@@ -264,8 +264,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var parameters : [String : String] = [:]
                 
 //                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
-                parameters = ["name" : (self.thisUser?.name)!,
-                              "userId" : (self.self.thisUser?.userID)!,
+                parameters = ["name" : (thisUser.name),
+                              "userId" : (thisUser.userID),
                                   "message" : textField.text!]
 //                } else {
 //

@@ -13,12 +13,15 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-//let thisUser = User()
 
-//let thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
+var thisUser = User()
 
 class User
 {
+    var ref : DatabaseReference!
+    var refHandle : DatabaseHandle?
+
+    
     var userID: String
     var name: String
     var age: String
@@ -29,23 +32,45 @@ class User
 
     //let ref = Database.database().reference()
     let storage = Storage.storage()
-    let snapshot = DataSnapshot()
+//    let snapshot = DataSnapshot()
 
-    init(username: String, userID: String)
-{
-    self.userID = userID
-    self.name = username
-    self.age = ""
-    self.major = ""
-    self.schoolYear = ""
-    self.photo = ""
-    self.profilePic = #imageLiteral(resourceName: "profile_icon")
+    init()
+    {
+        self.userID = ""
+        self.name = ""
+        self.age = ""
+        self.major = ""
+        self.schoolYear = ""
+        self.photo = ""
+        self.profilePic = #imageLiteral(resourceName: "profile_icon")
+        self.updateUser()
+        self.updateProfilePic()
+
+    }
     
-    self.updateProfilePic()
-
-}
+    public func updateUser() {
+        let userid = Auth.auth().currentUser?.uid
+        self.ref = Database.database().reference()
+        self.refHandle = self.ref.child("Users").child(userid!).observe(.value) { (snapshot) in
+            print(snapshot)
+            guard let snapDict = snapshot.value as? [String : String] else { return }
+            
+            guard let name = snapDict["name"],
+                let age = snapDict["age"],
+                let major = snapDict["major"],
+                let schoolYear = snapDict["school year"]
+                else { return }
+            
+            self.userID = userid!
+            self.name = name
+            self.age = age
+            self.major = major
+            self.schoolYear = schoolYear
+        }
+    }
     
-
+    
+// static var thisUser : User = User(username: (Auth.auth().currentUser?.displayName)!, userID: (Auth.auth().currentUser?.uid)!)
 
     
 /*init(username: String, userAge: String, userMajor: String, userSchoolYear: String, userPhoto: String)
@@ -97,7 +122,8 @@ class User
             self.major = value?["major"] as! String
             self.schoolYear = value?["school year"] as! String
         }
-        )}
+        
+    }
     
     public func updateUserAttributes(username: String, userAge: String, userMajor: String, userSchoolYear: String)
     {
@@ -136,25 +162,42 @@ class User
         }
     }
  
-
-    
-    static let thisUser : User = {
-        let userId = Auth.auth().currentUser?.uid
-        let ref = Database.database().reference().child("Users").child(userId!)
-        var instance : User?
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let username = value?["name"] as? String ?? ""
-            instance = User(username: username, userID: userId!)
-        })
-
-
-//        let instance = User(username: userId!)
+//    func getInstance() -> User {
+//        let userId = Auth.auth().currentUser?.uid
+//        self.ref = Database.database().reference()
+//        var instance : User?
 //
-        return instance!
-    }()
-
+//        self.ref?.child("Users").child(userId!).observeSingleEvent(of: .value, with: { (snapshot) in
+//            // Get user value
+//            print(snapshot)
+//            let value = snapshot.value as? NSDictionary
+//            let username = value?["name"] as? String ?? ""
+//            instance = User(username: username, userID: userId!)
+//
+//            // ...
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//
+////        ref?.child("Users").child(userId!).observeSingleEvent(of: .value, with: { (snapshot) in
+////            print(snapshot)
+////            let value = snapshot.value as? NSDictionary
+////            let username = value!["name"] as? String
+////            instance = User(username: username!, userID: userId!)
+////        })
+//
+//        return instance!
+//    }
+//
+//    static let thisUser : User = {
+//        let crap = User(username: "crap", userID: "crap")
+//        let instance : User = crap.getInstance()
+//
+////        let instance = User(username: userId!)
+////
+//        return instance
+//    }()
+//
+//}
 }
-
 //changes need to be made to the user struct to store user attributes other than user name. These other attributes are needed to share user info between view controllers. I attempted to make changes, but this caused an error with the user status table view. I reverted the changes so that the team could discuss the best approach.
