@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Friends-->
         <scene sceneID="Sga-4V-oDf">
@@ -278,6 +283,10 @@
                                     <constraint firstAttribute="height" constant="99" id="06Y-ta-MrU"/>
                                     <constraint firstAttribute="width" constant="343" id="NJv-Az-xkW"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="lav-IM-FbT" id="2q1-0a-0PB"/>
+                                    <outlet property="delegate" destination="lav-IM-FbT" id="D6y-HR-6HS"/>
+                                </connections>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tg8-Fc-rzJ">
                                 <rect key="frame" x="67" y="576" width="240" height="34"/>
@@ -376,6 +385,7 @@
                         <outlet property="firstNameText" destination="ZjI-JH-aDD" id="pjf-rr-Mwc"/>
                         <outlet property="lastNameText" destination="oQw-4i-RW8" id="86p-gR-Pae"/>
                         <outlet property="majorText" destination="NBV-PK-Jyw" id="sOD-9p-bpY"/>
+                        <outlet property="schoolYearPickerView" destination="Ewh-ei-VEv" id="9dl-gI-BwL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzW-aX-Ru3" userLabel="First Responder" sceneMemberID="firstResponder"/>
