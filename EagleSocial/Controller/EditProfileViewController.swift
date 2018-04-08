@@ -40,7 +40,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     
 
     // variables for the text boxes and the cancel button of the EditProfileViewController Class
-    let schoolYears = ["Freshman", "Sophmore", "Junior", "Senior", "Senior+", "Graduate"]
+    let schoolYears = ["Freshman", "Sophomore", "Junior", "Senior", "Senior+", "Graduate"]
     var delegate: DataSentDelegate? = nil
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var firstNameText: UITextField!
