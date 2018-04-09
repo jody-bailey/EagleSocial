@@ -16,11 +16,37 @@ class FriendList {
     
     // Variable to store the user's friends
     private var friendList : [Friend]
+    var friendRequests : [Person]
     
     init() {
         // Initialize the friends list as an empty array
         self.friendList = []
+        self.friendRequests = []
         self.updateList()
+    }
+    
+    func updateFriendRequests() {
+        let ref = Database.database().reference()
+        _ = ref.child("Requests").child(thisUser.userID).observe(.value, with: { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            
+            var userId : String?
+            
+            for snap in snapDict {
+                for snip in snap.value {
+                    if snip.key == "from" {
+                        userId = (snip.value as! String)
+                    }
+                    if snip.value as? Bool == true {
+                        for user in allUsers.people {
+                            if user.userId == userId {
+                                self.friendRequests.append(user)
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
     public func updateList() {

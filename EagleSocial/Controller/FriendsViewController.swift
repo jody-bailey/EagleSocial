@@ -38,6 +38,9 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
 //        friendTableView.addGestureRecognizer(tapGesture)
         
+        friendList.updateFriendRequests()
+
+        
         configureTableView()
         
         friendTableView.reloadData()
@@ -47,26 +50,48 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         var textField = UITextField()
         var ref : DatabaseReference?
         
-        let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Send Friend Request", message: "Enter email", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let action = UIAlertAction(title: "Send", style: .default) { (action) in
             ref = Database.database().reference()
             
             let email = textField.text
+            var userFound : Bool = false
+            var person : Person?
             
-            let params = ["from" : thisUser.userID,
-                          "active" : true] as [String : Any]
-            ref?.child("Friend Requests").child(email!).setValue(params)
+            for user in allUsers.getAllUsers() {
+                if user.email == email {
+                    userFound = true
+                    person = user
+                }
+            }
             
-            self.friendTableView.reloadData()
+            if userFound {
+                let params = ["from" : thisUser.userID,
+                              "active" : true] as [String : Any]
+                ref?.child("Requests").child((person?.userId)!).childByAutoId().setValue(params)
+                
+                self.friendTableView.reloadData()
+                friendList.updateFriendRequests()
+            }
+            else {
+                textField.text = ""
+                textField.placeholder = "User not found"
+                self.present(alert, animated: true, completion: nil)
+            }
             
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
         alert.addAction(action)
+        alert.addAction(cancelAction)
         
         alert.addTextField { (field) in
             textField = field
-            textField.placeholder = "Email address"
+            textField.placeholder = "john.doe@usm.edu"
             textField.keyboardType = .default
         }
         

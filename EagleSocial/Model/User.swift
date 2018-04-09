@@ -8,11 +8,6 @@
 
 import Foundation
 import Firebase
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
-
-
 
 var thisUser = User()
 
@@ -24,20 +19,19 @@ class User
     
     var userID: String
     var name: String
+    var email: String
     var age: String
     var major: String
     var schoolYear: String
     var photo: String
     var profilePic: UIImage
 
-    //let ref = Database.database().reference()
-    
-//    let snapshot = DataSnapshot()
 
     init()
     {
         self.userID = ""
         self.name = ""
+        self.email = ""
         self.age = ""
         self.major = ""
         self.schoolYear = ""
@@ -55,6 +49,7 @@ class User
             guard let snapDict = snapshot.value as? [String : String] else { return }
             
             guard let name = snapDict["name"],
+                let email = snapDict["email"],
                 let age = snapDict["age"],
                 let major = snapDict["major"],
                 let schoolYear = snapDict["school year"]
@@ -63,6 +58,7 @@ class User
             
             self.userID = userid!
             self.name = name
+            self.email = email
             self.age = age
             self.major = major
             self.schoolYear = schoolYear

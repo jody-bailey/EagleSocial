@@ -89,7 +89,7 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
             
             let snapshowValue = snapshot.value as! Dictionary<String, Any>
             
-            let user = Person(name: snapshowValue["name"]! as! String, email: snapshowValue["major"]! as! String)
+            let user = Person(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
             
             self.userArray.append(user)
             

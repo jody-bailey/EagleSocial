@@ -36,6 +36,7 @@ class ProfileCreationViewController: UIViewController {
     @IBAction func buttonClicked(_ sender: UIButton) {
         
         let user = Auth.auth().currentUser
+        let email = user?.email
         
         if let userId = user?.uid {
             let username = self.firstNameTextField.text! + " " + self.lastNameTextField.text!
@@ -57,6 +58,7 @@ class ProfileCreationViewController: UIViewController {
 //            User.thisUser.updateUserAttributes(username: username, userAge: age, userMajor: major, userSchoolYear: schoolYear)
             
             let parameters = ["name": username,
+                              "email": email!,
                               "age": age,
                               "major": major,
                               "school year": schoolYear] as [String : Any]
