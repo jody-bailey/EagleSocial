@@ -47,17 +47,17 @@ class Conversation {
         
         username = ""
         displayName = "Still working on getting name"
-      /*  //Set the username property.
+        //Set the username property.
         
         //Loop through and get the user name of the other person in the conversation.
         for (userIDkey, userIDvalue) in mem {
             if userIDkey != ((Auth.auth().currentUser?.uid)!) {
-                self.username = String(describing: userIDkey)
+                self.displayName = String(describing: userIDvalue)
                 break
             }
         }
         
-        let userDB = Database.database().reference().child("Users").child(username)
+        /*let userDB = Database.database().reference().child("Users").child(username)
         
         userDB.observeSingleEvent(of: .value, with: {(snapshot) in
             let snapshotValue = snapshot.value as! Dictionary<String,Any>

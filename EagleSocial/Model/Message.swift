@@ -15,7 +15,7 @@ class Message {
     private var messageBody : String
     private var conversationID : String
     private var messageDictionary : Dictionary<String, Any>
-    private var members : Dictionary<String,Bool>
+    private var members : Dictionary<String,String>
     
     init() {
         senderId = ""
@@ -23,9 +23,9 @@ class Message {
         conversationID = ""
         
         messageDictionary = ["Sender" : "a", "MessageBody" : "b", "ConversationID": "c"]
-        members = ["abc": true, "123": true]
+        members = ["abc": "true", "123": "true"]
     }
-    init(membersa: Dictionary<String, Bool>, messageDictionarya: Dictionary<String, Any>)
+    init(membersa: Dictionary<String, String>, messageDictionarya: Dictionary<String, Any>)
     {
         senderId = String(describing: messageDictionarya["Sender"]!)
         messageBody = String(describing: messageDictionarya["MessageBody"]!)
@@ -147,7 +147,7 @@ class Message {
     func getMessageDictionary() -> Dictionary <String, Any> {
         return messageDictionary
     }
-    func getMembers() -> Dictionary <String, Bool> {
+    func getMembers() -> Dictionary <String, String> {
         return members
     }
     
