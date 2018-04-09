@@ -102,7 +102,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         //Retrieve conversations as they come in.
-        let conversationDB = Database.database().reference().child("Conversation").queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!).queryEqual(toValue: true)
+        let conversationDB = Database.database().reference().child("Conversation").queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!).queryEqual(toValue: Auth.auth().currentUser?.displayName!)
         
         
         conversationDB.observe(.childAdded) {(snapshot) in
@@ -118,7 +118,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.messageTableView.reloadData()
             
         }//end observe child added.
-        
         
     }//end retrieve conversation func
     

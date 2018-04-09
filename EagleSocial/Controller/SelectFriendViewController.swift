@@ -84,6 +84,9 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         
         //Load the user's profile image into the profilImage
         //TODO: - Modify the classes/models to pull down user's profile picture.
+        selectFriendCell.profileImage.layer.cornerRadius = 10
+        selectFriendCell.profileImage.layer.masksToBounds = true
+        
         selectFriendCell.profileImage.image = friendArray[indexPath.row].profilePic
         
         //Post the newly created cell into the tableview. 
