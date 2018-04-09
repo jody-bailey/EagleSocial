@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -42,6 +43,36 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         friendTableView.reloadData()
     }
 
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        var ref : DatabaseReference?
+        
+        let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            ref = Database.database().reference()
+            
+            let email = textField.text
+            
+            let params = ["from" : thisUser.userID,
+                          "active" : true] as [String : Any]
+            ref?.child("Friend Requests").child(email!).setValue(params)
+            
+            self.friendTableView.reloadData()
+            
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Email address"
+            textField.keyboardType = .default
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
