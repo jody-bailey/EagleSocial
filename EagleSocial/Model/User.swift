@@ -52,7 +52,6 @@ class User
         let userid = Auth.auth().currentUser?.uid
         self.ref = Database.database().reference()
         self.refHandle = self.ref.child("Users").child(userid!).observe(.value) { (snapshot) in
-            print(snapshot)
             guard let snapDict = snapshot.value as? [String : String] else { return }
             
             guard let name = snapDict["name"],
@@ -88,7 +87,6 @@ class User
         let userid = Auth.auth().currentUser?.uid
         self.ref = Database.database().reference()
         self.refHandle = self.ref.child("Users").child(userid!).observe(.value) { (snapshot) in
-            print(snapshot)
             guard let snapDict = snapshot.value as? [String : String] else { return }
             
             guard let name = snapDict["name"],

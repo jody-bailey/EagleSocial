@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
         thisUser.setUserAttributes()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
-        friendList.printList()
+//        friendList.printList()
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
@@ -76,7 +76,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
-            print(snapshot)
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
             self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
@@ -241,7 +240,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
         let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
-            print("like button pressed from new function")
             
             if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
                 self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
@@ -266,7 +264,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
             let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
-                print("comment button pressed from new function")
                 
                 var parameters : [String : String] = [:]
                 

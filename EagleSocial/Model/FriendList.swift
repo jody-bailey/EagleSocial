@@ -29,6 +29,7 @@ class FriendList {
         var friendParts = [String](repeating: "", count: 4)
         _ = ref.child("Users").observe(.value) { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            self.friendList = [Friend]()
             for snap in snapDict {
                 //                print(snap.value.index(forKey: "name")!)
                 for snip in snap.value {
@@ -97,6 +98,9 @@ class FriendList {
                 myFriend = friend
                 break
             }
+        }
+        if myFriend == nil {
+            myFriend = Friend()
         }
         return myFriend!
     }

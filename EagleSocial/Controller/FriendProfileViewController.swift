@@ -40,14 +40,10 @@ class FriendProfileViewController: UITableViewController {
                 done = self.removePost(posts: self.posts)
             } while (done)
             
-            print(self.posts)
             self.tableView.reloadData()
             
         })
         
-        
-        
-        print(self.posts)
         
         configureTableView()
         // Uncomment the following line to preserve selection between presentations
@@ -156,7 +152,6 @@ class FriendProfileViewController: UITableViewController {
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
-            print("like button pressed from new function")
             
             if self.posts[(indexPath?.section)! - 1].likes[thisUser.userID] == true {
                 self.posts[(indexPath?.section)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
@@ -181,7 +176,6 @@ class FriendProfileViewController: UITableViewController {
             let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
             let indexPath = self.tableView.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
-                print("comment button pressed from new function")
                 
                 var parameters : [String : String] = [:]
                 
