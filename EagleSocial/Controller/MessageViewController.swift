@@ -13,10 +13,12 @@ protocol CanRecieve {
     func dataReceived(data: String)
 }
 
-class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CanReceiveUserData {
     
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
+    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "")
+    
     var delagate : CanRecieve?
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
@@ -144,7 +146,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             
             //Construct the members list for the current conversation/message.
             let members : [String : Bool] = [String((Auth.auth().currentUser?.uid)!) : true,
-                                             String("IJHzyU11xmgk29y68TIhT7YkZHQ2") : true]
+                                             String(selectedFriend.userId) : true]
             
             //Construct the message dictionary for the current conversation/message.
             //Sender, MessageBody, Conversation
@@ -167,6 +169,8 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             //Set the message text field to an empty string so that the previous message
             //does not stay in the messageTextField with the potential to be sent again.
             self.messageTextField.text = ""
+            
+            updateUserInterface()
         }
     }
     func retrieveMessage()
@@ -223,10 +227,16 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         
         performSegue(withIdentifier: "selectUserToChatWith", sender: self)
         
-        receipientLabel.text = "Michael Pearson"
-        updateUserInterface()
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectUserToChatWith" {
+            let selectFriendVC = segue.destination as! SelectFriendViewController
+            
+            selectFriendVC.delegate = self
+        }
+    }
     @IBAction func removeUserFromConversation(_ sender: Any) {
         receipientLabel.text = ""
         
@@ -294,12 +304,25 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             receipientLabelBackgroundView.backgroundColor = UIColor.white
             addNewUserToConversationButton.isHidden = true
             removeSelectedUserButton.isHidden = false
-        } else {
+        }  else {
             receipientLabelBackgroundView.backgroundColor = UIColor(named: "Clear")
             addNewUserToConversationButton.isHidden = false
             removeSelectedUserButton.isHidden = true
         }
+        
+        if conversationID != "" {
+            addNewUserToolBar.isHidden = true
+            addNewUserToolBarHeightConstraint.constant = 0
+        }
     }
+    
+    func userDataReceived(data: Friend)
+    {
+        selectedFriend = data
+        receipientLabel.text = selectedFriend.name
+        updateUserInterface()
+    }
+    
 }
 
 
