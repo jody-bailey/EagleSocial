@@ -19,7 +19,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
             thisUser.setUserAttributes()
+            thisUser.updateProfilePic()
             userNameLabel.text = thisUser.name
             ageLabel.text = thisUser.age
             majorLabel.text = thisUser.major
@@ -180,7 +181,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "goToEdit"
         {
             let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
-            editProfileViewController.delegate = self
         }
     }
     
