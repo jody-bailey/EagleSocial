@@ -17,7 +17,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
-    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "")
+    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "", email: "")
     
     var delagate : CanRecieve?
     
