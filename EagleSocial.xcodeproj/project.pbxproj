@@ -52,6 +52,7 @@
 		C8C1087B206A10E7008ED717 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C1087A206A10E7008ED717 /* Person.swift */; };
 		C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2ABB2205DF84400D77D97 /* CommentCell.swift */; };
 		C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D2ABB3205DF84400D77D97 /* CommentCell.xib */; };
+		C8D6594A207C099E008403C6 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D65949207C099E008403C6 /* Users.swift */; };
 		C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FB6E872076B1B100856484 /* CommentsViewController.swift */; };
 		C8FC92C82079F5AF000DFFA4 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC92C72079F5AF000DFFA4 /* FriendProfileViewController.swift */; };
 		C8FC92CC2079F6E7000DFFA4 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC92CA2079F6E7000DFFA4 /* ProfileHeaderCell.swift */; };
@@ -106,6 +107,7 @@
 		C8C1087A206A10E7008ED717 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C8D2ABB2205DF84400D77D97 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		C8D2ABB3205DF84400D77D97 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		C8D65949207C099E008403C6 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		C8FB6E872076B1B100856484 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		C8FC92C72079F5AF000DFFA4 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		C8FC92CA2079F6E7000DFFA4 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				C8C1087A206A10E7008ED717 /* Person.swift */,
 				C84B419220772B8F00CB2FB4 /* Comment.swift */,
 				64007BD620799C70008750F9 /* Conversation.swift */,
+				C8D65949207C099E008403C6 /* Users.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
+				C8D6594A207C099E008403C6 /* Users.swift in Sources */,
 				C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
 				C8A771D42022ABD500AF492D /* ChatViewController.swift in Sources */,
