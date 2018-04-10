@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChangeEmailViewController: UIViewController {
 
@@ -16,10 +17,13 @@ class ChangeEmailViewController: UIViewController {
     @IBOutlet weak var oldEmailTextField: UITextField!
     @IBOutlet weak var newEmailTextField: UITextField!
     @IBOutlet weak var confirmEmailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hideKeyboardWhenTappedAround()
+        self.saveButton.layer.cornerRadius = 10
+        self.cancelButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
     
@@ -35,6 +39,32 @@ class ChangeEmailViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        let oldEmail = self.oldEmailTextField.text!
+        let newEmail = self.newEmailTextField.text!
+        let email = Auth.auth().currentUser?.email
+        let password = self.passwordTextField.text!
+        
+        if oldEmail == email {
+            let credential = EmailAuthProvider.credential(withEmail: email!, password: password)
+            Auth.auth().currentUser?.reauthenticate(with: credential, completion: { (error) in
+                if error == nil {
+                    Auth.auth().currentUser?.updateEmail(to: newEmail) { (errror) in
+                        print(errror as Any)
+                    }
+                    let ref = Database.database().reference()
+                    ref.child("Users").child(thisUser.userID).updateChildValues(["email" : newEmail])
+                } else {
+                    print(error as Any)
+                }
+            })
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.oldEmailTextField.text = ""
+            self.oldEmailTextField.placeholder = "Incorrect Email"
+            self.newEmailTextField.text = ""
+            self.passwordTextField.text = ""
+        }
+        
     }
     
     /*

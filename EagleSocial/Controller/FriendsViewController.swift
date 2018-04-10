@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -37,11 +38,66 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
 //        friendTableView.addGestureRecognizer(tapGesture)
         
+        friendList.updateFriendRequests()
+
+        
         configureTableView()
         
         friendTableView.reloadData()
     }
 
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        var ref : DatabaseReference?
+        
+        let alert = UIAlertController(title: "Send Friend Request", message: "Enter email", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Send", style: .default) { (action) in
+            ref = Database.database().reference()
+            
+            let email = textField.text
+            var userFound : Bool = false
+            var person : Person?
+            
+            for user in allUsers.getAllUsers() {
+                if user.email == email {
+                    userFound = true
+                    person = user
+                }
+            }
+            
+            if userFound {
+                let params = ["from" : thisUser.userID,
+                              "active" : true] as [String : Any]
+                ref?.child("Requests").child((person?.userId)!).childByAutoId().setValue(params)
+                
+                self.friendTableView.reloadData()
+                friendList.updateFriendRequests()
+            }
+            else {
+                textField.text = ""
+                textField.placeholder = "User not found"
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "john.doe@usm.edu"
+            textField.keyboardType = .default
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
