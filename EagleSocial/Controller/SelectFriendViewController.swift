@@ -46,7 +46,9 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         //See function definition for more information on what this item does.
         configureTableView()
         
-        retrieveUsers()
+        //retrieveUsers()
+        
+        selectFriendTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,10 +119,10 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         
         userDB.observe(.childAdded) { (snapshot) in
             
-           // let snapshowValue = snapshot.value as! Dictionary<String, Any>
+            //let snapshowValue = snapshot.value as! Dictionary<String, Any>
             
 
-            let user = Person(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+            //let user = Friend(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
             
             //self.friendArray.append(user)
             
