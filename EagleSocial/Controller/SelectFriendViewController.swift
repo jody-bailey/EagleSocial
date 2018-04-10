@@ -15,7 +15,7 @@ protocol CanReceiveUserData {
 class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     var friendArray = [Friend]()
-    private var selectedFriend : Friend = Friend(name: "", userId: "", age: "", major: "", schoolYear: "")
+    private var selectedFriend : Friend = Friend(name: "", userId: "", age: "", major: "", schoolYear: "", email: "")
     
     var delegate : CanReceiveUserData?
     
@@ -118,11 +118,15 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         userDB.observe(.childAdded) { (snapshot) in
             
             let snapshowValue = snapshot.value as! Dictionary<String, Any>
+            var user : Friend?
             
+            for snap in snapshowValue {
+                user = Friend(name: snapshowValue["name"]! as! String, userId: snap.key , age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+            }
 
-            let user = Person(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
             
-            //self.friendArray.append(user)
+            
+            self.friendArray.append(user!)
             
             self.configureTableView()
             

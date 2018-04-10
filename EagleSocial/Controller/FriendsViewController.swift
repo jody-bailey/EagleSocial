@@ -12,7 +12,6 @@ import Firebase
 class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var friendTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     var friends = [Friend]()
     var friendRequests = [Person]()
@@ -210,7 +209,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let buttonPosition = sender.convert(CGPoint.zero, to: self.friendTableView)
         let indexPath = self.friendTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
-            friendList.addFriend(friend: Friend(name: self.friendRequests[(indexPath?.row)!].name, userId: self.friendRequests[(indexPath?.row)!].userId, age: self.friendRequests[(indexPath?.row)!].age, major: self.friendRequests[(indexPath?.row)!].major, schoolYear: self.friendRequests[(indexPath?.row)!].schoolYear))
+            friendList.addFriend(friend: Friend(name: self.friendRequests[(indexPath?.row)!].name, userId: self.friendRequests[(indexPath?.row)!].userId, age: self.friendRequests[(indexPath?.row)!].age, major: self.friendRequests[(indexPath?.row)!].major, schoolYear: self.friendRequests[(indexPath?.row)!].schoolYear, email: self.friendRequests[(indexPath?.row)!].email))
            
         }
         
