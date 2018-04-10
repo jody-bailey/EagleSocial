@@ -46,6 +46,10 @@ class FriendList {
                     }
                 }
             }
+            
+        }, withCancel: {(err) in
+            
+            print(err)
         })
     }
     

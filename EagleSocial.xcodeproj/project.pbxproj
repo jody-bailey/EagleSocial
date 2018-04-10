@@ -53,6 +53,8 @@
 		C8D2ABB4205DF84400D77D97 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2ABB2205DF84400D77D97 /* CommentCell.swift */; };
 		C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D2ABB3205DF84400D77D97 /* CommentCell.xib */; };
 		C8D6594A207C099E008403C6 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D65949207C099E008403C6 /* Users.swift */; };
+		C8D6594D207C5957008403C6 /* FriendRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D6594B207C5957008403C6 /* FriendRequestCell.swift */; };
+		C8D6594E207C5957008403C6 /* FriendRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8D6594C207C5957008403C6 /* FriendRequestCell.xib */; };
 		C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FB6E872076B1B100856484 /* CommentsViewController.swift */; };
 		C8FC92C82079F5AF000DFFA4 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC92C72079F5AF000DFFA4 /* FriendProfileViewController.swift */; };
 		C8FC92CC2079F6E7000DFFA4 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC92CA2079F6E7000DFFA4 /* ProfileHeaderCell.swift */; };
@@ -108,6 +110,8 @@
 		C8D2ABB2205DF84400D77D97 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		C8D2ABB3205DF84400D77D97 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		C8D65949207C099E008403C6 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		C8D6594B207C5957008403C6 /* FriendRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestCell.swift; sourceTree = "<group>"; };
+		C8D6594C207C5957008403C6 /* FriendRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestCell.xib; sourceTree = "<group>"; };
 		C8FB6E872076B1B100856484 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		C8FC92C72079F5AF000DFFA4 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		C8FC92CA2079F6E7000DFFA4 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 				C8D2ABB3205DF84400D77D97 /* CommentCell.xib */,
 				C8FC92CA2079F6E7000DFFA4 /* ProfileHeaderCell.swift */,
 				C8FC92CB2079F6E7000DFFA4 /* ProfileHeaderCell.xib */,
+				C8D6594B207C5957008403C6 /* FriendRequestCell.swift */,
+				C8D6594C207C5957008403C6 /* FriendRequestCell.xib */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 				C8A771DE2022BDD500AF492D /* NewsFeedTableViewCell.xib in Resources */,
 				C8D2ABB5205DF84400D77D97 /* CommentCell.xib in Resources */,
 				644867E7205F51AB00A90512 /* MessageCell.xib in Resources */,
+				C8D6594E207C5957008403C6 /* FriendRequestCell.xib in Resources */,
 				C8049BB52046064D00FAC2CC /* FriendTableViewCell.xib in Resources */,
 				C8479F7B203806E9002A9E9E /* StatusUpdateTableViewCell.xib in Resources */,
 				C8A771CC202282C300AF492D /* Main.storyboard in Resources */,
@@ -447,6 +454,7 @@
 				C8A771DD2022BDD500AF492D /* NewsFeedTableViewCell.swift in Sources */,
 				C86ABB8C2019666900163279 /* MainViewController.swift in Sources */,
 				C86ABB7C2018E8A900163279 /* LoginViewController.swift in Sources */,
+				C8D6594D207C5957008403C6 /* FriendRequestCell.swift in Sources */,
 				C8D6594A207C099E008403C6 /* Users.swift in Sources */,
 				C8FB6E882076B1B100856484 /* CommentsViewController.swift in Sources */,
 				C86ABB8E20197A2A00163279 /* SignUpViewController.swift in Sources */,
