@@ -13,10 +13,12 @@ protocol CanRecieve {
     func dataReceived(data: String)
 }
 
-class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CanReceiveUserData {
     
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
+    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "")
+    
     var delagate : CanRecieve?
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
@@ -59,7 +61,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         conversationTableView.addGestureRecognizer(tapGesterRecognizer)
         
         //Register the custom table cell MessageCell.xib
-        conversationTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+        conversationTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
         
         //Add observers to see when the keyboard will show or will be dismissed.
         //Observers used to get keyboard height.
@@ -97,7 +99,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Set which custom table cell to use in the conversation table view.
-        let messageCell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
+        let messageCell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! MessageCell
         
         //Load the Message body into the MessageBody label in the TableView Message Cell
         messageCell.messageBodyLabel.text = messageArray[indexPath.row].getMessageBody()
@@ -130,6 +132,12 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         
         //Prevent blank messages from being sent.
         if messageTextField.text != "" {
+            var conversationIDWasEmpty : Bool
+            
+            if conversationID == "" {
+                conversationIDWasEmpty = true
+            }
+            else {conversationIDWasEmpty = false}
             
             //End editing for the messageTextField.
             messageTextField.endEditing(true)
@@ -143,8 +151,8 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             sendButton.isEnabled = false
             
             //Construct the members list for the current conversation/message.
-            let members : [String : Bool] = [String((Auth.auth().currentUser?.uid)!) : true,
-                                             String("IJHzyU11xmgk29y68TIhT7YkZHQ2") : true]
+            let members : [String : String] = [String((Auth.auth().currentUser?.uid)!) : (Auth.auth().currentUser?.displayName)!,
+                                             String(selectedFriend.userId) : selectedFriend.name]
             
             //Construct the message dictionary for the current conversation/message.
             //Sender, MessageBody, Conversation
@@ -157,7 +165,11 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             
             //Send the message.
             self.conversationID = message.sendMessage()
-            
+            if conversationIDWasEmpty == true {
+                conversationIDWasEmpty = false
+                
+                retrieveMessage()
+            }
             //ReEnable the messageTextField so the user can compose more messages.
             self.messageTextField.isEnabled = true
             
@@ -167,6 +179,10 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             //Set the message text field to an empty string so that the previous message
             //does not stay in the messageTextField with the potential to be sent again.
             self.messageTextField.text = ""
+            
+            //retrieveMessage()
+            updateUserInterface()
+            
         }
     }
     func retrieveMessage()
@@ -223,10 +239,16 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         
         performSegue(withIdentifier: "selectUserToChatWith", sender: self)
         
-        receipientLabel.text = "Michael Pearson"
-        updateUserInterface()
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectUserToChatWith" {
+            let selectFriendVC = segue.destination as! SelectFriendViewController
+            
+            selectFriendVC.delegate = self
+        }
+    }
     @IBAction func removeUserFromConversation(_ sender: Any) {
         receipientLabel.text = ""
         
@@ -294,12 +316,25 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             receipientLabelBackgroundView.backgroundColor = UIColor.white
             addNewUserToConversationButton.isHidden = true
             removeSelectedUserButton.isHidden = false
-        } else {
+        }  else {
             receipientLabelBackgroundView.backgroundColor = UIColor(named: "Clear")
             addNewUserToConversationButton.isHidden = false
             removeSelectedUserButton.isHidden = true
         }
+        
+        if conversationID != "" {
+            addNewUserToolBar.isHidden = true
+            addNewUserToolBarHeightConstraint.constant = 0
+        }
     }
+    
+    func userDataReceived(data: Friend)
+    {
+        selectedFriend = data
+        receipientLabel.text = selectedFriend.name
+        updateUserInterface()
+    }
+    
 }
 
 

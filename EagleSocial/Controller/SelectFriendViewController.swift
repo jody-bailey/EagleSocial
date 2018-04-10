@@ -9,16 +9,30 @@
 import UIKit
 import Firebase
 
+protocol CanReceiveUserData {
+    func userDataReceived(data: Friend)
+}
 class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    var userArray : [Person] = [Person]()
+    var friendArray = [Friend]()
+    private var selectedFriend : Friend = Friend(name: "", userId: "", age: "", major: "", schoolYear: "")
+    
+    var delegate : CanReceiveUserData?
     
     @IBOutlet var selectFriendTableView: UITableView!
     @IBOutlet var selectFriendSearchTextBox: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        for friend in friendList.getFriendList() {
+            if friend.userId == thisUser.userID {
+                friendList.removeFriend(friend: friend)
+            }
+        }
+        
+        friendArray = friendList.getFriendList()
+        
         //set the delagate for the selectFriendTableView
         selectFriendTableView.delegate = self
         
@@ -63,22 +77,38 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         let selectFriendCell = tableView.dequeueReusableCell(withIdentifier: "SelectFriendTableViewCell", for: indexPath) as! SelectFriendTableViewCell
         
         //Load the user's name into the name label
-        selectFriendCell.nameLabel.text = userArray[indexPath.row].name
+        selectFriendCell.nameLabel.text = friendArray[indexPath.row].name
         
         //Load the user's major into the major label.
-        selectFriendCell.majorLabel.text = userArray[indexPath.row].email
+        selectFriendCell.majorLabel.text = friendArray[indexPath.row].major
         
         //Load the user's profile image into the profilImage
         //TODO: - Modify the classes/models to pull down user's profile picture.
-        selectFriendCell.profileImage.image = UIImage(named: "profile_icon")
+        selectFriendCell.profileImage.layer.cornerRadius = 10
+        selectFriendCell.profileImage.layer.masksToBounds = true
+        
+        selectFriendCell.profileImage.image = friendArray[indexPath.row].profilePic
         
         //Post the newly created cell into the tableview. 
         return selectFriendCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Get the selected friend.
+        selectedFriend = friendArray[indexPath.row]
+        
+        //Send the selected friend back to the
+        //MessageViewController.
+        delegate?.userDataReceived(data: selectedFriend)
+        
+        //Dismiss the SelectFriendViewController. 
+        dismiss(animated: true, completion: nil)
+    }
+    
     //Set how many rows to display will display in th table view.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userArray.count
+        return friendArray.count
     }
     
     //Retrieve the users from the database.
@@ -87,11 +117,12 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         
         userDB.observe(.childAdded) { (snapshot) in
             
-            let snapshowValue = snapshot.value as! Dictionary<String, Any>
+           // let snapshowValue = snapshot.value as! Dictionary<String, Any>
             
+
             let user = Person(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
             
-            self.userArray.append(user)
+            //self.friendArray.append(user)
             
             self.configureTableView()
             
