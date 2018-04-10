@@ -15,7 +15,7 @@ let friendList = FriendList()
 class FriendList {
     
     // Variable to store the user's friends
-    private var friendList : [Friend]
+    private var friendList : [Person]
     var friendRequests : [Person]
     
     init() {
@@ -55,36 +55,53 @@ class FriendList {
     
     public func updateList() {
         let ref = Database.database().reference()
-        var friends : [Friend] = []
-        var friendParts = [String](repeating: "", count: 5)
-        _ = ref.child("Users").observe(.value) { (snapshot) in
-            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
-            self.friendList = [Friend]()
-            for snap in snapDict {
-                //                print(snap.value.index(forKey: "name")!)
-                for snip in snap.value {
-                    switch(snip.key){
-                    case "name":
-                        friendParts[0] = snip.value as! String
-                    case "age":
-                        friendParts[1] = snip.value as! String
-                    case "major":
-                        friendParts[2] = snip.value as! String
-                    case "school year":
-                        friendParts[3] = snip.value as! String
-                    case "email":
-                        friendParts[4] = snip.value as! String
-                    default:
-                        print("Error getting friend details")
+        do{
+            _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
+                guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+                
+                for snap in snapDict {
+                    print(snap)
+                    for snip in snap.value {
+                        let friend = allUsers.getUser(userId: snip.value as! String)
+                        self.friendList.append(friend)
                     }
-//                    if snip.key == "name" {
-//                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
-//                    }
                 }
-                friends.append(Friend(name: friendParts[0], userId: snap.key, age: friendParts[1], major: friendParts[2], schoolYear: friendParts[3], email: friendParts[4]))
-            }
-            self.friendList = friends
+            })
         }
+//        catch {
+//            print(error)
+//        }
+//
+//        var friends : [Friend] = []
+//        var friendParts = [String](repeating: "", count: 5)
+//        _ = ref.child("Users").observe(.value) { (snapshot) in
+//            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+//            self.friendList = [Friend]()
+//            for snap in snapDict {
+//                //                print(snap.value.index(forKey: "name")!)
+//                for snip in snap.value {
+//                    switch(snip.key){
+//                    case "name":
+//                        friendParts[0] = snip.value as! String
+//                    case "age":
+//                        friendParts[1] = snip.value as! String
+//                    case "major":
+//                        friendParts[2] = snip.value as! String
+//                    case "school year":
+//                        friendParts[3] = snip.value as! String
+//                    case "email":
+//                        friendParts[4] = snip.value as! String
+//                    default:
+//                        print("Error getting friend details")
+//                    }
+////                    if snip.key == "name" {
+////                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
+////                    }
+//                }
+//                friends.append(Friend(name: friendParts[0], userId: snap.key, age: friendParts[1], major: friendParts[2], schoolYear: friendParts[3], email: friendParts[4]))
+//            }
+//            self.friendList = friends
+//        }
 //        self.friendList = friends
     }
     
@@ -96,12 +113,12 @@ class FriendList {
     }
     
     // Adds a friend to the friends list
-    func addFriend(friend : Friend) {
+    func addFriend(friend : Person) {
         self.friendList.append(friend)
     }
     
     // Removes a friend from the friend list
-    func removeFriend(friend : Friend) {
+    func removeFriend(friend : Person) {
         var count : Int = 0
         
         for person in self.friendList {
@@ -119,12 +136,12 @@ class FriendList {
     
     // Returns the friends list so that the view controller
     // can have access to the list and display the friends
-    func getFriendList() -> [Friend] {
+    func getFriendList() -> [Person] {
         return self.friendList
     }
     
-    func getFriend(userId: String) -> Friend {
-        var myFriend : Friend?
+    func getFriend(userId: String) -> Person {
+        var myFriend : Person?
         for friend in friendList {
             if friend.userId == userId {
                 myFriend = friend
@@ -132,7 +149,7 @@ class FriendList {
             }
         }
         if myFriend == nil {
-            myFriend = Friend()
+            myFriend = Person()
         }
         return myFriend!
     }

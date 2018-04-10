@@ -65,7 +65,7 @@ class ProfileCreationViewController: UIViewController {
             
             ref?.child("Users/\(userId)").setValue(parameters)
         }
-        friendList.updateList()
+//        friendList.updateList()
         delegate?.dismissed()
 //        self.dismiss(animated: true, completion: nil)
     }

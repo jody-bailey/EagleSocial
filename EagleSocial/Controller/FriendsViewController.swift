@@ -13,7 +13,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var friendTableView: UITableView!
     
-    var friends = [Friend]()
+    var friends = [Person]()
     var friendRequests = [Person]()
     
 
@@ -175,6 +175,8 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.nameLabel.text = self.friendRequests[indexPath.row].name
             cell.profilePic.image = self.friendRequests[indexPath.row].photo
+            cell.profilePic.layer.cornerRadius = 10
+            cell.profilePic.layer.masksToBounds = true
             cell.acceptButton.addTarget(self, action: #selector(acceptRequest), for: UIControlEvents.touchUpInside)
             cell.declineButton.addTarget(self, action: #selector(declineRequest), for: UIControlEvents.touchUpInside)
             
@@ -184,7 +186,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as! FriendTableViewCell
             
             cell.userName.text = self.friends[indexPath.row].name
-            cell.profilePicture.image = self.friends[indexPath.row].profilePic
+            cell.profilePicture.image = self.friends[indexPath.row].photo
             // Configure the cell...
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
@@ -209,7 +211,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let buttonPosition = sender.convert(CGPoint.zero, to: self.friendTableView)
         let indexPath = self.friendTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
-            friendList.addFriend(friend: Friend(name: self.friendRequests[(indexPath?.row)!].name, userId: self.friendRequests[(indexPath?.row)!].userId, age: self.friendRequests[(indexPath?.row)!].age, major: self.friendRequests[(indexPath?.row)!].major, schoolYear: self.friendRequests[(indexPath?.row)!].schoolYear, email: self.friendRequests[(indexPath?.row)!].email))
+            friendList.addFriend(friend: Person(name: self.friendRequests[(indexPath?.row)!].name, userId: self.friendRequests[(indexPath?.row)!].userId, age: self.friendRequests[(indexPath?.row)!].age, major: self.friendRequests[(indexPath?.row)!].major, schoolYear: self.friendRequests[(indexPath?.row)!].schoolYear, email: self.friendRequests[(indexPath?.row)!].email))
+            
+            if self.friendRequests[(indexPath?.row)!].userId != thisUser.userID {
+                let ref = Database.database().reference()
+                ref.child("Friends").child(thisUser.userID).childByAutoId().setValue(["userId": self.friendRequests[(indexPath?.row)!].userId])
+            }
            
         }
         
