@@ -17,10 +17,6 @@ import FirebaseDatabase
 
 //protocol is used to call the usersEnteredData method to delegate the users entered information into
 //the ProfileViewController
-protocol DataSentDelegate
-{
-    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
-}
 
 //method is loaded after the VC has loaded its view hierarchy into memory
 class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -41,7 +37,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
 
     // variables for the text boxes and the cancel button of the EditProfileViewController Class
     let schoolYears = ["Freshman", "Sophomore", "Junior", "Senior", "Senior+", "Graduate"]
-    var delegate: DataSentDelegate? = nil
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var firstNameText: UITextField!
     @IBOutlet weak var lastNameText: UITextField!
@@ -49,12 +44,18 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var majorText: UITextField!
     @IBOutlet weak var schoolYearPickerView: UIPickerView!
     var schoolYearPicked: String = ""
+    var fullNameArray = thisUser.name.components(separatedBy: " ")
     // variable is still needed for the picker for the schoolYear
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        thisUser.updateProfilePic()
         self.hideKeyboardWhenTappedAround()
+        self.firstNameText.text = fullNameArray[0]
+        self.lastNameText.text = fullNameArray[1]
+        self.ageText.text = thisUser.age
+        self.majorText.text = thisUser.major
     }
 
     override func didReceiveMemoryWarning()
@@ -72,27 +73,37 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     // delegate to the ProfileViewController to update the text labels 
     @IBAction func saveButtonPressed(_ sender: Any)
     {
-        if delegate != nil
-        {
             if firstNameText.text != nil && lastNameText.text != nil && ageText.text != nil && majorText.text != nil
             {
-                let fNameData = firstNameText.text
-                let lNameData = lastNameText.text
-                let fullName = fNameData! + " " + lNameData!
-                let ageData = ageText.text
-                let majorData = majorText.text
-                let schoolYearData = schoolYearPicked
-                delegate?.userEnteredData(fNameData: fNameData!, lNameData: lNameData!, ageData: ageData!, majorData: majorData!)
-                
+                var fNameData = firstNameText.text
+                var lNameData = lastNameText.text
+                var ageData = ageText.text
+                var majorData = majorText.text
+                var schoolYearData = schoolYearPicked
+             
+                if firstNameText.text == ""{
+                    fNameData = fullNameArray[0]
+                }
+                if lastNameText.text == ""{
+                    lNameData = fullNameArray[1]
+                }
+                if ageText.text == ""{
+                    ageData = thisUser.age
+                }
+                if majorText.text == ""{
+                    majorData = thisUser.major
+                }
+                if schoolYearData == ""{
+                    schoolYearData = thisUser.schoolYear
+                }
                 
                 var ref: DatabaseReference!
-                
                 ref = Database.database().reference()
-                
+                let fullName = fNameData! + " " + lNameData!
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!,
-                                                                             "school year": schoolYearPicked])
+                                                                             "school year": schoolYearData])
                 thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
                 
                 let user = Auth.auth().currentUser
@@ -109,8 +120,6 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                 dismiss(animated: true, completion: nil)
             }
         }
-
-    }
 
 
 }
