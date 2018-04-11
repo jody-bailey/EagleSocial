@@ -18,11 +18,15 @@ class FriendList {
     private var friendList : [Person]
     var friendRequests : [Person]
     
+    var ref : DatabaseReference?
+    
     init() {
         // Initialize the friends list as an empty array
         self.friendList = []
         self.friendRequests = []
-        self.updateList()
+        if thisUser.userID != "" {
+            updateList()
+        }
     }
     
     func updateFriendRequests() {
@@ -54,20 +58,20 @@ class FriendList {
     }
     
     public func updateList() {
-        let ref = Database.database().reference()
-        do{
-            _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
-                guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
-                
-                for snap in snapDict {
-                    print(snap)
-                    for snip in snap.value {
-                        let friend = allUsers.getUser(userId: snip.value as! String)
-                        self.friendList.append(friend)
-                    }
+        ref = Database.database().reference()
+        
+        let _ = ref?.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            
+            for snap in snapDict {
+                print(snap)
+                for snip in snap.value {
+                    let friend = allUsers.getUser(userId: snip.value as! String)
+                    self.friendList.append(friend)
                 }
-            })
-        }
+            }
+        })
+        
 //        catch {
 //            print(error)
 //        }

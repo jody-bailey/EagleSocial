@@ -29,6 +29,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         friends = friendList.getFriendList()
+        friendList.updateList()
         
         // Do any additional setup after loading the view.
         friendTableView.delegate = self
@@ -69,6 +70,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }, withCancel: {(err) in
             
             print(err)
+        })
+        
+        
+        let _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            self.friends = [Person]()
+            for snap in snapDict {
+                print(snap)
+                for snip in snap.value {
+                    let friend = allUsers.getUser(userId: snip.value as! String)
+                    self.friends.append(friend)
+                }
+            }
+            self.friendTableView.reloadData()
         })
 
 //        self.friendRequests = friendList.friendRequests
