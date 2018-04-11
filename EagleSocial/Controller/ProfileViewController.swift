@@ -27,6 +27,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
+//            if indexPath.row == 0 {
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
+//
+//                cell.shareButton.layer.cornerRadius = 10
+//                cell.userName.text = thisUser.name
+//                cell.profileImage.image = thisUser.profilePic
+//                cell.profileImage.layer.cornerRadius = 10
+//                cell.profileImage.layer.masksToBounds = true
+//                cell.statusTextField.placeholder = "Enter your status update here!"
+//                cell.backgroundColor = UIColor.lightGray
+//
+//                return cell
+//            }
             if indexPath.row >= 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
                 
@@ -131,7 +144,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
             
-            userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+//            userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
             
             userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
             
@@ -141,7 +154,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             userStatusTableView.reloadData()
             
     }
-  
+        
+
+        //code to load the userstatus table view up which pulls the users previous "status's or post
+        //from the database
+       // userStatusTableView.delegate = self
+       // userStatusTableView.dataSource = self
+        
+//        userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
+    
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
             thisUser.setUserAttributes()
@@ -269,8 +294,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         userStatusTableView.reloadData()
     }
     @objc func doSomething(refreshControl: UIRefreshControl) {
-        //////////////////////////ask Jody about .child(thisUser.userID).observe////////////////////////////////////////
-        refHandle = ref?.child("posts").child(thisUser.userID).observe(.value, with: { (snapshot) in
+        
+        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
@@ -295,12 +320,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             
-            if self.posts[(indexPath?.row)!].likes[thisUser.userID] == true {
-                self.posts[(indexPath?.row)!].likes.updateValue(false, forKey: (thisUser.userID))
+            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
             } else {
-                self.posts[(indexPath?.row)!].likes.updateValue(true, forKey: (thisUser.userID))
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser.userID))
             }
-            if !self.posts[(indexPath?.row)!].likes.isEmpty {
+            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
                 self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
                 self.userStatusTableView.reloadData()
             }
@@ -333,7 +358,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //                }
                 
                 if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
-                    self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
                     self.userStatusTableView.reloadData()
                 }
                 

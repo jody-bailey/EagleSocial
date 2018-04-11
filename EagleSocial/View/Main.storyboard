@@ -89,25 +89,6 @@
                                     <action selector="editButtonPressed:" destination="wcH-Bb-9Ux" eventType="touchUpInside" id="q72-j6-2xs"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVS-2S-AGZ">
-                                <rect key="frame" x="0.0" y="303" width="375" height="278"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" rowHeight="66" id="ibk-y0-Jvh">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ibk-y0-Jvh" id="iMe-PD-JgY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="wcH-Bb-9Ux" id="Mpd-IE-g6b"/>
-                                    <outlet property="delegate" destination="wcH-Bb-9Ux" id="tzK-Zc-Qrb"/>
-                                </connections>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-5l-NLk">
                                 <rect key="frame" x="130" y="198.5" width="113.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -147,13 +128,32 @@
                                     <action selector="editPhoto:" destination="lav-IM-FbT" eventType="touchUpInside" id="T1t-sW-kEd"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fVS-2S-AGZ">
+                                <rect key="frame" x="0.0" y="347" width="375" height="234"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" rowHeight="66" id="ibk-y0-Jvh">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ibk-y0-Jvh" id="iMe-PD-JgY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="wcH-Bb-9Ux" id="Mpd-IE-g6b"/>
+                                    <outlet property="delegate" destination="wcH-Bb-9Ux" id="tzK-Zc-Qrb"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ImU-5l-NLk" firstAttribute="centerY" secondItem="iiK-ik-Yfd" secondAttribute="centerY" constant="-122" id="1gH-UK-2lR"/>
                             <constraint firstItem="3Es-8i-6R4" firstAttribute="leading" secondItem="wbc-bt-LM8" secondAttribute="leading" constant="61" id="4dD-Rb-hyQ"/>
                             <constraint firstItem="9bN-4W-Dks" firstAttribute="centerY" secondItem="iiK-ik-Yfd" secondAttribute="centerY" constant="-49" id="JvN-me-Sdi"/>
-                            <constraint firstItem="fVS-2S-AGZ" firstAttribute="top" secondItem="9bN-4W-Dks" secondAttribute="bottom" constant="8" id="JwS-9a-Ekw"/>
+                            <constraint firstItem="fVS-2S-AGZ" firstAttribute="top" secondItem="9bN-4W-Dks" secondAttribute="bottom" constant="52" id="JwS-9a-Ekw"/>
                             <constraint firstItem="fVS-2S-AGZ" firstAttribute="leading" secondItem="iiK-ik-Yfd" secondAttribute="leading" id="RGi-Ng-afG"/>
                             <constraint firstItem="wbc-bt-LM8" firstAttribute="trailing" secondItem="m4T-3b-JKb" secondAttribute="trailing" constant="110" id="SxH-7o-Ucp"/>
                             <constraint firstItem="ImU-5l-NLk" firstAttribute="top" secondItem="m4T-3b-JKb" secondAttribute="bottom" constant="20.5" id="VDD-eN-uvq"/>
