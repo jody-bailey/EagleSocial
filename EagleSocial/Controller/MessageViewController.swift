@@ -108,6 +108,11 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Load the SenderId into the name label in the TableView Message Cell
         messageCell.nameLabel.text = messageArray[indexPath.row].getSenderId()
         
+        if messageArray[indexPath.row].getSenderId() == Auth.auth().currentUser?.email {
+            messageCell.messageBackgroundView.backgroundColor = UIColor.lightGray
+            messageCell.messageBodyLabel.textColor = UIColor.white
+        }
+        
         //Load the user's profile image into the profilImageView in the TableView Message Cell
         //TODO: - Modify the classes/models to pull down user's profile picture.
         messageCell.profileImageView.image = UIImage(named: "profile_icon")
