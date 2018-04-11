@@ -10,12 +10,12 @@ import UIKit
 import Firebase
 
 protocol CanReceiveUserData {
-    func userDataReceived(data: Friend)
+    func userDataReceived(data: Person)
 }
 class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    var friendArray = [Friend]()
-    private var selectedFriend : Friend = Friend(name: "", userId: "", age: "", major: "", schoolYear: "", email: "")
+    var friendArray = [Person]()
+    private var selectedFriend : Person = Person(name: "", userId: "", age: "", major: "", schoolYear: "", email: "")
     
     var delegate : CanReceiveUserData?
     
@@ -46,7 +46,9 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         //See function definition for more information on what this item does.
         configureTableView()
         
-        retrieveUsers()
+        //retrieveUsers()
+        
+        selectFriendTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,7 +89,7 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         selectFriendCell.profileImage.layer.cornerRadius = 10
         selectFriendCell.profileImage.layer.masksToBounds = true
         
-        selectFriendCell.profileImage.image = friendArray[indexPath.row].profilePic
+        selectFriendCell.profileImage.image = friendArray[indexPath.row].photo
         
         //Post the newly created cell into the tableview. 
         return selectFriendCell
@@ -117,13 +119,14 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         
         userDB.observe(.childAdded) { (snapshot) in
             
+
             let snapshowValue = snapshot.value as! Dictionary<String, Any>
-            var user : Friend?
+            var user : Person?
+
             
             for snap in snapshowValue {
-                user = Friend(name: snapshowValue["name"]! as! String, userId: snap.key , age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+                user = Person(name: snapshowValue["name"]! as! String, userId: snap.key , age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
             }
-
             
             
             self.friendArray.append(user!)

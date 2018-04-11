@@ -31,6 +31,16 @@ class Person{
         updateProfilePic()
     }
     
+    init() {
+        self.name = ""
+        self.age = ""
+        self.major = ""
+        self.schoolYear = ""
+        self.email = ""
+        self.userId = ""
+        self.photo = #imageLiteral(resourceName: "profile_icon")
+    }
+    
     public func updateProfilePic() {
         let storage = Storage.storage()
         let storageRef = storage.reference(withPath: "image/\(self.userId)/userPic.jpg")

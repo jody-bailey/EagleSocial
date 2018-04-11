@@ -15,9 +15,10 @@ protocol CanRecieve {
 
 class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CanReceiveUserData {
     
+    
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
-    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "", email: "")
+    var selectedFriend = Person(name : "", userId : "", age: "", major: "", schoolYear: "", email: "")
     
     var delagate : CanRecieve?
     
@@ -106,6 +107,11 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         
         //Load the SenderId into the name label in the TableView Message Cell
         messageCell.nameLabel.text = messageArray[indexPath.row].getSenderId()
+        
+        if messageArray[indexPath.row].getSenderId() == Auth.auth().currentUser?.email {
+            messageCell.messageBackgroundView.backgroundColor = UIColor.lightGray
+            messageCell.messageBodyLabel.textColor = UIColor.white
+        }
         
         //Load the user's profile image into the profilImageView in the TableView Message Cell
         //TODO: - Modify the classes/models to pull down user's profile picture.
@@ -328,7 +334,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         }
     }
     
-    func userDataReceived(data: Friend)
+    func userDataReceived(data: Person)
     {
         selectedFriend = data
         receipientLabel.text = selectedFriend.name

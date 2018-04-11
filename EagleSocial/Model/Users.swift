@@ -55,6 +55,21 @@ class Users {
         //        self.friendList = friends
     }
     
+    func getUser(userId : String) -> Person {
+        var user : Person?
+        for person in people {
+            if person.userId == userId {
+                user =  person
+            }
+        }
+        if user != nil {
+            return user!
+        } else
+        {
+            return Person()
+        }
+    }
+    
     public func getAllUsers() -> [Person] {
         return self.people
     }

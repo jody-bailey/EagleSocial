@@ -93,7 +93,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         if (self.comments[indexPath.row].userId == thisUser.userID){
             cell.profileImage.image = thisUser.profilePic
         } else {
-            cell.profileImage.image = friendList.getFriend(userId: self.comments[indexPath.row].userId).profilePic
+            cell.profileImage.image = friendList.getFriend(userId: self.comments[indexPath.row].userId).photo
             //                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
         }
         // Configure the cell...
