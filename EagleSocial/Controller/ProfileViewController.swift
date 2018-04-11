@@ -19,7 +19,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DataSentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -27,8 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "profileCell")
-        return cell
+        return UITableViewCell()
     }
     
     //variables for the profile VC which contains labels to display the users attributes
@@ -59,12 +58,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
-       /* userStatusTableView.delegate = self
-        userStatusTableView.dataSource = self*/
+       // userStatusTableView.delegate = self
+       // userStatusTableView.dataSource = self
+        
+//        userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
     }
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
             thisUser.setUserAttributes()
+            thisUser.updateProfilePic()
             userNameLabel.text = thisUser.name
             ageLabel.text = thisUser.age
             majorLabel.text = thisUser.major
@@ -143,9 +149,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         picker.dismiss(animated: true, completion: nil)
     }
     
-   /* func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }*/
     
     //method updates the labels on the profile page with values that were edited on the edit profile
     //view controller 
@@ -180,7 +183,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "goToEdit"
         {
             let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
-            editProfileViewController.delegate = self
         }
     }
     

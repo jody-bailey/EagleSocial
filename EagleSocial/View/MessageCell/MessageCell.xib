@@ -71,6 +71,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="messageBackgroundView" destination="Qh3-VO-cx0" id="kaS-15-EcI"/>
                 <outlet property="messageBodyLabel" destination="Gvs-Xy-uNg" id="3qy-zt-kFE"/>
                 <outlet property="nameLabel" destination="fY9-Dx-bKq" id="PU9-ve-eEi"/>
                 <outlet property="profileImageView" destination="I2i-Kd-raX" id="Apj-yd-MEf"/>
