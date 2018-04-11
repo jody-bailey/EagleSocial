@@ -55,6 +55,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        thisUser.updateUser()
     }
 
     override func didReceiveMemoryWarning()

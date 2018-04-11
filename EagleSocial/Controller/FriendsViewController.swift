@@ -243,10 +243,14 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func declineRequest(sender: AnyObject) {
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.friendTableView)
         let indexPath = self.friendTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
+            let ref = Database.database().reference()
+            ref.child("Requests").child(thisUser.userID).child(self.friendRequests[(indexPath?.row)!].key!).updateChildValues(["active" : false])
             self.friendRequests.remove(at: (indexPath?.row)!)
+            self.friendTableView.reloadData()
         }
     }
     
