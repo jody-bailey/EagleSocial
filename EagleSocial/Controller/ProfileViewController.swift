@@ -320,13 +320,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             
-            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
-                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
+            if self.posts[(indexPath?.row)!].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)!].likes.updateValue(false, forKey: (thisUser.userID))
             } else {
-                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser.userID))
+                self.posts[(indexPath?.row)!].likes.updateValue(true, forKey: (thisUser.userID))
             }
-            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
-                self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
+            if !self.posts[(indexPath?.row)!].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("likes").setValue(self.posts[(indexPath?.row)!].likes)
                 self.userStatusTableView.reloadData()
             }
         }
