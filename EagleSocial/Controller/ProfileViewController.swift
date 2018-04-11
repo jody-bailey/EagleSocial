@@ -358,7 +358,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //                }
                 
                 if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
-                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("comments").childByAutoId().setValue(parameters)
                     self.userStatusTableView.reloadData()
                 }
                 

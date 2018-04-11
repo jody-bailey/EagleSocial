@@ -43,6 +43,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var ageText: UITextField!
     @IBOutlet weak var majorText: UITextField!
     @IBOutlet weak var schoolYearPickerView: UIPickerView!
+    @IBOutlet weak var aboutMeTextView: UITextView!
     var schoolYearPicked: String = ""
     var fullNameArray = thisUser.name.components(separatedBy: " ")
     // variable is still needed for the picker for the schoolYear
