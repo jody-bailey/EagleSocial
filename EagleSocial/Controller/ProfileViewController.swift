@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        return UITableViewCell()
     }
     
     //variables for the profile VC which contains labels to display the users attributes
@@ -58,14 +58,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
         //from the database
-        userStatusTableView.delegate = self
-        userStatusTableView.dataSource = self
+       // userStatusTableView.delegate = self
+       // userStatusTableView.dataSource = self
         
-        userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-        
-        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
-        
-        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
+//        userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+//        
+//        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
     }
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {

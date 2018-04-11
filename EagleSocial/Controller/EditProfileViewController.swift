@@ -50,6 +50,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        thisUser.updateProfilePic()
         self.hideKeyboardWhenTappedAround()
         self.firstNameText.text = fullNameArray[0]
         self.lastNameText.text = fullNameArray[1]
