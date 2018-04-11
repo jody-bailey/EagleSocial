@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Friends-->
         <scene sceneID="Sga-4V-oDf">
@@ -177,6 +182,7 @@
                         <outlet property="majorLabel" destination="eIF-QZ-11C" id="xAB-2i-OF7"/>
                         <outlet property="schoolYearLabel" destination="9bN-4W-Dks" id="rTi-RX-Hf8"/>
                         <outlet property="userNameLabel" destination="ImU-5l-NLk" id="lpp-oQ-RPW"/>
+                        <outlet property="userStatusTableView" destination="fVS-2S-AGZ" id="Fb2-w4-kyj"/>
                         <segue destination="lav-IM-FbT" kind="presentation" identifier="goToEdit" id="0Aa-0r-Anf"/>
                     </connections>
                 </viewController>
