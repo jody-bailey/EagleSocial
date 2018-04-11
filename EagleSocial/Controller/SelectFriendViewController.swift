@@ -10,12 +10,12 @@ import UIKit
 import Firebase
 
 protocol CanReceiveUserData {
-    func userDataReceived(data: Friend)
+    func userDataReceived(data: Person)
 }
 class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    var friendArray = [Friend]()
-    private var selectedFriend : Friend = Friend(name: "", userId: "", age: "", major: "", schoolYear: "")
+    var friendArray = [Person]()
+    private var selectedFriend : Person = Person(name: "", userId: "", age: "", major: "", schoolYear: "", email: "")
     
     var delegate : CanReceiveUserData?
     
@@ -89,7 +89,7 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         selectFriendCell.profileImage.layer.cornerRadius = 10
         selectFriendCell.profileImage.layer.masksToBounds = true
         
-        selectFriendCell.profileImage.image = friendArray[indexPath.row].profilePic
+        selectFriendCell.profileImage.image = friendArray[indexPath.row].photo
         
         //Post the newly created cell into the tableview. 
         return selectFriendCell
@@ -119,12 +119,17 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         
         userDB.observe(.childAdded) { (snapshot) in
             
-            //let snapshowValue = snapshot.value as! Dictionary<String, Any>
-            
 
-            //let user = Friend(name: snapshowValue["name"]! as! String, userId: snapshowValue["userId"] as! String, age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+            let snapshowValue = snapshot.value as! Dictionary<String, Any>
+            var user : Person?
+
             
-            //self.friendArray.append(user)
+            for snap in snapshowValue {
+                user = Person(name: snapshowValue["name"]! as! String, userId: snap.key , age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+            }
+            
+            
+            self.friendArray.append(user!)
             
             self.configureTableView()
             

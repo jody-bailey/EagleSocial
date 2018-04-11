@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="etO-aV-1l5">
-                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCell" id="gPM-X4-OtB">
@@ -32,24 +32,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" barStyle="black" placeholder="Search for people" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-fP-N3G">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="3Ea-5N-C7I" id="fHA-pM-W8z"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="etO-aV-1l5" firstAttribute="trailing" secondItem="n5N-kC-a4F" secondAttribute="trailing" id="16v-1w-UET"/>
-                            <constraint firstItem="etO-aV-1l5" firstAttribute="top" secondItem="Qmj-fP-N3G" secondAttribute="bottom" id="6lf-wy-3zP"/>
-                            <constraint firstItem="Qmj-fP-N3G" firstAttribute="top" secondItem="t8M-t8-n1M" secondAttribute="top" constant="64" id="Pcw-U4-2g0"/>
-                            <constraint firstItem="Qmj-fP-N3G" firstAttribute="leading" secondItem="n5N-kC-a4F" secondAttribute="leading" id="PuO-Kc-7af"/>
                             <constraint firstItem="etO-aV-1l5" firstAttribute="leading" secondItem="n5N-kC-a4F" secondAttribute="leading" id="RCN-QQ-bBH"/>
-                            <constraint firstItem="etO-aV-1l5" firstAttribute="top" secondItem="Qmj-fP-N3G" secondAttribute="bottom" id="lHe-9i-qX1"/>
                             <constraint firstItem="etO-aV-1l5" firstAttribute="bottom" secondItem="n5N-kC-a4F" secondAttribute="bottom" id="qqc-Av-0VI"/>
-                            <constraint firstItem="Qmj-fP-N3G" firstAttribute="trailing" secondItem="n5N-kC-a4F" secondAttribute="trailing" id="rdf-dx-h1Z"/>
+                            <constraint firstItem="etO-aV-1l5" firstAttribute="top" secondItem="n5N-kC-a4F" secondAttribute="top" id="vp6-Rg-q37"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n5N-kC-a4F"/>
                     </view>
@@ -62,7 +51,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="friendTableView" destination="etO-aV-1l5" id="lwm-zo-8z4"/>
-                        <outlet property="searchBar" destination="Qmj-fP-N3G" id="6tP-E1-ccB"/>
                         <outlet property="searchDisplayController" destination="s2T-Qm-5oA" id="7Ya-Tp-eFG"/>
                         <segue destination="W6j-w3-jel" kind="show" identifier="goToFriendProfile" id="yac-mM-rri"/>
                     </connections>
@@ -71,7 +59,6 @@
                 <searchDisplayController id="s2T-Qm-5oA">
                     <connections>
                         <outlet property="delegate" destination="3Ea-5N-C7I" id="jVs-Pp-KGw"/>
-                        <outlet property="searchBar" destination="Qmj-fP-N3G" id="DPK-Hn-o1U"/>
                         <outlet property="searchContentsController" destination="3Ea-5N-C7I" id="pph-fT-mc6"/>
                         <outlet property="searchResultsDataSource" destination="3Ea-5N-C7I" id="NKY-Hb-ADx"/>
                         <outlet property="searchResultsDelegate" destination="3Ea-5N-C7I" id="f8n-ap-KPt"/>

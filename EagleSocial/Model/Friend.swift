@@ -15,18 +15,20 @@ class Friend {
     // Variables to store the friends name and email
     let name : String
     let age : String
+    let email : String
     let major : String
     let schoolYear : String
     let userId : String
     var profilePic : UIImage
     
     // Initialize the friend with name and email
-    init(name : String, userId : String, age: String, major: String, schoolYear: String) {
+    init(name : String, userId : String, age: String, major: String, schoolYear: String, email: String) {
         let name : String = name
         let userId : String = userId
         
         self.name = name
         self.age = age
+        self.email = email
         self.major = major
         self.schoolYear = schoolYear
         self.userId = userId
@@ -38,6 +40,7 @@ class Friend {
     init() {
         self.name = ""
         self.age = ""
+        self.email = ""
         self.major = ""
         self.schoolYear = ""
         self.userId = ""

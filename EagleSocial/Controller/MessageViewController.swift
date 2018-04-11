@@ -15,9 +15,10 @@ protocol CanRecieve {
 
 class MessageViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CanReceiveUserData {
     
+    
     // Declare instance variables here
     var messageArray : [Message] = [Message]()
-    var selectedFriend = Friend(name : "", userId : "", age: "", major: "", schoolYear: "")
+    var selectedFriend = Person(name : "", userId : "", age: "", major: "", schoolYear: "", email: "")
     
     var delagate : CanRecieve?
     
@@ -328,7 +329,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         }
     }
     
-    func userDataReceived(data: Friend)
+    func userDataReceived(data: Person)
     {
         selectedFriend = data
         receipientLabel.text = selectedFriend.name

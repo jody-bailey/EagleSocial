@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class FriendProfileViewController: UITableViewController {
 
-    var friend : Friend?
+    var friend : Person?
     var posts = [Post]()
     var ref : DatabaseReference?
     var refHandle : DatabaseHandle?
@@ -92,7 +92,7 @@ class FriendProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! ProfileHeaderCell
-            cell.profilePic.image = friend!.profilePic
+            cell.profilePic.image = friend!.photo
             cell.nameLabel.text = friend!.name
             cell.ageLabel.text = "Age: " + friend!.age
             cell.majorLabel.text = "Major: " + friend!.major
@@ -109,7 +109,7 @@ class FriendProfileViewController: UITableViewController {
             if (self.posts[indexPath.section - 1].userId == thisUser.userID){
                 cell.profilePicture.image = thisUser.profilePic
             } else {
-                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.section - 1].userId).profilePic
+                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.section - 1].userId).photo
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true

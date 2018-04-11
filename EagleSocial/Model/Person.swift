@@ -13,19 +13,32 @@ import Firebase
 class Person{
     let name : String
     let age : String
+    let major : String
     let schoolYear : String
     let email : String
     let userId : String
     var photo : UIImage
+    var key : String?
     
     init(name : String, userId : String, age : String, major: String, schoolYear: String, email : String) {
         self.name = name
         self.age = age
+        self.major = major
         self.schoolYear = schoolYear
         self.email = email
         self.userId = userId
         self.photo = #imageLiteral(resourceName: "profile_icon")
         updateProfilePic()
+    }
+    
+    init() {
+        self.name = ""
+        self.age = ""
+        self.major = ""
+        self.schoolYear = ""
+        self.email = ""
+        self.userId = ""
+        self.photo = #imageLiteral(resourceName: "profile_icon")
     }
     
     public func updateProfilePic() {
