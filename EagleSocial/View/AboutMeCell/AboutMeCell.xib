@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +21,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-Zw-wnR">
-                        <rect key="frame" x="0.0" y="22" width="320" height="21"/>
+                        <rect key="frame" x="16" y="22" width="288" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqY-J5-H53">
-                        <rect key="frame" x="126" y="131" width="69" height="21"/>
+                        <rect key="frame" x="129" y="134" width="63" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -41,17 +42,16 @@
                 </subviews>
                 <color key="backgroundColor" red="0.25879859919999998" green="0.25884008409999998" blue="0.25878548620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="RqY-J5-H53" firstAttribute="top" secondItem="Qus-Zw-wnR" secondAttribute="bottom" constant="88" id="2KJ-eV-nGM"/>
-                    <constraint firstAttribute="trailing" secondItem="RqY-J5-H53" secondAttribute="trailing" constant="125" id="2v1-uR-oAv"/>
                     <constraint firstItem="j5Y-XS-hQS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="74m-5u-CwU"/>
-                    <constraint firstItem="RqY-J5-H53" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="126" id="8DM-og-6ci"/>
+                    <constraint firstItem="Qus-Zw-wnR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7ns-K4-veg"/>
                     <constraint firstAttribute="trailing" secondItem="j5Y-XS-hQS" secondAttribute="trailing" constant="110" id="AdB-SA-632"/>
-                    <constraint firstAttribute="trailing" secondItem="Qus-Zw-wnR" secondAttribute="trailing" id="IEy-Uw-hqC"/>
-                    <constraint firstItem="Qus-Zw-wnR" firstAttribute="top" secondItem="j5Y-XS-hQS" secondAttribute="bottom" constant="1" id="Nfn-sv-jMx"/>
-                    <constraint firstAttribute="bottom" secondItem="RqY-J5-H53" secondAttribute="bottom" constant="0.5" id="SHs-Pg-GZX"/>
-                    <constraint firstAttribute="bottom" secondItem="Qus-Zw-wnR" secondAttribute="bottom" constant="109.5" id="dam-HY-X5Y"/>
-                    <constraint firstItem="Qus-Zw-wnR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nMG-LH-hLS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Qus-Zw-wnR" secondAttribute="bottom" constant="99" id="Euj-ek-aa5"/>
+                    <constraint firstItem="RqY-J5-H53" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="LOg-dg-Lj3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Qus-Zw-wnR" secondAttribute="bottom" constant="99" id="Xbs-I5-G2x"/>
+                    <constraint firstItem="RqY-J5-H53" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="66.75" id="oMx-yg-gfb"/>
                     <constraint firstItem="j5Y-XS-hQS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="111" id="opJ-QA-2NQ"/>
+                    <constraint firstItem="Qus-Zw-wnR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="qJ3-n5-ECA"/>
+                    <constraint firstItem="Qus-Zw-wnR" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ylo-mI-Fcr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

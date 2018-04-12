@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AboutMeCell", for: indexPath) as! AboutMeCell
                 cell.setAboutMe()
+                cell.descriptionLabel.sizeToFit()
                 return cell
             }
             if indexPath.row > 0 {
