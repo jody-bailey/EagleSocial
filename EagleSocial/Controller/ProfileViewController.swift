@@ -27,27 +27,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-//            if indexPath.row == 0 {
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "statusUpdateCell", for: indexPath) as! StatusUpdateTableViewCell
-//
-//                cell.shareButton.layer.cornerRadius = 10
-//                cell.userName.text = thisUser.name
-//                cell.profileImage.image = thisUser.profilePic
-//                cell.profileImage.layer.cornerRadius = 10
-//                cell.profileImage.layer.masksToBounds = true
-//                cell.statusTextField.placeholder = "Enter your status update here!"
-//                cell.backgroundColor = UIColor.lightGray
-//
-//                return cell
-//            }
-            if indexPath.row >= 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AboutMeCell", for: indexPath) as! AboutMeCell
+                cell.setAboutMe()
+                return cell
+            }
+            if indexPath.row > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
                 
-                cell.nameOfUser.text = posts[indexPath.row].username
-                cell.textBody.text = posts[indexPath.row].message
-                cell.setPost(post: [posts[indexPath.row]])
+                cell.nameOfUser.text = posts[indexPath.row - 1].username
+                cell.textBody.text = posts[indexPath.row - 1].message
+                cell.setPost(post: [posts[indexPath.row - 1]])
                 
-                if (self.posts[indexPath.row].userId == thisUser.userID){
+                if (self.posts[indexPath.row - 1].userId == thisUser.userID){
                     cell.profilePicture.image = thisUser.profilePic
                 }
                 cell.profilePicture.layer.cornerRadius = 10
@@ -144,7 +136,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
             
-//            userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
+            userStatusTableView.register(UINib(nibName: "AboutMeCell", bundle: nil), forCellReuseIdentifier: "AboutMeCell")
             
             userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
             
