@@ -22,13 +22,64 @@ import FirebaseDatabase
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return posts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        return UITableViewCell()
-    }
+            
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AboutMeCell", for: indexPath) as! AboutMeCell
+                cell.setAboutMe()
+                cell.descriptionLabel.sizeToFit()
+                return cell
+            }
+            if indexPath.row > 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
+                
+                cell.nameOfUser.text = posts[indexPath.row - 1].username
+                cell.textBody.text = posts[indexPath.row - 1].message
+                cell.setPost(post: [posts[indexPath.row - 1]])
+                
+                if (self.posts[indexPath.row - 1].userId == thisUser.userID){
+                    cell.profilePicture.image = thisUser.profilePic
+                }
+                cell.profilePicture.layer.cornerRadius = 10
+                cell.profilePicture.layer.masksToBounds = true
+                
+                cell.likeButton.tag = indexPath.row
+                cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
+                cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
+                cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
+                
+                var likeCount : Int = 0
+                for like in self.posts[indexPath.row].likes {
+                    if like.value == true {
+                        likeCount += 1
+                    }
+                }
+                
+                if likeCount == 1 {
+                    cell.likesLabel.text = String(likeCount) + " like"
+                } else {
+                    cell.likesLabel.text = String(likeCount) + " likes"
+                }
+                
+                if self.posts[indexPath.row].likes[thisUser.userID] != nil {
+                    if self.posts[indexPath.row].likes[thisUser.userID]! == true {
+                        cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
+                    } else {
+                        cell.likeButton.setTitleColor(UIColor.black, for: .normal)
+                    }
+                }
+                
+                
+                return cell
+            }
+            else {
+                fatalError("Unexpected section \(indexPath.section)")
+            }
+            
+        }
     
     //variables for the profile VC which contains labels to display the users attributes
     @IBOutlet weak var userNameLabel: UILabel!
@@ -38,12 +89,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var userStatusTableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     
+    
+    var ref: DatabaseReference?
+    var likeRef: DatabaseReference?
+    var commentRef: DatabaseReference?
+    var refHandle: DatabaseHandle?
+    var likeHandle: DatabaseHandle?
+    var commentHandle: DatabaseHandle?
+    
+    var postData = [String]()
+    var posts = [Post]()
+    
+    var likes = [Like]()
    
     //method is loaded after the VC has loaded its view hierarchy into memory
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        allUsers.updateList()
         if Auth.auth().currentUser != nil {
         thisUser.setUserAttributes()
         userNameLabel.text = thisUser.name
@@ -51,9 +114,39 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         majorLabel.text = thisUser.major
         schoolYearLabel.text = thisUser.schoolYear
         self.getUserProfilePic()
-            
         }
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        userStatusTableView.refreshControl = refreshControl
+        
+        // Do any additional setup after loading the view.
+        ref = Database.database().reference()
+        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+            // code to handle when a new post is added
+            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+            self.posts = postsSnapshot.posts
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.userStatusTableView.reloadData()
+            })
+            userStatusTableView.delegate = self
+            userStatusTableView.dataSource = self
+            
+            userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+            
+            userStatusTableView.register(UINib(nibName: "AboutMeCell", bundle: nil), forCellReuseIdentifier: "AboutMeCell")
+            
+            userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
+            
+            
+            configureTableView()
+            
+            userStatusTableView.reloadData()
+            
+    }
         
 
         //code to load the userstatus table view up which pulls the users previous "status's or post
@@ -66,7 +159,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
 //        
 //        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
-    }
+    
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
             thisUser.setUserAttributes()
@@ -130,6 +223,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
         }
+
     }
     
     //method uses the users selected image as their profile photo
@@ -147,16 +241,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     //user can cancel their selection to dismiss the picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    //method updates the labels on the profile page with values that were edited on the edit profile
-    //view controller 
-    func userEnteredData(fNameData: String, lNameData: String, ageData: String, majorData: String)
-    {
-        /*firstNameLabel.text = fNameData
-        ageLabel.text = ageData
-        majorLabel.text = majorData*/
     }
     
     
@@ -199,5 +283,108 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "goToEdit", sender: self)
     }
     
+    @objc func reloadNewsFeed() {
+        userStatusTableView.reloadData()
+    }
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        
+        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+            // code to handle when a new post is added
+            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+            self.posts = postsSnapshot.posts
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.userStatusTableView.reloadData()
+            
+        })
+        thisUser.updateProfilePic()
+        
+        userStatusTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    func configureTableView() {
+        userStatusTableView.rowHeight = UITableViewAutomaticDimension
+        userStatusTableView.estimatedRowHeight = 500.0
+    }
 
+    @objc func likeButtonPressed(sender:AnyObject) {
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.userStatusTableView)
+        let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
+        if indexPath != nil {
+            
+            if self.posts[(indexPath?.row)!].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)!].likes.updateValue(false, forKey: (thisUser.userID))
+            } else {
+                self.posts[(indexPath?.row)!].likes.updateValue(true, forKey: (thisUser.userID))
+            }
+            if !self.posts[(indexPath?.row)!].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("likes").setValue(self.posts[(indexPath?.row)!].likes)
+                self.userStatusTableView.reloadData()
+            }
+        }
+    }
+    
+    @objc func commentButtonPressed(sender:AnyObject) {
+        var textField = UITextField()
+        
+        
+        let alert = UIAlertController(title: "Add Comment", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            
+            let buttonPosition = sender.convert(CGPoint.zero, to: self.userStatusTableView)
+            let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
+            if indexPath != nil {
+                
+                var parameters : [String : String] = [:]
+                
+                //                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
+                parameters = ["name" : (thisUser.name),
+                              "userId" : (thisUser.userID),
+                              "message" : textField.text!]
+                //                } else {
+                //
+                //                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
+                //                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
+                //                                  "message" : textField.text!]
+                //                }
+                
+                if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.userStatusTableView.reloadData()
+                }
+                
+            }
+            self.userStatusTableView.reloadData()
+            
+        }
+        
+        alert.addAction(action)
+        
+        alert.addTextField { (field) in
+            textField = field
+            textField.placeholder = "Add a new comment"
+            textField.keyboardType = .default
+            textField.autocapitalizationType = .sentences
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func viewComments(sender: AnyObject) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.userStatusTableView)
+        let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
+        performSegue(withIdentifier: "goToComments", sender: indexPath)
+    }
+    
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 }
+
