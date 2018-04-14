@@ -300,6 +300,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         UIView.animate(withDuration: 0.5) {
             
             self.view.layoutIfNeeded()
+            self.scrollToBottom()
         }
     }
     //Determine if the messageTextField has ended being edited.
