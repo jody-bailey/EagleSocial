@@ -89,8 +89,16 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Retrieve messages upon loading the message screen.
         retrieveMessage()
         
+        
+        
     }
     
+    func scrollToBottom() {
+        DispatchQueue.main.async {
+            let thisIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
+            self.conversationTableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -117,7 +125,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         }
         else {
             messageCell.messageBackgroundView.backgroundColor = theirColor
-            //messageCell.messageBodyLabel.textColor = UIColor.white
+            messageCell.messageBodyLabel.textColor = UIColor.black
         }
         
         //Load the user's profile image into the profilImageView in the TableView Message Cell
@@ -127,6 +135,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         //Post the newly created messageCell into the TableView.
         return messageCell
     }
+    
     
     //Set how many rows to displays will display in the table view.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -230,6 +239,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
                 self.configureTableView()
                 
                 self.conversationTableView.reloadData()
+                self.scrollToBottom()
             }
         }
     }
@@ -339,6 +349,7 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
             addNewUserToolBar.isHidden = true
             addNewUserToolBarHeightConstraint.constant = 0
         }
+        
     }
     
     func userDataReceived(data: Person)
