@@ -12,8 +12,6 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 
-//var thisUser: User?
-
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var NewsFeedTable: UITableView!
@@ -89,37 +87,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.endRefreshing()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        
-//        if (Auth.auth().currentUser) != nil
-//        {
-////            User.thisUser = User(username: (Auth.auth().currentUser?.displayName!)!, userID: (Auth.auth().currentUser?.uid)!)
-//           print("User logged in")
-//        }
-//        
-//        else
-//        {
-//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
-//        }
-//
-//        }
-//        
-//        else
-//        {
-//             performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
-//        }
-//
-//        let userLoginStatus = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
-//
-//        if (userLoginStatus){
-//            print("user is logged in from tabbarcontroller")
-//        }
-//        else {
-//            print("user not logged in")
-//           // performSegue(withIdentifier: "goToWelcomeScreen", sender: self)
-//        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -159,7 +126,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
             
-            cell.likeButton.tag = indexPath.row - 1
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
@@ -184,7 +150,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     cell.likeButton.setTitleColor(UIColor.black, for: .normal)
                 }
             }
-            
             
             return cell
         }
@@ -268,16 +233,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 var parameters : [String : String] = [:]
                 
-//                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
                 parameters = ["name" : (thisUser.name),
                               "userId" : (thisUser.userID),
                                   "message" : textField.text!]
-//                } else {
-//
-//                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
-//                                  "userId" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).userId,
-//                                  "message" : textField.text!]
-//                }
                 
                 if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
                     self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)

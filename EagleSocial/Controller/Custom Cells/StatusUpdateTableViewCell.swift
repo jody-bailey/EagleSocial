@@ -34,16 +34,8 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         
-//        let user = Auth.auth().currentUser?.uid
-        
-//        var user : User?
-        
         if statusTextField.text?.trimmingCharacters(in: .whitespaces) != "" {
-//            let userID = Auth.auth().currentUser?.uid
-//            ref.child("Users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                
-                // ...
+            
             let text = self.statusTextField.text
             
             let dateString = String(describing: Date())
@@ -52,16 +44,13 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
                                                   "message": text!,
                                                   "date": dateString,
                                                   "userId": thisUser.userID,
-                                                  "likes": [],
+                                                  "likes": [ thisUser.userID : false ] as [String : Bool],
                                                   "comments": []
-                                                ] //= likes
+                                                ]
                 
                 
                 self.ref.child("posts").childByAutoId().setValue(parameters)
                 self.statusTextField.text = ""
-//            }) { (error) in
-//                print(error.localizedDescription)
-//            }
             
             statusTextField.resignFirstResponder()
 
@@ -69,13 +58,6 @@ class StatusUpdateTableViewCell: UITableViewCell, UITextFieldDelegate {
             statusTextField.text = ""
             statusTextField.placeholder = "You must enter text"
         }
-        
-        
-        
-        
-        
-        
-        
         
     }
     

@@ -42,11 +42,6 @@ class SettingsViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
         UserDefaults.standard.synchronize()
         
-//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "homeScreen") as? HomeViewController
-//        {
-//            present(vc, animated: true, completion: nil)
-//        }
-//        tabBarController?.selectedIndex = 0
         tabBarController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func changeNamePressed(_ sender: UIButton) {

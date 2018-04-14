@@ -38,12 +38,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         friendTableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "friendCell")
         friendTableView.register(UINib(nibName: "FriendRequestCell", bundle: nil), forCellReuseIdentifier: "friendRequestCell")
         
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
-//        friendTableView.addGestureRecognizer(tapGesture)
-        
-//        friendList.updateFriendRequests()
-        
         let ref = Database.database().reference()
         _ = ref.child("Requests").child(thisUser.userID).observe(.value, with: { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
@@ -85,8 +79,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.friendTableView.reloadData()
         })
-
-//        self.friendRequests = friendList.friendRequests
         
         configureTableView()
         
@@ -166,10 +158,6 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -243,26 +231,15 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func declineRequest(sender: AnyObject) {
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.friendTableView)
         let indexPath = self.friendTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
+            let ref = Database.database().reference()
+            ref.child("Requests").child(thisUser.userID).child(self.friendRequests[(indexPath?.row)!].key!).updateChildValues(["active" : false])
             self.friendRequests.remove(at: (indexPath?.row)!)
+            self.friendTableView.reloadData()
         }
     }
-    
-//    @objc func tableViewTapped() {
-//        searchBar.endEditing(true)
-//    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

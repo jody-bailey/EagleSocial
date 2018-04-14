@@ -55,7 +55,6 @@ class ProfileCreationViewController: UIViewController {
                     print("Change request successful")
                 }
             }
-//            User.thisUser.updateUserAttributes(username: username, userAge: age, userMajor: major, userSchoolYear: schoolYear)
             
             let parameters = ["name": username,
                               "email": email!,
@@ -65,9 +64,8 @@ class ProfileCreationViewController: UIViewController {
             
             ref?.child("Users/\(userId)").setValue(parameters)
         }
-//        friendList.updateList()
+        
         delegate?.dismissed()
-//        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -77,14 +75,4 @@ class ProfileCreationViewController: UIViewController {
     @IBAction func lastNameDone() {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

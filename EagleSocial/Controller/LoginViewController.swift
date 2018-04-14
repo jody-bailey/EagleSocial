@@ -37,7 +37,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
-        //gradientLoadingBar.show()
         SVProgressHUD.show()
         
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -55,13 +54,6 @@ class LoginViewController: UIViewController {
                 
                 self.navigationController?.popToRootViewController(animated: true)
                 self.dismiss(animated: true, completion: nil)
-                
-                //self.gradientLoadingBar.hide()
-//                let storyboard = UIStoryboard(name: "Eagle", bundle: nil)
-//                let controller = storyboard.instantiateViewController(withIdentifier: "vc") as! EageMainViewController
-//                self.present(controller, animated: true, completion: { () -> Void in
-//                })
-                //self.performSegue(withIdentifier: "goHomeFromLogin", sender: self)
             }
         }
         

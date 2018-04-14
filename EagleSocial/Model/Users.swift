@@ -28,7 +28,6 @@ class Users {
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
             self.people = [Person]()
             for snap in snapDict {
-                //                print(snap.value.index(forKey: "name")!)
                 for snip in snap.value {
                     switch(snip.key){
                     case "name":
@@ -44,15 +43,11 @@ class Users {
                     default:
                         print("Error getting friend details")
                     }
-                    //                    if snip.key == "name" {
-                    //                        friends.append(Friend(name: snip.value as! String, userId: snap.key))
-                    //                    }
                 }
                 people.append(Person(name: peopleParts[0], userId: snap.key, age: peopleParts[1], major: peopleParts[2], schoolYear: peopleParts[3], email: peopleParts[4]))
             }
             self.people = people
         }
-        //        self.friendList = friends
     }
     
     func getUser(userId : String) -> Person {

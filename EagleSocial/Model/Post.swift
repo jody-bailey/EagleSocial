@@ -40,10 +40,7 @@ class Post {
         
         if allComments != nil {
             for comment in (allComments)! {
-//                let key = comment.key
-//                print(comment)
                 for value in comment.value {
-//                    print(value)
                     commentParts.append(value.value)
                 }
                 postComments.append(Comment(name: commentParts[0], uid: commentParts[1], message: commentParts[2]))
@@ -51,12 +48,6 @@ class Post {
                 index += 1
             }
         }
-//        ref.child("posts").child(postId).child("likes").observeSingleEvent(of: .value) { (snapshot) in
-//        print(snapshot)
-//            guard let likes = snapshot.value as? [String : Bool] else { return }
-//            print(likes)
-//            allLikes = likes
-//        }
         
         self.likes = likes ?? [:]
         self.postId = postId

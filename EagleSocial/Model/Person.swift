@@ -58,7 +58,6 @@ class Person{
             if image != nil {
                 self.setProfilePic(image: image!)
             }
-            //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
     }
     

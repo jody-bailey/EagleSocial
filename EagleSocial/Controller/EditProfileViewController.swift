@@ -53,6 +53,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         super.viewDidLoad()
         thisUser.updateProfilePic()
         self.hideKeyboardWhenTappedAround()
+        thisUser.updateUser()
         self.firstNameText.text = fullNameArray[0]
         self.lastNameText.text = fullNameArray[1]
         self.ageText.text = thisUser.age

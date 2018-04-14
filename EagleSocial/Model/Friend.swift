@@ -64,7 +64,6 @@ class Friend {
             if image != nil {
                 self.setProfilePic(image: image!)
             }
-            //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         }
     }
     
@@ -72,7 +71,4 @@ class Friend {
         self.profilePic = image
     }
     
-//    public func getFriend() -> Friend {
-//        return self
-//    }
 }
