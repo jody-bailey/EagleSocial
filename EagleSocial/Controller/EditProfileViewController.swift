@@ -53,6 +53,10 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         thisUser.updateProfilePic()
         self.hideKeyboardWhenTappedAround()
         thisUser.updateUser()
+        self.firstNameText.text = fullNameArray[0]
+        self.lastNameText.text = fullNameArray[1]
+        self.ageText.text = thisUser.age
+        self.majorText.text = thisUser.major
     }
 
     override func didReceiveMemoryWarning()

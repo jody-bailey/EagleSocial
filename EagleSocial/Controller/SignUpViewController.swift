@@ -13,7 +13,6 @@ import SVProgressHUD
 class SignUpViewController: UIViewController {
     
     var ref : DatabaseReference?
-//    var isDismissed : Bool = false
     var isDismissed: Bool = false {
         didSet {
             self.dismiss(animated: true, completion: nil)
@@ -64,15 +63,11 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         SVProgressHUD.show()
-        //gradientLoadingBar.show()
-        
-        //TODO: Set up a new user on our Firbase database
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print(error!)
             }else {
-                // success
                 print("Registration Successful")
                 
                 SVProgressHUD.dismiss()
@@ -88,19 +83,6 @@ class SignUpViewController: UIViewController {
         Auth.auth().currentUser?.sendEmailVerification(completion: nil)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-
 }
 
 extension SignUpViewController: DismissedView {
@@ -108,7 +90,6 @@ extension SignUpViewController: DismissedView {
         dismiss(animated: true, completion: nil)
         isDismissed = true
         self.navigationController?.popToRootViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
     }
 }
 

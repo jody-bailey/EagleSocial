@@ -31,7 +31,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         self.commentTextField.layer.cornerRadius = 10
         self.commentTextField.layer.masksToBounds = true
         
-//        sendButton.layer.borderColor = (UIColor.black as! CGColor)
         self.sendButton.layer.cornerRadius = 10
         self.comments = (self.post?.comments)!
         
@@ -55,9 +54,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         tableView.addGestureRecognizer(tapGesture)
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -94,7 +90,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.profileImage.image = thisUser.profilePic
         } else {
             cell.profileImage.image = friendList.getFriend(userId: self.comments[indexPath.row].userId).photo
-            //                cell.profilePicture.image = #imageLiteral(resourceName: "profile_icon")
         }
         // Configure the cell...
         cell.profileImage.layer.cornerRadius = 10
@@ -149,44 +144,5 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         UIView.commitAnimations()
     }
-    
-//    //Determine if the messageTextField has begun being edited.
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//        UIView.animate(withDuration: 0.5) {
-//
-//            self.view.layoutIfNeeded()
-//        }
-//    }
-//    //Determine if the messageTextField has ended being edited.
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//
-//        UIView.animate(withDuration: 0.5) {
-//            self.heightConstraint.constant = 50.0
-//            self.view.layoutIfNeeded()
-//        }
-//    }
-//
-//    @objc func keyboardWillShow(notification: Notification) {
-//        let userInfo:NSDictionary = notification.userInfo! as NSDictionary
-//        let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
-//        let keyboardRectangle = keyboardFrame.cgRectValue
-//
-//        //Set the global keyboard height variable to the
-//        //dynamically obtained value.
-//        self.keyboardHeight = keyboardRectangle.height
-//        //print(self.keyboardHeight)    //Used for debugging
-//
-//        //Set the heightConstraint to the keyboard height plus the height of the
-//        //Message Compose View.
-//        self.heightConstraint.constant = self.keyboardHeight + CGFloat(50.0)
-//    }
-//
-//    @objc func keyboardWillHide(notification: Notification) {
-//
-//        //Set the height constraint back to 52.
-//        self.heightConstraint.constant = CGFloat(50.0)
-//    }
-    
     
 }

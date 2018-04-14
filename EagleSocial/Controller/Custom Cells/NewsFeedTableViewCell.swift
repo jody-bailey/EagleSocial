@@ -44,28 +44,10 @@ class NewsFeedTableViewCell: UITableViewCell {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        
-//        print("like button pressed")
-//        if (self.liked) {
-//            self.liked = false
-////            post[0].likes = false
-//        }else {
-//            self.liked = true
-////            post[0].likes = true
-//        }
-//        
-//        print(post[0])
-//        let userId = Auth.auth().currentUser?.uid
-//        let postId = post[0].postId
-//        self.ref.child("postLikes").child(userId!).child(postId).setValue(true)
-//        
-        
     }
     
     //MARK: - Comment Button Pressed
     @IBAction func commentButtonPressed(_ sender: UIButton) {
-        
-        
     }
     func setPost(post: [Post]) {
         self.post = post

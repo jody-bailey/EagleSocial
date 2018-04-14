@@ -27,14 +27,8 @@ class MainViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch {
-//            print("Error signing out, \(error)")
-//        }
         
         if Auth.auth().currentUser != nil {
-//            User.thisUser = User(username: (Auth.auth().currentUser?.displayName)!, userID: (Auth.auth().currentUser?.uid)!)
             thisUser.setUserAttributes()
             performSegue(withIdentifier: "goToNewsFeedNow", sender: self)
         }
@@ -54,15 +48,4 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
