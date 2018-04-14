@@ -99,6 +99,9 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     //Populate the ConversationTableView with Data.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let theirColor = UIColor(red: CGFloat(255) / 255, green: CGFloat(193) / 255, blue: CGFloat(76) / 255, alpha: 1.0)
+        let myColor = UIColor.lightGray
+        
         //Set which custom table cell to use in the conversation table view.
         let messageCell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! MessageCell
         
@@ -109,8 +112,12 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
         messageCell.nameLabel.text = messageArray[indexPath.row].getSenderId()
         
         if messageArray[indexPath.row].getSenderId() == Auth.auth().currentUser?.email {
-            messageCell.messageBackgroundView.backgroundColor = UIColor.lightGray
+            messageCell.messageBackgroundView.backgroundColor = myColor
             messageCell.messageBodyLabel.textColor = UIColor.white
+        }
+        else {
+            messageCell.messageBackgroundView.backgroundColor = theirColor
+            //messageCell.messageBodyLabel.textColor = UIColor.white
         }
         
         //Load the user's profile image into the profilImageView in the TableView Message Cell
