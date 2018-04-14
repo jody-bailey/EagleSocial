@@ -95,8 +95,10 @@ class MessageViewController: UIViewController , UITableViewDelegate, UITableView
     
     func scrollToBottom() {
         DispatchQueue.main.async {
-            let thisIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
-            self.conversationTableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
+            if (self.messageArray.count - 1) > 0 {
+                let thisIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
+                self.conversationTableView.scrollToRow(at: thisIndexPath, at: .bottom, animated: false)
+            }            
         }
     }
     override func didReceiveMemoryWarning() {
