@@ -24,13 +24,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var postCount: Int = 0
+        
         for post in posts{
-            if post.userId == thisUser.userID
-            {
+            if post.userId == thisUser.userID{
+                
                 userPosts.append(post)
                 postCount += 1
-            }
+            }            
         }
+        
         return postCount + 1
     }
     
@@ -43,19 +45,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             if indexPath.row > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-                for post in posts{
-                    if post.userId == thisUser.userID
-                    {
-                        userPosts.append(post)
-                    }
-                }
+//                for post in posts{
+//                    if post.userId == thisUser.userID
+//                    {
+//                        userPosts.append(post)
+//                    }
+//                }
                 cell.nameOfUser.text = userPosts[indexPath.row - 1].username
                 cell.textBody.text = userPosts[indexPath.row - 1].message
                 cell.setPost(post: [userPosts[indexPath.row - 1]])
                 
-              //  if (self.userPosts[indexPath.row - 1].userId == thisUser.userID){
+                if (self.userPosts[indexPath.row - 1].userId == thisUser.userID){
                     cell.profilePicture.image = thisUser.profilePic
-                //}
+                    }
                 cell.profilePicture.layer.cornerRadius = 10
                 cell.profilePicture.layer.masksToBounds = true
                 
