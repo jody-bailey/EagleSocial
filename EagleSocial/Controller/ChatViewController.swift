@@ -48,7 +48,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Retrieve conversations upon loading the messageList screen.
         retrieveConversations()
         
-        retreiveUpdateConversations()
+        retrieveUpdatedConversations()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,7 +113,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }//end retrieve conversation func
     
-    func retreiveUpdateConversations() {
+    func retrieveUpdatedConversations() {
         
         let conversationDB = Database.database().reference().child("Conversation").queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!).queryEqual(toValue: Auth.auth().currentUser?.displayName!)
         
@@ -130,6 +130,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             for convo in self.myConvos {
                 if convo.getConversationId() == thisConvo.getConversationId() {
                     convo.setLastMessage(lastMes: thisConvo.getLastMessage())
+                    break
                 }
             }
             
