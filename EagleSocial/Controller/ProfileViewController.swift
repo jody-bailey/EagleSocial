@@ -22,13 +22,16 @@ import FirebaseDatabase
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        var postCount: Int = 0
         for post in posts{
             if post.userId == thisUser.userID
             {
                 userPosts.append(post)
+                postCount += 1
             }
         }
-        return userPosts.count
+        return postCount + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,7 +43,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             if indexPath.row > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-
+                for post in posts{
+                    if post.userId == thisUser.userID
+                    {
+                        userPosts.append(post)
+                    }
+                }
                 cell.nameOfUser.text = userPosts[indexPath.row - 1].username
                 cell.textBody.text = userPosts[indexPath.row - 1].message
                 cell.setPost(post: [userPosts[indexPath.row - 1]])
