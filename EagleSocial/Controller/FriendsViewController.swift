@@ -219,6 +219,7 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             if self.friendRequests[(indexPath?.row)!].userId != thisUser.userID {
                 let ref = Database.database().reference()
                 ref.child("Friends").child(thisUser.userID).childByAutoId().setValue(["userId": self.friendRequests[(indexPath?.row)!].userId])
+                ref.child("Friends").child(self.friendRequests[(indexPath?.row)!].userId).childByAutoId().setValue(["userId": thisUser.userID])
             }
            
         }
