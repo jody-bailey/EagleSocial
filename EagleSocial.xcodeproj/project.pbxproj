@@ -23,6 +23,7 @@
 		644867E1205F4DE100A90512 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E0205F4DE100A90512 /* Message.swift */; };
 		644867E6205F51AB00A90512 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644867E4205F51AB00A90512 /* MessageCell.swift */; };
 		644867E7205F51AB00A90512 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 644867E5205F51AB00A90512 /* MessageCell.xib */; };
+		64AAFA8020868D4400DFDD40 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAFA7F20868D4400DFDD40 /* ConversationList.swift */; };
 		C8049BAB20427F9000FAC2CC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAA20427F9000FAC2CC /* Post.swift */; };
 		C8049BAD2042850000FAC2CC /* PostSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAC2042850000FAC2CC /* PostSnapshot.swift */; };
 		C8049BAF2043898D00FAC2CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8049BAE2043898D00FAC2CC /* User.swift */; };
@@ -79,6 +80,7 @@
 		644867E0205F4DE100A90512 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		644867E4205F51AB00A90512 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		644867E5205F51AB00A90512 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		64AAFA7F20868D4400DFDD40 /* ConversationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
 		C8049BAA20427F9000FAC2CC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C8049BAC2042850000FAC2CC /* PostSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSnapshot.swift; sourceTree = "<group>"; };
 		C8049BAE2043898D00FAC2CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		C86ABB9220197D1C00163279 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				64AAFA7F20868D4400DFDD40 /* ConversationList.swift */,
 				C8049BAA20427F9000FAC2CC /* Post.swift */,
 				C8049BAC2042850000FAC2CC /* PostSnapshot.swift */,
 				C8049BAE2043898D00FAC2CC /* User.swift */,
@@ -448,6 +451,7 @@
 				27984724204365A800C4D5A3 /* ChangePasswordViewController.swift in Sources */,
 				C86ABB9020197CCC00163279 /* HomeViewController.swift in Sources */,
 				C8A771D62022AC3300AF492D /* SettingsViewController.swift in Sources */,
+				64AAFA8020868D4400DFDD40 /* ConversationList.swift in Sources */,
 				644867D8205F0DBB00A90512 /* MessageListTableCell.swift in Sources */,
 				64007BD920799E5A008750F9 /* SelectFriendViewController.swift in Sources */,
 				C8049BB42046064D00FAC2CC /* FriendTableViewCell.swift in Sources */,
