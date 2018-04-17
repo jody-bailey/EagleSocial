@@ -85,6 +85,20 @@ class Conversation {
     func getDisplayName() -> String {
         return self.displayName
     }
+    //Return the userID of the other person in the conversation
+    func getOtherUserInConvo() -> String {
+        //Loop through and get the user name of the other person in the conversation.
+        var userId : String = ""
+        
+        for (userIDkey, userIDvalue) in members {
+            if userIDkey != ((Auth.auth().currentUser?.uid)!) {
+                self.displayName = String(describing: userIDvalue)
+                userId = userIDkey
+                break
+            }
+        }
+        return userId
+    }
     
     //MARK: - Setters
     //Set the lastMessage attribute
