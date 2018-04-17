@@ -22,7 +22,16 @@ import FirebaseDatabase
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count + 1
+        
+        var postCount: Int = 0
+        for post in posts{
+            if post.userId == thisUser.userID
+            {
+                userPosts.append(post)
+                postCount += 1
+            }
+        }
+        return postCount + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,19 +39,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AboutMeCell", for: indexPath) as! AboutMeCell
                 cell.setAboutMe()
-                cell.descriptionLabel.sizeToFit()
                 return cell
             }
             if indexPath.row > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! NewsFeedTableViewCell
-                
-                cell.nameOfUser.text = posts[indexPath.row - 1].username
-                cell.textBody.text = posts[indexPath.row - 1].message
-                cell.setPost(post: [posts[indexPath.row - 1]])
-                
-                if (self.posts[indexPath.row - 1].userId == thisUser.userID){
-                    cell.profilePicture.image = thisUser.profilePic
+                for post in posts{
+                    if post.userId == thisUser.userID
+                    {
+                        userPosts.append(post)
+                    }
                 }
+                cell.nameOfUser.text = userPosts[indexPath.row - 1].username
+                cell.textBody.text = userPosts[indexPath.row - 1].message
+                cell.setPost(post: [userPosts[indexPath.row - 1]])
+                
+              //  if (self.userPosts[indexPath.row - 1].userId == thisUser.userID){
+                    cell.profilePicture.image = thisUser.profilePic
+                //}
                 cell.profilePicture.layer.cornerRadius = 10
                 cell.profilePicture.layer.masksToBounds = true
                 
@@ -52,7 +65,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
                 
                 var likeCount : Int = 0
-                for like in self.posts[indexPath.row].likes {
+                for like in self.userPosts[indexPath.row - 1].likes {
                     if like.value == true {
                         likeCount += 1
                     }
@@ -64,8 +77,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.likesLabel.text = String(likeCount) + " likes"
                 }
                 
-                if self.posts[indexPath.row].likes[thisUser.userID] != nil {
-                    if self.posts[indexPath.row].likes[thisUser.userID]! == true {
+                if self.userPosts[indexPath.row - 1].likes[thisUser.userID] != nil {
+                    if self.userPosts[indexPath.row - 1].likes[thisUser.userID]! == true {
                         cell.likeButton.setTitleColor(UIColorFromRGB(rgbValue: 0xFFC14C), for: .normal)
                     } else {
                         cell.likeButton.setTitleColor(UIColor.black, for: .normal)
@@ -99,6 +112,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var postData = [String]()
     var posts = [Post]()
+    var userPosts = [Post]()
     
     var likes = [Like]()
    
@@ -129,9 +143,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // code to handle when a new post is added
             guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
             self.posts = postsSnapshot.posts
+            
             self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
             self.userStatusTableView.reloadData()
             })
+
             userStatusTableView.delegate = self
             userStatusTableView.dataSource = self
             
@@ -147,18 +163,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             userStatusTableView.reloadData()
             
     }
-        
-
-        //code to load the userstatus table view up which pulls the users previous "status's or post
-        //from the database
-       // userStatusTableView.delegate = self
-       // userStatusTableView.dataSource = self
-        
-//        userStatusTableView.register(UINib(nibName: "NewsFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-//        
-//        userStatusTableView.register(UINib(nibName: "StatusUpdateTableViewCell", bundle: nil), forCellReuseIdentifier: "statusUpdateCell")
-//        
-//        userStatusTableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
@@ -296,6 +300,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.userStatusTableView.reloadData()
             
         })
+
         thisUser.updateProfilePic()
         
         userStatusTableView.reloadData()
