@@ -21,7 +21,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //tapped row in the table.
     var tappedConversationID = ""
     
-    //let conversations = ConversationList()
+    //var conversations = ConversationList()
     var myConvos : [Conversation] = [Conversation]()
     
     
@@ -31,6 +31,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let conversationList = ConversationList()
+        myConvos = conversationList.getConversationList()
         
         //Set self as the delagate for the messageTableView:
         messageTableView.delegate = self
@@ -49,6 +52,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         retrieveConversations()
         
         retrieveUpdatedConversations()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +77,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         //Load the user's profile image into the profileImageView in the TableView MessageListTableCell
         //TODO: - Modify the classes/models to pull down user's profile picture.
-        conversationCell.profilePictureImageView.image = UIImage(named : "profile_icon")
+        //conversationCell.profilePictureImageView.image = UIImage(named : "profile_icon")
+        print("MJP Test Username")
+        print(myConvos[indexPath.row].getOtherUserInConvo())
+        let profilePic = allUsers.getUser(userId: myConvos[indexPath.row].getOtherUserInConvo()).photo
+        conversationCell.profilePictureImageView.image = profilePic
+        conversationCell.profilePictureImageView.layer.cornerRadius = 24.0
+        conversationCell.profilePictureImageView.layer.masksToBounds = true
         
         return conversationCell
     }
