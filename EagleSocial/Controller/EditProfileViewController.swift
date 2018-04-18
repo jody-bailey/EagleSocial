@@ -122,6 +122,26 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                 dismiss(animated: true, completion: nil)
             }
         }
+    /***********************************************************************************************
+     https://stackoverflow.com/questions/33274780/uitextfield-move-up-when-keyboard-appears-in-swift
+     **********************************************************************************************/
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        animateViewMoving(up: false, moveValue: 208)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        animateViewMoving(up: true, moveValue: 208)
+    }
+    
+    func animateViewMoving(up: Bool, moveValue : CGFloat) {
+        let movementDuration : TimeInterval = 0.2
+        let movement : CGFloat = (up ? -moveValue : moveValue)
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
 
 
 }
