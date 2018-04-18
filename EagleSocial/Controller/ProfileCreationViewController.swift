@@ -43,6 +43,7 @@ class ProfileCreationViewController: UIViewController {
             let age = "0"
             let major = "undetermined"
             let schoolYear = "undertermined"
+            let aboutMe = "SMTTT"
             let changeRequest = user?.createProfileChangeRequest()
             changeRequest?.displayName = username
             
@@ -60,7 +61,9 @@ class ProfileCreationViewController: UIViewController {
                               "email": email!,
                               "age": age,
                               "major": major,
+                              "about me": aboutMe,
                               "school year": schoolYear] as [String : Any]
+            
             
             ref?.child("Users/\(userId)").setValue(parameters)
         }

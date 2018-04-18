@@ -58,6 +58,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.lastNameText.text = fullNameArray[1]
         self.ageText.text = thisUser.age
         self.majorText.text = thisUser.major
+        self.aboutMeTextView.text = thisUser.aboutMe
     }
 
     override func didReceiveMemoryWarning()
@@ -81,6 +82,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                 var lNameData = lastNameText.text
                 var ageData = ageText.text
                 var majorData = majorText.text
+                var aboutMeData = aboutMeTextView.text
                 var schoolYearData = schoolYearPicked
              
                 if firstNameText.text == ""{
@@ -95,6 +97,9 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                 if majorText.text == ""{
                     majorData = thisUser.major
                 }
+                if aboutMeTextView.text == ""{
+                    aboutMeData = thisUser.aboutMe
+                }
                 if schoolYearData == ""{
                     schoolYearData = thisUser.schoolYear
                 }
@@ -105,8 +110,9 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
                 ref.child("Users").child(thisUser.userID).updateChildValues(["name": fullName,
                                                                              "age": ageData!,
                                                                              "major": majorData!,
+                                                                             "about me": aboutMeData!,
                                                                              "school year": schoolYearData])
-                thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userSchoolYear: schoolYearData)
+                thisUser.updateUserAttributes(username: fullName, userAge: ageData!, userMajor: majorData!, userAboutMe: aboutMeData!, userSchoolYear: schoolYearData)
                 
                 let user = Auth.auth().currentUser
                 let changeRequest = user?.createProfileChangeRequest()
