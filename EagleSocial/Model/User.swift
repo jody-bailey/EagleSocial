@@ -23,6 +23,7 @@ class User
     var age: String
     var major: String
     var schoolYear: String
+    var aboutMe: String
     var photo: String
     var profilePic: UIImage
 
@@ -35,6 +36,7 @@ class User
         self.age = ""
         self.major = ""
         self.schoolYear = ""
+        self.aboutMe = ""
         self.photo = ""
         self.profilePic = #imageLiteral(resourceName: "profile_icon")
         self.updateUser()
@@ -52,6 +54,7 @@ class User
                 let email = snapDict["email"],
                 let age = snapDict["age"],
                 let major = snapDict["major"],
+                let aboutMe = snapDict["about me"],
                 let schoolYear = snapDict["school year"]
                 else { return }
             
@@ -61,6 +64,7 @@ class User
             self.email = email
             self.age = age
             self.major = major
+            self.aboutMe = aboutMe
             self.schoolYear = schoolYear
         }
     }
@@ -88,22 +92,25 @@ class User
             guard let name = snapDict["name"],
                 let age = snapDict["age"],
                 let major = snapDict["major"],
+                let aboutMe = snapDict["about me"],
                 let schoolYear = snapDict["school year"]
             else { return }
             
             self.name = name
             self.age = age
             self.major = major
+            self.aboutMe = aboutMe
             self.schoolYear = schoolYear
         }
         
     }
     
-    public func updateUserAttributes(username: String, userAge: String, userMajor: String, userSchoolYear: String)
+    public func updateUserAttributes(username: String, userAge: String, userMajor: String, userAboutMe: String, userSchoolYear: String)
     {
         name = username
         age = userAge
         major = userMajor
+        aboutMe = userAboutMe
         schoolYear = userSchoolYear
     }
     
@@ -129,8 +136,7 @@ class User
             
             }
         }
-    }
-    
+    }    
     public func hasProfilePic() -> Bool {
         if self.profilePic != profilePic {
             return true
