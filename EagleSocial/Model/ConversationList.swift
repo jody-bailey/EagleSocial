@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-let conversationList = ConversationList()
+
 
 class ConversationList {
     

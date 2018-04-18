@@ -23,6 +23,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //var conversations = ConversationList()
     var myConvos : [Conversation] = [Conversation]()
+    let conversationList = ConversationList()
     
     
     //Constant used to set the row height for the
@@ -49,7 +50,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         configureTableView()
         
         //Retrieve conversations upon loading the messageList screen.
-        retrieveConversations()
+        //retrieveConversations()
         
         retrieveUpdatedConversations()
         
