@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var NewsFeedTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // References and Handles for firebase
     var ref: DatabaseReference?
     var likeRef: DatabaseReference?
     var commentRef: DatabaseReference?
@@ -53,6 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         })
         
+        // Set delegate and datasource to tableView
         NewsFeedTable.delegate = self
         NewsFeedTable.dataSource = self
         
