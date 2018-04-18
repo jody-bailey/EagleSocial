@@ -70,11 +70,20 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         let _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
             self.friends = [Person]()
+            var alreadyFriends : Bool = false
             for snap in snapDict {
                 print(snap)
                 for snip in snap.value {
                     let friend = allUsers.getUser(userId: snip.value as! String)
-                    self.friends.append(friend)
+                    for dude in self.friends {
+                        if dude.userId == friend.userId {
+                            alreadyFriends = true
+                        }
+                    }
+                    if !alreadyFriends {
+                        self.friends.append(friend)
+                    }
+                    
                 }
             }
             self.friendTableView.reloadData()
@@ -106,12 +115,31 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             if userFound {
-                let params = ["from" : thisUser.userID,
-                              "active" : true] as [String : Any]
-                ref?.child("Requests").child((person?.userId)!).childByAutoId().setValue(params)
-                
-                self.friendTableView.reloadData()
-                friendList.updateFriendRequests()
+                if person?.userId != thisUser.userID {
+                    var alreadyFriends : Bool = false
+                    for dude in self.friends {
+                        if dude.userId == person?.userId {
+                            alreadyFriends = true
+                        }
+                    }
+                    if !alreadyFriends {
+                        let params = ["from" : thisUser.userID,
+                                      "active" : true] as [String : Any]
+                        ref?.child("Requests").child((person?.userId)!).childByAutoId().setValue(params)
+                        
+                        self.friendTableView.reloadData()
+                        friendList.updateFriendRequests()
+                    } else {
+                        textField.text = ""
+                        textField.placeholder = "Already friends"
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
+                } else {
+                    textField.text = ""
+                    textField.placeholder = "Cannot add yourself"
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
             else {
                 textField.text = ""
