@@ -18,8 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="iJ8-8a-lNi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EagleSocialLogoFinal" translatesAutoresizingMaskIntoConstraints="NO" id="iJ8-8a-lNi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.34898746013641357" green="0.3490409255027771" blue="0.34897059202194214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="375" height="812"/>
+        <image name="EagleSocialLogoFinal" width="1024" height="1024"/>
     </resources>
 </document>

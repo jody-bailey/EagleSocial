@@ -38,7 +38,7 @@ class User
         self.schoolYear = ""
         self.aboutMe = ""
         self.photo = ""
-        self.profilePic = #imageLiteral(resourceName: "profile_icon")
+        self.profilePic = #imageLiteral(resourceName: "ES_Logo")
         self.updateUser()
         self.updateProfilePic()
 
