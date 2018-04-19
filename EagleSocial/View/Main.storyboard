@@ -1120,11 +1120,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUf-i5-08t">
-                                <rect key="frame" x="14" y="-53" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="614"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXL-6R-S3r">
-                                        <rect key="frame" x="57" y="275" width="241" height="38"/>
+                                        <rect key="frame" x="68" y="252" width="241" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="22"/>
@@ -1136,7 +1136,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnH-7d-gWU">
-                                        <rect key="frame" x="58" y="346" width="241" height="38"/>
+                                        <rect key="frame" x="68" y="314" width="241" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="22"/>
@@ -1148,7 +1148,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vf-Ur-wv8">
-                                        <rect key="frame" x="119" y="416" width="119" height="30"/>
+                                        <rect key="frame" x="129" y="384" width="119" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Logout">
@@ -1159,7 +1159,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YmJ-m0-MNO">
-                                        <rect key="frame" x="45" y="77" width="265" height="175"/>
+                                        <rect key="frame" x="58" y="49" width="260" height="171"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -1216,11 +1216,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-XX-JB0" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="271"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="nsw-K9-KXH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="nsw-K9-KXH">
                                         <rect key="frame" x="55" y="78" width="265" height="175"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nsw-K9-KXH" secondAttribute="trailing" constant="55" id="1hb-CQ-cEo"/>
+                                    <constraint firstItem="nsw-K9-KXH" firstAttribute="leading" secondItem="x7X-XX-JB0" secondAttribute="leading" constant="55" id="flO-6p-iiW"/>
+                                    <constraint firstItem="nsw-K9-KXH" firstAttribute="top" secondItem="x7X-XX-JB0" secondAttribute="top" constant="78" id="i5c-hH-kRz"/>
+                                    <constraint firstAttribute="bottom" secondItem="nsw-K9-KXH" secondAttribute="bottom" constant="18" id="lhQ-5g-GwU"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dk-iZ-ycU" userLabel="Credentials View">
                                 <rect key="frame" x="0.0" y="271" width="375" height="396"/>
@@ -1307,11 +1312,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-8y-aQ1" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="254"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-qa-Ijb">
-                                        <rect key="frame" x="55" y="93" width="265" height="175"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-qa-Ijb">
+                                        <rect key="frame" x="55" y="93" width="265" height="161"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="gcc-qa-Ijb" firstAttribute="leading" secondItem="9a5-8y-aQ1" secondAttribute="leading" constant="55" id="6XW-J0-DHC"/>
+                                    <constraint firstItem="gcc-qa-Ijb" firstAttribute="top" secondItem="9a5-8y-aQ1" secondAttribute="top" constant="93" id="8xc-ut-Xkg"/>
+                                    <constraint firstAttribute="trailing" secondItem="gcc-qa-Ijb" secondAttribute="trailing" constant="55" id="OZu-vy-Qxo"/>
+                                    <constraint firstAttribute="bottom" secondItem="gcc-qa-Ijb" secondAttribute="bottom" id="RFK-zc-bS9"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ult-bI-g3T" userLabel="Welcome View">
                                 <rect key="frame" x="0.0" y="254" width="375" height="215"/>
@@ -1417,11 +1427,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjL-vJ-YLZ" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="bkX-hd-JMU">
-                                        <rect key="frame" x="59" y="72" width="232" height="167"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="bkX-hd-JMU">
+                                        <rect key="frame" x="61" y="72" width="232" height="167"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="bkX-hd-JMU" firstAttribute="leading" secondItem="vjL-vJ-YLZ" secondAttribute="leading" constant="61" id="7ep-wJ-QzT"/>
+                                    <constraint firstAttribute="trailing" secondItem="bkX-hd-JMU" secondAttribute="trailing" constant="82" id="bek-Ee-Iho"/>
+                                    <constraint firstItem="bkX-hd-JMU" firstAttribute="top" secondItem="vjL-vJ-YLZ" secondAttribute="top" constant="72" id="een-np-bWx"/>
+                                    <constraint firstAttribute="bottom" secondItem="bkX-hd-JMU" secondAttribute="bottom" id="w9O-ke-dPP"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkV-tM-pU5" userLabel="User Info View">
                                 <rect key="frame" x="0.0" y="239" width="375" height="428"/>
