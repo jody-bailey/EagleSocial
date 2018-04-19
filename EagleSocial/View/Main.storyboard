@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxw-kK-Kzv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Friends-->
         <scene sceneID="Sga-4V-oDf">
@@ -108,9 +113,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="m4T-3b-JKb">
                                 <rect key="frame" x="110" y="20" width="155" height="158"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVg-iw-nfJ">
                                 <rect key="frame" x="254" y="589" width="71" height="30"/>
@@ -892,10 +897,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="LZh-Uw-hg0">
-                                <rect key="frame" x="67" y="20" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lex-4e-F3I">
                                 <rect key="frame" x="137" y="227" width="199" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -974,6 +975,10 @@
                                     <action selector="saveButtonPressed:" destination="rZt-0N-Sj8" eventType="touchUpInside" id="2l0-mo-7vL"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="d1G-Q8-3c0">
+                                <rect key="frame" x="55" y="20" width="265" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="ABQ-QQ-XQQ"/>
@@ -999,10 +1004,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="085-oW-0cj">
-                                <rect key="frame" x="67" y="20" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogo-pe-lpu">
                                 <rect key="frame" x="67" y="394" width="81" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1067,6 +1068,10 @@
                                     <action selector="saveButtonPressed:" destination="4sw-3O-Otu" eventType="touchUpInside" id="xaO-Mn-TUK"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="97y-Xk-izD">
+                                <rect key="frame" x="61" y="20" width="252" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="bKv-wy-UJx"/>
@@ -1081,7 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbf-3q-BcQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-312" y="675"/>
+            <point key="canvasLocation" x="-312.80000000000001" y="674.21289355322347"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Cdo-oc-bcS">
@@ -1115,48 +1120,48 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUf-i5-08t">
-                                <rect key="frame" x="14" y="-53" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="614"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXL-6R-S3r">
-                                        <rect key="frame" x="57" y="275" width="241" height="38"/>
+                                        <rect key="frame" x="68" y="252" width="241" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="22"/>
                                         <state key="normal" title="Change Email">
-                                            <color key="titleColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.98923021554946899" green="0.78454893827438354" blue="0.13560277223587036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="changeEmailPressed:" destination="8s7-aM-eda" eventType="touchUpInside" id="pzt-l3-Duk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnH-7d-gWU">
-                                        <rect key="frame" x="58" y="346" width="241" height="38"/>
+                                        <rect key="frame" x="68" y="314" width="241" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Baskerville" family="Baskerville" pointSize="22"/>
                                         <state key="normal" title="Change Password">
-                                            <color key="titleColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.98923021554946899" green="0.78454893827438354" blue="0.13560277223587036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="changePasswordPressed:" destination="8s7-aM-eda" eventType="touchUpInside" id="F5e-8f-Xl8"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="YmJ-m0-MNO">
-                                        <rect key="frame" x="58" y="81" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vf-Ur-wv8">
-                                        <rect key="frame" x="119" y="416" width="119" height="30"/>
+                                        <rect key="frame" x="129" y="384" width="119" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Logout">
-                                            <color key="titleColor" red="1" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.98923021554946899" green="0.78454893827438354" blue="0.13560277223587036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="logoutPressed:" destination="8s7-aM-eda" eventType="touchUpInside" id="bi3-CQ-poA"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YmJ-m0-MNO">
+                                        <rect key="frame" x="58" y="49" width="260" height="171"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <viewLayoutGuide key="safeArea" id="CP4-pI-SYc"/>
@@ -1176,7 +1181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1z-kD-dyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-953" y="-117"/>
+            <point key="canvasLocation" x="-954.39999999999998" y="-117.39130434782609"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Qnv-CK-xDi">
@@ -1211,17 +1216,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7X-XX-JB0" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="271"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6Gr-Xh-R8D">
-                                        <rect key="frame" x="67" y="71.5" width="240" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="e9c-Oc-6tc"/>
-                                            <constraint firstAttribute="width" constant="240" id="kcq-pI-ipP"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="nsw-K9-KXH">
+                                        <rect key="frame" x="55" y="78" width="265" height="175"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6Gr-Xh-R8D" firstAttribute="centerY" secondItem="x7X-XX-JB0" secondAttribute="centerY" id="Q7n-YM-pwu"/>
-                                    <constraint firstItem="6Gr-Xh-R8D" firstAttribute="centerX" secondItem="x7X-XX-JB0" secondAttribute="centerX" id="kUz-eK-rs8"/>
+                                    <constraint firstAttribute="trailing" secondItem="nsw-K9-KXH" secondAttribute="trailing" constant="55" id="1hb-CQ-cEo"/>
+                                    <constraint firstItem="nsw-K9-KXH" firstAttribute="leading" secondItem="x7X-XX-JB0" secondAttribute="leading" constant="55" id="flO-6p-iiW"/>
+                                    <constraint firstItem="nsw-K9-KXH" firstAttribute="top" secondItem="x7X-XX-JB0" secondAttribute="top" constant="78" id="i5c-hH-kRz"/>
+                                    <constraint firstAttribute="bottom" secondItem="nsw-K9-KXH" secondAttribute="bottom" constant="18" id="lhQ-5g-GwU"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dk-iZ-ycU" userLabel="Credentials View">
@@ -1309,17 +1312,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-8y-aQ1" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="254"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-La-RAI">
-                                        <rect key="frame" x="67" y="63" width="240" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="MEa-QS-Ij7"/>
-                                            <constraint firstAttribute="width" constant="240" id="x7b-PP-KiX"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="gcc-qa-Ijb">
+                                        <rect key="frame" x="55" y="93" width="265" height="161"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="KXq-La-RAI" firstAttribute="centerX" secondItem="9a5-8y-aQ1" secondAttribute="centerX" id="DdZ-ea-17p"/>
-                                    <constraint firstItem="KXq-La-RAI" firstAttribute="centerY" secondItem="9a5-8y-aQ1" secondAttribute="centerY" id="L5m-Zi-0ZQ"/>
+                                    <constraint firstItem="gcc-qa-Ijb" firstAttribute="leading" secondItem="9a5-8y-aQ1" secondAttribute="leading" constant="55" id="6XW-J0-DHC"/>
+                                    <constraint firstItem="gcc-qa-Ijb" firstAttribute="top" secondItem="9a5-8y-aQ1" secondAttribute="top" constant="93" id="8xc-ut-Xkg"/>
+                                    <constraint firstAttribute="trailing" secondItem="gcc-qa-Ijb" secondAttribute="trailing" constant="55" id="OZu-vy-Qxo"/>
+                                    <constraint firstAttribute="bottom" secondItem="gcc-qa-Ijb" secondAttribute="bottom" id="RFK-zc-bS9"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ult-bI-g3T" userLabel="Welcome View">
@@ -1426,17 +1427,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjL-vJ-YLZ" userLabel="Logo View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="USMLogo" translatesAutoresizingMaskIntoConstraints="NO" id="drF-YK-mQG">
-                                        <rect key="frame" x="67" y="55.5" width="240" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="79R-wb-kvk"/>
-                                            <constraint firstAttribute="width" constant="240" id="KAx-2M-KAI"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ES_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="bkX-hd-JMU">
+                                        <rect key="frame" x="61" y="72" width="232" height="167"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="drF-YK-mQG" firstAttribute="centerX" secondItem="vjL-vJ-YLZ" secondAttribute="centerX" id="EPw-LO-Wn2"/>
-                                    <constraint firstItem="drF-YK-mQG" firstAttribute="centerY" secondItem="vjL-vJ-YLZ" secondAttribute="centerY" id="Z8w-2r-dTK"/>
+                                    <constraint firstItem="bkX-hd-JMU" firstAttribute="leading" secondItem="vjL-vJ-YLZ" secondAttribute="leading" constant="61" id="7ep-wJ-QzT"/>
+                                    <constraint firstAttribute="trailing" secondItem="bkX-hd-JMU" secondAttribute="trailing" constant="82" id="bek-Ee-Iho"/>
+                                    <constraint firstItem="bkX-hd-JMU" firstAttribute="top" secondItem="vjL-vJ-YLZ" secondAttribute="top" constant="72" id="een-np-bWx"/>
+                                    <constraint firstAttribute="bottom" secondItem="bkX-hd-JMU" secondAttribute="bottom" id="w9O-ke-dPP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkV-tM-pU5" userLabel="User Info View">
@@ -1532,7 +1531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Arx-s3-AZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3590" y="-117"/>
+            <point key="canvasLocation" x="3589.5999999999999" y="-117.39130434782609"/>
         </scene>
         <!--Profile Creation View Controller-->
         <scene sceneID="ROb-VJ-Xl9">
@@ -1711,7 +1710,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="USMLogo" width="765" height="408"/>
+        <image name="ES_Logo" width="1500" height="1500"/>
         <image name="add_button" width="17" height="17"/>
         <image name="add_friend_btn" width="20" height="20"/>
         <image name="back_btn" width="13" height="21"/>
