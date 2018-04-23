@@ -232,12 +232,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let buttonPosition = sender.convert(CGPoint.zero, to: self.NewsFeedTable)
             let indexPath = self.NewsFeedTable.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
+                let dateString = String(describing: Date())
                 
                 var parameters : [String : String] = [:]
                 
                 parameters = ["name" : (thisUser.name),
                               "userId" : (thisUser.userID),
-                                  "message" : textField.text!]
+                                  "message" : textField.text!,
+                                  "date" : dateString]
                 
                 if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
                     self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)

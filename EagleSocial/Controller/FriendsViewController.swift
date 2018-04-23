@@ -31,6 +31,12 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         friends = friendList.getFriendList()
         friendList.updateList()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        
+        // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        friendTableView.refreshControl = refreshControl
+        
         // Do any additional setup after loading the view.
         friendTableView.delegate = self
         friendTableView.dataSource = self
@@ -92,6 +98,39 @@ class FriendsViewController: UIViewController, UITableViewDelegate, UITableViewD
         configureTableView()
         
         friendTableView.reloadData()
+    }
+    
+    @objc func doSomething(refreshControl: UIRefreshControl) {
+        
+        for friend in self.friends {
+            friend.updateProfilePic()
+        }
+        
+        let ref = Database.database().reference()
+        let _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            self.friends = [Person]()
+            var alreadyFriends : Bool = false
+            for snap in snapDict {
+                print(snap)
+                for snip in snap.value {
+                    let friend = allUsers.getUser(userId: snip.value as! String)
+                    for dude in self.friends {
+                        if dude.userId == friend.userId {
+                            alreadyFriends = true
+                        }
+                    }
+                    if !alreadyFriends {
+                        self.friends.append(friend)
+                    }
+                    
+                }
+            }
+            self.friendTableView.reloadData()
+        })
+
+        friendTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
