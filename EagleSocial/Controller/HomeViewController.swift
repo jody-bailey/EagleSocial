@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (self.posts[indexPath.row - 1].userId == thisUser.userID){
                 cell.profilePicture.image = thisUser.profilePic
             } else {
-                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).photo
+                cell.profilePicture.image = allUsers.getUser(userId: self.posts[indexPath.row - 1].userId).photo
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
