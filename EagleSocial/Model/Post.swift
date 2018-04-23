@@ -43,7 +43,7 @@ class Post {
                 for value in comment.value {
                     commentParts.append(value.value)
                 }
-                postComments.append(Comment(name: commentParts[0], uid: commentParts[1], message: commentParts[2]))
+                postComments.append(Comment(name: commentParts[0], uid: commentParts[1], message: commentParts[2], date: dateFormatter.date(from: commentParts[3])!))
                 commentParts = []
                 index += 1
             }

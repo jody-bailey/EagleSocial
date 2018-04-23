@@ -37,7 +37,8 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         ref = Database.database().reference()
         refHandle = ref?.child("posts").child((post?.postId)!).child("comments").observe(.value, with: { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
-            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
             self.comments = [Comment]()
             for snap in snapDict {
                 var commentParts = [String]()
@@ -45,9 +46,9 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                 for snip in snap.value {
                     commentParts.append(snip.value as! String)
                 }
-                self.comments.append(Comment(name: commentParts[0], uid: commentParts[1], message: commentParts[2]))
+                self.comments.append(Comment(name: commentParts[0], uid: commentParts[1], message: commentParts[2], date: dateFormatter.date(from: commentParts[3])!))
             }
-            
+            self.comments.sort(by: { $0.date.compare($1.date) == .orderedAscending })
             self.tableView.reloadData()
         })
         
@@ -104,10 +105,12 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        let dateString = String(describing: Date())
         ref = Database.database().reference()
         let params = ["name" : thisUser.name,
                       "userId" : thisUser.userID,
-                      "message" : self.commentTextField.text!]
+                      "message" : self.commentTextField.text!,
+                      "date" : dateString]
         
         ref?.child("posts").child((post?.postId)!).child("comments").childByAutoId().setValue(params)
         
