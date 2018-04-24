@@ -10,22 +10,21 @@ import Foundation
 import Firebase
 
 class Conversation {
-    var lastMessage : String
+    private var lastMessage : String
     private var username : String
     private var displayName : String
     private var conversationId : String
     private var members : Dictionary<String,Any>
     private var messages : Dictionary <String, Any>
-    //TODO: - Add profile pic property and methods
     //TODO: - Add date property and methods
     
     //Initialize the object - Default
     init()
     {
-        lastMessage = "abc"
-        username = "b"
+        lastMessage = ""
+        username = ""
         displayName = ""
-        conversationId = "c"
+        conversationId = ""
         members = [:]
         messages = [:]
     }
@@ -56,15 +55,6 @@ class Conversation {
                 break
             }
         }
-        
-        /*let userDB = Database.database().reference().child("Users").child(username)
-        
-        userDB.observeSingleEvent(of: .value, with: {(snapshot) in
-            let snapshotValue = snapshot.value as! Dictionary<String,Any>
-            print("MJP " + (snapshotValue["name"] as! String))
-            self.displayName = String(describing: snapshotValue["name"]! )
-            
-        })*/
     }
     
     //MARK: - Getters
