@@ -90,7 +90,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         if (self.comments[indexPath.row].userId == thisUser.userID){
             cell.profileImage.image = thisUser.profilePic
         } else {
-            cell.profileImage.image = friendList.getFriend(userId: self.comments[indexPath.row].userId).photo
+            cell.profileImage.image = allUsers.getUser(userId: self.comments[indexPath.row].userId).photo
         }
         // Configure the cell...
         cell.profileImage.layer.cornerRadius = 10

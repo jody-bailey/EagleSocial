@@ -23,7 +23,7 @@ class Users {
     public func updateList() {
         let ref = Database.database().reference()
         var people : [Person] = []
-        var peopleParts = [String](repeating: "", count: 5)
+        var peopleParts = [String](repeating: "", count: 6)
         _ = ref.child("Users").observe(.value) { (snapshot) in
             guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
             self.people = [Person]()
@@ -40,11 +40,13 @@ class Users {
                         peopleParts[3] = snip.value as! String
                     case "email":
                         peopleParts[4] = snip.value as! String
+                    case "about me":
+                        peopleParts[5] = snip.value as! String
                     default:
                         print("Error getting friend details")
                     }
                 }
-                people.append(Person(name: peopleParts[0], userId: snap.key, age: peopleParts[1], major: peopleParts[2], schoolYear: peopleParts[3], email: peopleParts[4]))
+                people.append(Person(name: peopleParts[0], userId: snap.key, age: peopleParts[1], major: peopleParts[2], schoolYear: peopleParts[3], email: peopleParts[4], aboutMe: peopleParts[5]))
             }
             self.people = people
         }

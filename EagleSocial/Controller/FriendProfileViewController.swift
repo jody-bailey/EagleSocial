@@ -96,7 +96,7 @@ class FriendProfileViewController: UITableViewController {
             cell.ageLabel.text = "Age: " + friend!.age
             cell.majorLabel.text = "Major: " + friend!.major
             cell.gradYearLabel.text = "Grad year: " + friend!.schoolYear
-            cell.aboutMeLabel.text = "This is going to be the users bio."
+            cell.aboutMeLabel.text = friend!.aboutMe
             
             return cell
         } else if indexPath.section >= 1 {
