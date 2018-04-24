@@ -19,7 +19,7 @@ import FirebaseDatabase
 //the ProfileViewController
 
 //method is loaded after the VC has loaded its view hierarchy into memory
-class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -51,6 +51,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.aboutMeTextView.delegate = self
         thisUser.updateProfilePic()
         self.hideKeyboardWhenTappedAround()
         thisUser.updateUser()
@@ -131,11 +132,11 @@ class EditProfileViewController: UIViewController, UIPickerViewDataSource, UIPic
     /***********************************************************************************************
      https://stackoverflow.com/questions/33274780/uitextfield-move-up-when-keyboard-appears-in-swift
      **********************************************************************************************/
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textViewDidEndEditing(_ textField: UITextView) {
         animateViewMoving(up: false, moveValue: 208)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textViewDidBeginEditing(_ textField: UITextView) {
         animateViewMoving(up: true, moveValue: 208)
     }
     
