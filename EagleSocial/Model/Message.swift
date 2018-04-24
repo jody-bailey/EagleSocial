@@ -22,8 +22,8 @@ class Message {
         messageBody = ""
         conversationID = ""
         
-        messageDictionary = ["Sender" : "a", "MessageBody" : "b", "ConversationID": "c"]
-        members = ["abc": "true", "123": "true"]
+        messageDictionary = ["Sender" : "", "MessageBody" : "", "ConversationID": ""]
+        members = [:]
     }
     init(membersa: Dictionary<String, String>, messageDictionarya: Dictionary<String, Any>)
     {
