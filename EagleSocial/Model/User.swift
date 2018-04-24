@@ -24,7 +24,6 @@ class User
     var major: String
     var schoolYear: String
     var aboutMe: String
-    var photo: String
     var profilePic: UIImage
 
 
@@ -37,7 +36,6 @@ class User
         self.major = ""
         self.schoolYear = ""
         self.aboutMe = ""
-        self.photo = ""
         self.profilePic = #imageLiteral(resourceName: "ES_Logo")
         self.updateUser()
         self.updateProfilePic()
