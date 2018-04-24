@@ -43,8 +43,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(doSomething), for: .valueChanged)
         NewsFeedTable.refreshControl = refreshControl
-       
-        // Do any additional setup after loading the view.
+        
+        // Creating a reference to the Firebase database and then connecting
+        // a handle to it to handle the data. The handler will listen for changes
+        // in the "posts" section of the database. When a post is change or a new
+        // one is added then this code will run which gets the new data from
+        // Firebase and puts it into the array of posts.
         ref = Database.database().reference()
         refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
             // code to handle when a new post is added

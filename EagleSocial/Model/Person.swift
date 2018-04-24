@@ -29,7 +29,7 @@ class Person{
         self.email = email
         self.userId = userId
         self.aboutMe = aboutMe
-        self.photo = #imageLiteral(resourceName: "profile_icon")
+        self.photo = #imageLiteral(resourceName: "EagleSocialLogoFinal")
         updateProfilePic()
     }
     
@@ -41,7 +41,7 @@ class Person{
         self.email = email
         self.userId = userId
         self.aboutMe = "This user has not updated their about me!"
-        self.photo = #imageLiteral(resourceName: "profile_icon")
+        self.photo = #imageLiteral(resourceName: "EagleSocialLogoFinal")
         updateProfilePic()
     }
     
@@ -53,7 +53,7 @@ class Person{
         self.email = ""
         self.userId = ""
         self.aboutMe = "This user has not updated their about me!"
-        self.photo = #imageLiteral(resourceName: "profile_icon")
+        self.photo = #imageLiteral(resourceName: "EagleSocialLogoFinal")
     }
     
     public func updateProfilePic() {
