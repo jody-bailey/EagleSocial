@@ -25,14 +25,6 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for friend in friendList.getFriendList() {
-            if friend.userId == thisUser.userID {
-                friendList.removeFriend(friend: friend)
-            }
-        }
-        
-        friendArray = friendList.getFriendList()
-        
         //set the delagate for the selectFriendTableView
         selectFriendTableView.delegate = self
         
@@ -46,7 +38,7 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         //See function definition for more information on what this item does.
         configureTableView()
         
-        //retrieveUsers()
+        retrieveUsers()
         
         selectFriendTableView.reloadData()
     }
@@ -115,26 +107,27 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
     
     //Retrieve the users from the database.
     func retrieveUsers(){
-        let userDB = Database.database().reference().child("Users")
-        
-        userDB.observe(.childAdded) { (snapshot) in
-            
-
-            let snapshowValue = snapshot.value as! Dictionary<String, Any>
-            var user : Person?
-
-            
-            for snap in snapshowValue {
-                user = Person(name: snapshowValue["name"]! as! String, userId: snap.key , age: snapshowValue["age"] as! String, major: snapshowValue["major"] as! String, schoolYear: snapshowValue["school year"] as! String, email: snapshowValue["email"]! as! String)
+        let ref = Database.database().reference()
+        let _ = ref.child("Friends").child(thisUser.userID).observe(.value, with: { (snapshot) in
+            guard let snapDict = snapshot.value as? [String : [String : Any]] else { return }
+            self.friendArray = [Person]()
+            var alreadyFriends : Bool = false
+            for snap in snapDict {
+                print(snap)
+                for snip in snap.value {
+                    let friend = allUsers.getUser(userId: snip.value as! String)
+                    for dude in self.friendArray {
+                        if dude.userId == friend.userId {
+                            alreadyFriends = true
+                        }
+                    }
+                    if !alreadyFriends {
+                        self.friendArray.append(friend)
+                    }
+                    
+                }
             }
-            
-            
-            self.friendArray.append(user!)
-            
-            self.configureTableView()
-            
             self.selectFriendTableView.reloadData()
         }
-    }
-    
+    )}
 }

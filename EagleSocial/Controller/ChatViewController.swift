@@ -22,7 +22,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var tappedConversationID = ""
     
     var myConvos : [Conversation] = [Conversation]()
-    let conversationList = ConversationList()
+    //let conversationList = ConversationList()
     
     //Constant used to set the row height for the
     //messageViewTable
