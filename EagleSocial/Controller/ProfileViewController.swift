@@ -61,7 +61,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 cell.profilePicture.layer.cornerRadius = 10
                 cell.profilePicture.layer.masksToBounds = true
                 
-                cell.likeButton.tag = indexPath.row
                 cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
                 cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
                 cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
@@ -122,6 +121,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         allUsers.updateList()
         if Auth.auth().currentUser != nil {
         thisUser.setUserAttributes()
@@ -130,6 +132,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         majorLabel.text = thisUser.major
         schoolYearLabel.text = thisUser.schoolYear
         self.getUserProfilePic()
+            
+            ref = Database.database().reference()
+            refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+                // code to handle when a new post is added
+                guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+                self.posts = postsSnapshot.posts
+                self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+                
+                var done : Bool
+                repeat {
+                    done = self.removePost(posts: self.posts)
+                } while (done)
+                
+                self.userStatusTableView.reloadData()
+                
+            })
         }
             
             NotificationCenter.default.addObserver(self, selector: #selector(reloadNewsFeed), name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -140,15 +158,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         userStatusTableView.refreshControl = refreshControl
         
         // Do any additional setup after loading the view.
-        ref = Database.database().reference()
-        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
-            // code to handle when a new post is added
-            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
-            self.posts = postsSnapshot.posts
-            
-            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-            self.userStatusTableView.reloadData()
-            })
+//        ref = Database.database().reference()
+//        refHandle = ref?.child("posts").observe(.value, with: { (snapshot) in
+//            // code to handle when a new post is added
+//            guard let postsSnapshot = PostsSnapshot(with: snapshot) else { return }
+//            self.posts = postsSnapshot.posts
+//
+//            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+//            self.userStatusTableView.reloadData()
+//            })
 
             userStatusTableView.delegate = self
             userStatusTableView.dataSource = self
@@ -164,6 +182,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             userStatusTableView.reloadData()
             
+    }
+    
+    func removePost(posts: [Post]) -> Bool {
+        for (i, post) in posts.enumerated() {
+            if post.userId != thisUser.userID {
+                self.posts.remove(at: i)
+                return true
+            }
+        }
+        return false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -274,6 +302,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         {
             let editProfileViewController: EditProfileViewController = segue.destination as! EditProfileViewController
         }
+        if segue.destination is CommentsViewController {
+            
+            let vc = segue.destination as? CommentsViewController
+            if let indexPath = sender as? IndexPath {
+                vc?.post = self.posts[indexPath.row - 1]
+            }
+        }
     }
     
     //method to deallocate memory when the available amount of memory is low
@@ -320,15 +355,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
         if indexPath != nil {
             
-            if self.posts[(indexPath?.row)!].likes[thisUser.userID] == true {
-                self.posts[(indexPath?.row)!].likes.updateValue(false, forKey: (thisUser.userID))
+            if self.posts[(indexPath?.row)! - 1].likes[thisUser.userID] == true {
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(false, forKey: (thisUser.userID))
             } else {
-                self.posts[(indexPath?.row)!].likes.updateValue(true, forKey: (thisUser.userID))
+                self.posts[(indexPath?.row)! - 1].likes.updateValue(true, forKey: (thisUser.userID))
             }
-            if !self.posts[(indexPath?.row)!].likes.isEmpty {
-                self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("likes").setValue(self.posts[(indexPath?.row)!].likes)
+            if !self.posts[(indexPath?.row)! - 1].likes.isEmpty {
+                self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("likes").setValue(self.posts[(indexPath?.row)! - 1].likes)
                 self.userStatusTableView.reloadData()
             }
+            self.userPosts = posts
+            self.userStatusTableView.reloadData()
         }
     }
     
@@ -343,13 +380,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let buttonPosition = sender.convert(CGPoint.zero, to: self.userStatusTableView)
             let indexPath = self.userStatusTableView.indexPathForRow(at: buttonPosition)
             if indexPath != nil {
-                
+                let dateString = String(describing: Date())
                 var parameters : [String : String] = [:]
                 
                 //                if (self.posts[(indexPath?.row)! - 1].userId == thisUser.userID){
                 parameters = ["name" : (thisUser.name),
                               "userId" : (thisUser.userID),
-                              "message" : textField.text!]
+                              "message" : textField.text!,
+                              "date" : dateString]
                 //                } else {
                 //
                 //                    parameters = ["name" : friendList.getFriend(userId: self.posts[(indexPath?.row)! - 1].userId).name,
@@ -358,7 +396,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //                }
                 
                 if ((textField.text?.trimmingCharacters(in: .whitespaces)) != "") {
-                    self.ref?.child("posts").child(self.posts[(indexPath?.row)!].postId).child("comments").childByAutoId().setValue(parameters)
+                    self.ref?.child("posts").child(self.posts[(indexPath?.row)! - 1].postId).child("comments").childByAutoId().setValue(parameters)
                     self.userStatusTableView.reloadData()
                 }
                 
