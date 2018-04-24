@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if (self.posts[indexPath.row - 1].userId == thisUser.userID){
                 cell.profilePicture.image = thisUser.profilePic
             } else {
-                cell.profilePicture.image = friendList.getFriend(userId: self.posts[indexPath.row - 1].userId).photo
+                cell.profilePicture.image = allUsers.getUser(userId: self.posts[indexPath.row - 1].userId).photo
             }
             cell.profilePicture.layer.cornerRadius = 10
             cell.profilePicture.layer.masksToBounds = true
@@ -131,6 +131,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: UIControlEvents.touchUpInside)
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
+            
+//            cell.viewCommentsButton.titleLabel?.text = String(self.posts[indexPath.row - 1].comments.count) + " comments"
+            cell.viewCommentsButton.setTitle(String(self.posts[indexPath.row - 1].comments.count) + " comments", for: .normal)
             
             var likeCount : Int = 0
             for like in self.posts[indexPath.row - 1].likes {

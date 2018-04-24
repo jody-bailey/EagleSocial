@@ -39,9 +39,6 @@ class Message {
     func sendMessage() -> String
     {
         let conversationDB = Database.database().reference().child("Conversation")
-        //let messagesDB = conversationDB.child("Messages")
-        //conversationID = String(describing: messageDictionary["ConversationID"])
-        //conversationID = conversationIDb
         
         //If this is a new conversation
         if conversationID == "Optional(\"\")" || conversationID == "" {
@@ -50,33 +47,6 @@ class Message {
             let convo = Conversation(convoId: conversationID, mem: members, mes: messageDictionary)
             convo.postNewConversation()
             
-            /*conversationDB.child(conversationID).updateChildValues(["Members" : members]) {
-             (error, reference) in
-             
-             
-             if error != nil {
-             print(error!)
-             
-             } else {
-             
-             
-             conversationDB.child(self.conversationID).child("Messages").childByAutoId().updateChildValues(self.messageDictionary)
-             
-             print (self.conversationID + " Message saved successfully!!")
-             }
-             }
-             conversationDB.child(conversationID + "/LastMessage").setValue(messageDictionary["MessageBody"])
-             {
-             (error, reference) in
-             
-             if error != nil {
-             print(error!)
-             
-             } else {
-             
-             print ("Message saved successfully!!")
-             }
-             }*/
         }
             //If this is an existing conversation
         else  {
@@ -106,33 +76,6 @@ class Message {
         }
         return conversationID
     }
-    
-    //MARK: - Receive Messages
-    //TODO: - Refactor to use the class to retrieve messages from the database.
-    
-    /* func retrieveMessages(conversation: String) -> Message {
-     
-     //let conversationDB = Database.database().reference().child("Conversation")
-     
-     //Members/CurrentUserID
-     //.queryOrdered(byChild: "Members/" + (Auth.auth().currentUser?.uid)!)
-     //.queryEqual(toValue: true)
-     let messageDB = Database.database().reference().child("Conversation").child(conversation).child("Messages")
-     let message1 = Message()
-     
-     messageDB.observe(.childAdded) { (snapshot) in
-     let snapshotValue = snapshot.value as! Dictionary<String,Any>
-     
-     
-     message1.setMessageBody(messageBod: String(describing: snapshotValue["MessageBody"]!))
-     message1.setSenderId(sender: String(describing: snapshotValue["Sender"]!))
-     message1.conversationID = conversation
-     message1.setMessageDictionary(messageDict:  ["Sender": snapshotValue["Sender"]!,
-     "MessageBody": snapshotValue["MessageBody"]!,
-     "ConversationID" : conversation])
-     }
-     return message1
-     }*/
     
     //MARK: - Getters
     func getSenderId() -> String {
