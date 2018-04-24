@@ -20,23 +20,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMZ-0W-VUj" userLabel="Profile Picure View">
-                        <rect key="frame" x="0.0" y="10" width="53" height="53"/>
+                        <rect key="frame" x="10" y="10" width="53" height="53"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="53" id="ERU-AJ-Ya1"/>
                             <constraint firstAttribute="width" constant="53" id="xvR-Fk-B1h"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-hq-rgL" userLabel="Message Background">
-                        <rect key="frame" x="61" y="10" width="249" height="43.5"/>
+                        <rect key="frame" x="71" y="10" width="239" height="43.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leW-uB-Ppp" userLabel="Name Label">
-                                <rect key="frame" x="9" y="0.0" width="242" height="28"/>
+                                <rect key="frame" x="9" y="0.0" width="232" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Body Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="800-y1-3Ri" userLabel="Message Body Label">
-                                <rect key="frame" x="9" y="19" width="242" height="14.5"/>
+                                <rect key="frame" x="9" y="19" width="232" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                     <constraint firstItem="oX0-hq-rgL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Dye-NP-hGd"/>
                     <constraint firstAttribute="trailing" secondItem="oX0-hq-rgL" secondAttribute="trailing" constant="10" id="Ec4-eS-JMJ"/>
                     <constraint firstAttribute="bottom" secondItem="CMZ-0W-VUj" secondAttribute="bottom" constant="42.5" id="ekC-fk-xyc"/>
-                    <constraint firstItem="CMZ-0W-VUj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pFN-Xu-kHz"/>
+                    <constraint firstItem="CMZ-0W-VUj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="pFN-Xu-kHz"/>
                     <constraint firstItem="CMZ-0W-VUj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wK6-eT-4UK"/>
                 </constraints>
             </tableViewCellContentView>
