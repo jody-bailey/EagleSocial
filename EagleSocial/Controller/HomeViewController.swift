@@ -132,6 +132,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.commentButton.addTarget(self, action: #selector(commentButtonPressed), for: UIControlEvents.touchUpInside)
             cell.viewCommentsButton.addTarget(self, action: #selector(viewComments), for: UIControlEvents.touchUpInside)
             
+//            cell.viewCommentsButton.titleLabel?.text = String(self.posts[indexPath.row - 1].comments.count) + " comments"
+            cell.viewCommentsButton.setTitle(String(self.posts[indexPath.row - 1].comments.count) + " comments", for: .normal)
+            
             var likeCount : Int = 0
             for like in self.posts[indexPath.row - 1].likes {
                 if like.value == true {

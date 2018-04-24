@@ -19,6 +19,19 @@ class Person{
     let userId : String
     var photo : UIImage
     var key : String?
+    var aboutMe : String
+    
+    init(name : String, userId : String, age : String, major: String, schoolYear: String, email : String, aboutMe : String) {
+        self.name = name
+        self.age = age
+        self.major = major
+        self.schoolYear = schoolYear
+        self.email = email
+        self.userId = userId
+        self.aboutMe = aboutMe
+        self.photo = #imageLiteral(resourceName: "profile_icon")
+        updateProfilePic()
+    }
     
     init(name : String, userId : String, age : String, major: String, schoolYear: String, email : String) {
         self.name = name
@@ -27,6 +40,7 @@ class Person{
         self.schoolYear = schoolYear
         self.email = email
         self.userId = userId
+        self.aboutMe = "This user has not updated their about me!"
         self.photo = #imageLiteral(resourceName: "profile_icon")
         updateProfilePic()
     }
@@ -38,6 +52,7 @@ class Person{
         self.schoolYear = ""
         self.email = ""
         self.userId = ""
+        self.aboutMe = "This user has not updated their about me!"
         self.photo = #imageLiteral(resourceName: "profile_icon")
     }
     
