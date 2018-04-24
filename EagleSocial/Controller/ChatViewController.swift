@@ -21,10 +21,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //tapped row in the table.
     var tappedConversationID = ""
     
-    //var conversations = ConversationList()
     var myConvos : [Conversation] = [Conversation]()
     let conversationList = ConversationList()
-    
     
     //Constant used to set the row height for the
     //messageViewTable
@@ -34,7 +32,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         //let conversationList = ConversationList()
-        myConvos = conversationList.getConversationList()
+        //myConvos = conversationList.getConversationList()
+        //conversationList.retrieveUpdatedConversations()
         
         //Set self as the delagate for the messageTableView:
         messageTableView.delegate = self
@@ -50,7 +49,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         configureTableView()
         
         //Retrieve conversations upon loading the messageList screen.
-        //retrieveConversations()
+        retrieveConversations()
         
         retrieveUpdatedConversations()
         

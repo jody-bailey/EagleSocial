@@ -21,7 +21,7 @@ class ConversationList {
         //initialize the conversation list as an empty array.
         conversationList = []
         retrieveConversations()
-        retrieveUpdatedConversations()
+        //retrieveUpdatedConversations()
     }
     
     //Add an observer to the firebase database to listen for new records
