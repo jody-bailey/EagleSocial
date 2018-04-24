@@ -70,7 +70,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let conversationCell = tableView.dequeueReusableCell(withIdentifier: "MessageListCell", for: indexPath) as! MessageListTableCell
         
         //Load the Last Message into the MessageBody label in the TableView MessageListTableCell
-        conversationCell.messageBody.text = myConvos[indexPath.row].lastMessage
+        conversationCell.messageBody.text = myConvos[indexPath.row].getLastMessage()
         
         //Load the SenderId into the name label in the TableView MessageListTableCell
         conversationCell.nameLabel.text = myConvos[indexPath.row].getDisplayName()
