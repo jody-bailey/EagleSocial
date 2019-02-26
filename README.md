@@ -11,11 +11,11 @@ We were very proud of the fully functional product that we finished with.
 <HTML>
   
   ## Screenshots
-  <img src="/Images/LoadScreen.png" width="200" /> <img src="/Images/FinalImages/Login.png" width="200" />
-  <img src="/Images/NewsFeed1.png" width="200" /> <img src="/Images/FinalImages/ProfilePage.png" width="200" />
-  <img src="/Images/MessageList.png" width="200" /> <img src="/Images/FinalImages/Message.png" width="200" />
+  <img src="/Images/LoadScreen.png" width="200" /> <img src="/Images/Login.png" width="200" />
+  <img src="/Images/NewsFeed1.png" width="200" /> <img src="/Images/ProfilePage.png" width="200" />
+  <img src="/Images/MessageList.png" width="200" /> <img src="/Images/Message.png" width="200" />
   <img src="Images/show_alert.png" width="200" /> <img src="Images/show_likes.png" width="200" />
-  <img src="/Images/FriendsList.png" width="200" /> <img src="/Images/FinalImages/SettingsMenu.png" width="200" />
+  <img src="/Images/FriendsList.png" width="200" /> <img src="/Images/SettingsMenu.png" width="200" />
   <img src="/Images/SettingsPassword.png" width="200" />
   
 </HTML>
